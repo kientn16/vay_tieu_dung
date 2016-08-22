@@ -1,0 +1,220 @@
+@font-face {
+    font-family: 'utmavo';
+    src: url('../fonts/utm-avo-2/utmavo.eot');
+    src: local('utmavo'), url('../fonts/utm-avo-2/utmavo.woff') format('woff'), url('../fonts/utm-avo-2/utmavo.ttf') format('truetype');
+}
+a img{
+    border: none;
+}
+body{
+    font-family: 'utmavo';
+    background: #f1f1f1;
+}
+header{
+    background: #f2f2f2;
+    border-bottom: 1px solid #bebebe;
+    padding-bottom: 20px;
+}
+footer{
+    background: #c2c2c2;
+    padding: 20px 0px;
+}
+.text-bold{
+    font-weight: bold;
+}
+.text-normal{
+    font-weight: normal;
+}
+.text-center{
+    text-align: center;
+}
+.text-left{
+    text-align: left;
+}
+.text-right{
+    text-align: right;
+}
+.no-padding{
+    padding: 0px;
+}
+.no-padding-left{
+    padding-left: 0px;
+}
+.no-padding-right{
+    padding-right: 0px;
+}
+.no-padding-top {
+    padding-top: 0px;
+}
+.no-padding-bottom{
+    padding-bottom: 0px
+}
+.no-margin{
+    margin: 0px;
+}
+.no-margin-top{
+    margin-top: 0px;
+}
+.no-margin-bottom{
+    margin-bottom: 0px;
+}
+.no-margin-right{
+    margin-right: 0px;
+}
+.no-margin-left{
+    margin-left: 0px;
+}
+.menu-top{
+    margin-top: 20px;
+}
+.menu-top li{
+    text-transform: uppercase;
+}
+.menu-top>li>a{
+    transition: ease-in-out, color .35s ease-in-out;
+    transition: ease-in-out, background .35s ease-in-out;
+    border-radius: 35px;
+    color: #686868;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.navbar-inverse .navbar-nav>li>a:hover,.navbar-inverse .navbar-nav>li.active>a{
+    color: #fff;
+    background-color: #236199;
+}
+
+.navbar-inverse{
+    background: none;
+    border: none;
+    min-height: 110px;
+}
+.navbar-inverse .navbar-collapse{
+    margin-top: 10px;
+}
+
+.form-drawdown{
+    background: #fff;
+    padding: 20px;
+}
+.form-drawdown .heading{
+    background: #00529c;
+    color: #fff;
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 25px;
+    text-align: center;
+    margin: 0px 10px;
+    margin-bottom: 20px;
+}
+
+.ranger-block{
+    position: relative;
+    margin-top: 10px;
+}
+.ranger-block .label-left{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+.ranger-block .label-right{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+.form-drawdown .summery{
+    margin: 10px 0px;
+}
+.form-drawdown .summery .total{
+    font-style: italic;
+}
+.form-drawdown .summery .hint{
+    display: block;
+    color: #848484;
+    font-size: 13px;
+}
+.button-submit{
+    text-align: center;
+}
+.form-drawdown input[type="submit"]{
+    background: #236199;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px 40px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+/*Swiper  */
+.swiper-container {
+    width: 100%;
+    height: 386px;
+}
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.steps-hint {
+    background: #236199;
+    padding: 40px 0px;
+}
+.steps-hint .item{
+    color: #fff;
+    padding: 0px 20px;
+}
+.steps-hint .item .heading{
+    margin-top: 10px;
+}
+.steps-hint .item .hint{
+    font-size: 12px;
+    /*margin: 10px 10px;*/
+    color: #adadad;
+    word-break: break-all;
+}
+
+@media screen and (min-width: 480px) { 
+    .navbar-inverse .navbar-collapse{
+        margin-top: 20px;
+    }
+    .navbar-toggle{
+        margin-top: 40px;
+    }
+ }
+@media screen and (min-width: 768px) { 
+    .navbar-inverse .navbar-collapse{
+        /*width: 100%;*/
+        margin-top: 35px;
+    }
+    .swiper-container{
+        margin-top: 15px;
+        /*height: 403px;*/
+    }
+ }
+@media screen and (min-width: 992px) { 
+    .swiper-container{
+        margin-top: 0px;
+        height: 403px;
+    }
+ }
+@media screen and (min-width: 1200px) { 
+    .swiper-container {
+        height: 386px;
+    }
+ }

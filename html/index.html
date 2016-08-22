@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Index page</title>
+        <link rel="stylesheet" type="text/css" href="stylesheet/css/bootstrap.min.css">
+        <!-- RangerSlider/ -->
+        <link rel="stylesheet" href="stylesheet/plugins/ion-rangeSlider/css/ion.rangeSlider.css" />
+        <link rel="stylesheet" href="stylesheet/plugins/ion-rangeSlider/css/ion.rangeSlider.skinHTML5.css" />
+
+        <!-- Swiper  -->
+        <link rel="stylesheet" href="stylesheet/plugins/swiper-3.3.1/css/swiper.min.css" />
+
+        <link rel="stylesheet" type="text/css" href="stylesheet/css/styles.css">
+        <script type="text/javascript" src="javascript/js/jquery.1.12.4.min.js"></script>
+        <script type="text/javascript" src="javascript/js/bootstrap.min.js"></script>
+        <script src="javascript/plugins/ion-rangeSlider/ion.rangeSlider.js"></script>
+
+        <script src="javascript/plugins/swiper-3.3.1/js/swiper.jquery.min.js"></script>
+
+        <script type="text/javascript" src="javascript/js/custom.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(e){
+                var swiper = new Swiper('.swiper-container', {
+                    pagination: '.swiper-pagination',
+                    paginationClickable: true
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <nav class="navbar navbar-inverse">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">
+                                <img src="stylesheet/images/logo.png">
+                            </a>
+                        </div>
+                        <div id="navbar" class="navbar-collapse collapse navbar-right">
+                            <ul class="nav navbar-nav menu-top">
+                                <li class="active"><a href="#">Trang chủ</a></li>
+                                <li><a href="#">Sản phẩm</a></li>
+                                <li><a href="#">Liên hệ</a></li>
+                                <li><a href="#">Trợ giúp</a></li>
+                                <li><a href="#">Đăng nhập</a></li>
+                            </ul>
+                        </div><!--/.nav-collapse -->
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <div class="body">
+            <div class="row">
+                <div class="container">
+                    <div class="col-sm-36 col-md-12">
+                        <div class="form-drawdown">
+                            <div class="heading">Nhu cầu vay của bạn?</div>
+                            <form>
+                                <div class="ranger-block ranger-money">
+                                    <label class="label-left">Số tiền vay</label>
+                                    <input type="hidden" data-label-id="#label-money" data-relate="#range-time" id="range-money" class="irs-hidden-input" readonly="">
+                                    <label class="label-right" id="label-money">2 Triệu</label>
+                                </div>
+                                <div class="ranger-block ranger-time">
+                                    <label class="label-left">Thời gian</label>
+                                    <input type="hidden" id="range-time" data-label-id="#label-time" data-relate="range-_money" class="irs-hidden-input" readonly="">
+                                    <label class="label-right" id="label-time">11 Tháng</label>
+                                </div>
+                                <div class="summery">
+                                    <label>Thanh toán hàng tháng: </label>
+                                    <span class="total text-bold"> 1.250.00 VNĐ</span>
+                                    <span class="hint">(Thông tin mang tính chất tham khảo, bạn sẽ nhận thông tin chính xác sau khi lập đề nghị vay)</span>
+                                </div>
+                                <div class="button-submit">
+                                    <input type="submit" name="submit" value="Đề nghị vay"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-sm-36 col-md-24">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">Slide 1</div>
+                                <div class="swiper-slide">Slide 2</div>
+                                <div class="swiper-slide">Slide 3</div>
+                                <div class="swiper-slide">Slide 4</div>
+                                <div class="swiper-slide">Slide 5</div>
+                                <div class="swiper-slide">Slide 6</div>
+                                <div class="swiper-slide">Slide 7</div>
+                                <div class="swiper-slide">Slide 8</div>
+                                <div class="swiper-slide">Slide 9</div>
+                                <div class="swiper-slide">Slide 10</div>
+                            </div>
+                            <!-- Add Pagination -->
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row steps-hint">
+                <div class="container">
+                    <div class="col-sm-5"></div>
+                    <div class="col-sm-8 item text-center">
+                        <img src="stylesheet/images/step-account.png">
+                        <div class="heading text-bold">ĐĂNG KÝ TÀI KHOẢN <br>TRỰC TUYẾN</div>
+                        <span class="hint">Chúng tôi đang giúp đỡ những người tốt được vay vốn tốt hơn.</span>
+                    </div>
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-8 item text-center">
+                        <img src="stylesheet/images/step-drawdown.png">
+                        <div class="heading text-bold">LẬP ĐỀ NGHỊ VAY <br> TRỰC TUYẾN</div>
+                        <span class="hint">Kết nối ngân hàng của bạn để xá minh  nhanh nhận phê duyệt khoản vay nhanh chóng của bạn trực tuyến tiền trong vài phút.</span>
+                    </div>
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-8 item text-center">
+                        <img src="stylesheet/images/step-pay.png">
+                        <div class="heading text-bold">KÝ HỢP ĐỒNG  <br>VÀ NHẬN GIẢI NGÂN</div>
+                        <span class="hint">Tiền mặt trong tài khoản ngân hàng của bạn ngay, tất cả chỉ mất vài phút.</span>
+                    </div>
+                    <div class="col-sm-5"></div>
+                </div>
+            </div>
+        </div>
+        <footer class="text-center">
+            <p class="text-bold">Copyright 2012 - VMG Media JSC. Địa chỉ tầng 8 tòa nhà Viễn Đông,36 Hoàng Cầu Hà Nội,Việt Nam</p>
+            <p>Điện thoại: (+84) 4 35378820 | Fax: (+84) 4 37726091 | E-mail: info@vmgmedia.vn</p>
+        </footer>
+    </body>
+</html>
