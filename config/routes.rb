@@ -1,4 +1,23 @@
 Rails.application.routes.draw do
+  controller :register do
+    get 'register' => :new, as: :get_register
+    post 'register' => :create, as: :post_register
+    get 'active_code' => :active_code, as: :get_active_code
+    post 'active_code' => :create_active_code, as: :post_active_code
+  end
+
+  controller :sessions do
+    get 'login' => :new, as: :get_login
+    post 'login' => :create, as: :post_login
+    get 'logout' => :destroy, as: :get_logout
+  end
+  #social authenticate
+  get 'auth/facebook/callback', to: 'sessions#create_face'
+  get 'auth/google_oauth2/callback', to: 'sessions#create_google'
+  get 'auth/failure', to: redirect('/')
+  get '/signout', to: 'sessions#destroy', as: 'logout'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,15 @@
+
+<!-- app/views/sessions/new.html.erb -->
+
+<h1>Login</h1>
+
+<%= form_tag '/login' do %>
+
+    Email: <%= text_field_tag :email %>
+    Password: <%= password_field_tag :password %>
+    <%= submit_tag "Submit" %>
+
+<% end %>
+<li><%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %></li>
+<li><%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %></li>
+<li><%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %></li>
