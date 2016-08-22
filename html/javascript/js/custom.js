@@ -42,6 +42,10 @@ $(document).ready(function() {
             var labelId = $(data.input).attr('data-label-id');
             $(labelId).text(data.from_value);
         }
+    });
 
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true
     });
 })
