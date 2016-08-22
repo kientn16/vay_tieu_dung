@@ -7,6 +7,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<% if current_user %>
+    <li><a>Hello <%= current_user.email %></a></li>
+    <li><%= link_to get_logout_path do %><i class="fa fa-sign-out fa-fw"></i> Logout<% end %></li>
+<% else %>
+    <li><%= link_to get_register_path do %><i class="fa fa-sign-in fa-fw"></i> Register<% end %></li>
+    <li><%= link_to get_login_path do %><i class="fa fa-sign-in fa-fw"></i> Login<% end %></li>
+
+<% end %>
 
 <%= yield %>
 

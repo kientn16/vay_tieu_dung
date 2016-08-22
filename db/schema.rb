@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160822035355) do
+ActiveRecord::Schema.define(version: 20160822094533) do
 
   create_table "banks", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -161,6 +161,11 @@ ActiveRecord::Schema.define(version: 20160822035355) do
     t.string   "storage_time",     limit: 255
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+    t.string   "provider",         limit: 255
+    t.string   "uid",              limit: 255
+    t.string   "oauth_token",      limit: 255
+    t.datetime "oauth_expires_at"
+    t.string   "name",             limit: 255
   end
 
   add_foreign_key "contracts", "users"
