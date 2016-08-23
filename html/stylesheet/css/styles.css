@@ -504,7 +504,73 @@ footer{
     right: 10px;
     display: block;
 }
+.account{
+    background: #fff;
+    padding-top: 5px;
+}
+.account .nav-tabs li{
+    width: 25%;
+    height: 120px;
+    border-radius: 0px;
+}
+.account .nav-tabs li a{
+    height: 120px;
+    border-radius: 0px;
+    text-transform: uppercase;
+    font-size: 16px;
+    transition: ease-in-out, color .35s ease-in-out;
+    border: none;
+}
+.account .nav-tabs li a.active,.account .nav-tabs li a:hover,.account .nav-tabs li a:focus{
+    border: none;
+    outline: none;
+}
+.account .nav-tabs li{
+    background: #dedede
+}
+.account .nav-tabs li.active{
+    background: #fff;
+}
+.account .nav-tabs li a .icon{
+    height: 60px;
+    width: 60px;
+    margin: 10px auto 0px;
+    display: block;
+    transition: ease-in-out, background .35s ease-in-out;
+}
+.account .nav-tabs li.active a, .account .nav-tabs li a:hover{
+    color: #3f3f3f;
+}
+.account .nav-tabs li.tab-account a .icon {
+    background: url('../images/icon-tab-account.png') no-repeat top left;
+}
+.account .nav-tabs li.tab-account.active a .icon, .account .nav-tabs li.tab-account:hover a .icon {
+    background: url('../images/icon-tab-account-active.png') no-repeat top left;
+}
 
+.account .nav-tabs li.tab-drawdown a .icon {
+    background: url('../images/icon-tab-drawdown.png') no-repeat top left;
+}
+.account .nav-tabs li.tab-drawdown.active a .icon, .account .nav-tabs li.tab-drawdown:hover a .icon {
+    background: url('../images/icon-tab-drawdown-active.png') no-repeat top left;
+}
+
+.account .nav-tabs li.tab-information a .icon {
+    background: url('../images/icon-tab-information.png') no-repeat top left;
+}
+.account .nav-tabs li.tab-information.active a .icon, .account .nav-tabs li.tab-information:hover a .icon {
+    background: url('../images/icon-tab-information-active.png') no-repeat top left;
+}
+
+.account .nav-tabs li.tab-notification a .icon {
+    background: url('../images/icon-tab-notification.png') no-repeat top left;
+}
+.account .nav-tabs li.tab-notification.active a .icon, .account .nav-tabs li.tab-notification:hover a .icon {
+    background: url('../images/icon-tab-notification-active.png') no-repeat top left;
+}
+.banner-account{
+    background: url('../images/background-account.png') repeat-x top left;
+}
 
 
 
