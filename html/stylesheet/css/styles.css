@@ -325,6 +325,62 @@ footer{
 .link-forget-signup a{
     color: red;
 }
+.banner-contact{
+    background: #236199 url('../images/background-contact-header.png') repeat-x top left;
+}
+
+.contact {
+    background: #fff;
+    margin-top: 20px;
+    position: relative;
+}
+.contact .heading{
+    position: absolute;
+    top: -11px;
+    left: 0px;
+    width: 100%;
+}
+.contact .heading span{
+    display: block;
+    background: #236199;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 10px;
+    width: 655px;
+    margin: 0 auto;
+}
+.contact .info {
+    border-top: 1px solid #ccc;
+    padding: 50px 0px;
+    margin: 50px auto 0px;
+}
+.contact .info .item img{
+    display: block;
+    margin: 10px auto;
+}
+.contact .info .item>.head{
+    display: block;
+    color: #236199;
+    font-size: 18px;
+    padding: 0px 0px 10px;
+}
+.contact .info .item .detail span{
+    display: block;
+}
+.frm-contact{
+    width: 500px;
+    margin: 0 auto;
+    padding-top: 50px;
+    /*background: #fff;*/
+}
+.frm-contact .btn-contact{
+    padding: 10px 40px;
+    text-transform: uppercase;
+    font-size: 18px;
+}
+.hint-contact{
+    margin-top: 30px;
+}
 
 @media screen and (min-width: 480px) { 
     .navbar-inverse .navbar-collapse{
