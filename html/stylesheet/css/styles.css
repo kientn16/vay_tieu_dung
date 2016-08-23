@@ -189,8 +189,11 @@ footer{
     color: #adadad;
     word-break: break-all;
 }
-.banner-login{
+.banner-login, .banner-faq{
     background: #236199;
+}
+.banner-faq .container .content{
+    background: url('../images/background-contact-header.png') repeat-x top left;
 }
 .frm-login{
     width: 370px;
@@ -255,12 +258,448 @@ footer{
     text-indent: -9999px;
     display: inline-block;
 }
+
+.frm-register{
+    width: 370px;
+    margin: 0 auto;
+}
+.frm-register .heading{
+    padding: 30px 0px 10px;
+}
+
+.frm-register .heading span{
+    margin: 0 auto;
+    display: block;
+    background: #236199;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 18px;
+    padding: 10px 30px;
+    width: 250px;
+    border-radius: 5px;
+}
+.frm-register .invite-register{
+    font-size: 15px;
+    margin: 10px 0px;
+}
+.frm-register .text-control{
+    width: 350px;
+}
+.frm-register .captcha-control{
+    width: 240px;
+    /*float: left;*/
+}
+.frm-register .form-captcha{
+    position: relative;
+}
+.frm-register .img-captcha{
+    width: 100px;
+    /*float: left;
+    margin-left: 10px;*/
+}
+
+.frm-register .btn-register{
+    width: 200px;
+    padding: 10px;
+    background: #236199;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin: 0 auto;
+    text-align: center
+}
+.frm-login .btn-facebook{
+    background: url('../images/button-facebook.png') no-repeat top left;
+    height: 40px;
+    width: 173px;
+    display: inline-block;
+    text-indent: -9999px;
+}
+.frm-login .btn-google{
+    background: url('../images/button-google.png') no-repeat top left;
+    height: 40px;
+    width: 173px;
+    text-indent: -9999px;
+    display: inline-block;
+}
 .link-forget-signup {
     margin: 20px 0px;
 }
 .link-forget-signup a{
     color: red;
 }
+.banner-contact{
+    background: #236199 url('../images/background-contact-header.png') repeat-x top left;
+}
+
+.contact {
+    background: #fff;
+    margin-top: 20px;
+    position: relative;
+}
+.contact .heading{
+    position: absolute;
+    top: -11px;
+    left: 0px;
+    width: 100%;
+}
+.contact .heading span{
+    display: block;
+    background: #236199;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 10px;
+    width: 655px;
+    margin: 0 auto;
+}
+.contact .info {
+    border-top: 1px solid #ccc;
+    padding: 50px 0px;
+    margin: 50px auto 0px;
+}
+.contact .info .item img{
+    display: block;
+    margin: 10px auto;
+}
+.contact .info .item>.head{
+    display: block;
+    color: #236199;
+    font-size: 18px;
+    padding: 0px 0px 10px;
+}
+.contact .info .item .detail span{
+    display: block;
+}
+.frm-contact{
+    width: 500px;
+    margin: 0 auto;
+    padding-top: 50px;
+    /*background: #fff;*/
+}
+.frm-contact .btn-contact{
+    padding: 10px 40px;
+    text-transform: uppercase;
+    font-size: 18px;
+}
+.hint-contact{
+    margin-top: 30px;
+}
+
+.faq{
+    margin: 10px auto 0px;
+    background: #fff;
+}
+.faq .nav-tabs li{
+    padding: 0px;
+    /*height: 50px;*/
+    height: 150px;
+    width: 50%;
+    border: none;
+}
+.faq .nav-tabs{
+    border: none;
+    text-transform: uppercase;
+    font-size: 18px;
+}
+.faq .nav-tabs li a{
+    border: none;
+    height: 150px;
+    border-radius: 0px;
+}
+.faq .nav-tabs li a:hover{
+    border: none;
+}
+.faq .nav-tabs li .icon{
+    height: 87px;
+    width: 87px;
+    display: block;
+    margin: 10px auto 0px;
+
+}
+.faq .nav-tabs li.tab-faq.active .icon, .faq .nav-tabs li.tab-faq:hover .icon{
+    background: url('../images/icon-faq-active.png') no-repeat top left;
+}
+.faq .nav-tabs li.tab-faq .icon{
+    background: url('../images/icon-faq.png') no-repeat top left;
+}
+.faq .nav-tabs li.tab-tut .icon{
+    background: url('../images/icon-tut.png') no-repeat top left;
+}
+
+.faq .nav-tabs li.active a, .faq .nav-tabs li:hover a{
+    background: #236199;
+    color: #fff;
+}
+.faq .nav-tabs li.tab-tut.active .icon, .faq .nav-tabs li.tab-tut:hover .icon{
+    background: url('../images/icon-tut-active.png') no-repeat top left;
+}
+#tab-faq .tab-content, #tab-tut .tab-content{
+    padding: 20px 35px;
+}
+#tab-faq .panel-heading{
+    height: 50px;
+    background: #ddd;
+    padding: 0px;
+    line-height: 50px;
+}
+#tab-faq .item-collapse{
+    position: relative;
+    padding-left: 40px;
+    height: 50px;
+    line-height: 50px;
+    display: block;
+}
+#tab-faq .item-collapse .icon{
+    background: #236199;
+    color: #fff;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    top: 0px;
+    left: -25px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 50px;
+}
+#tab-tut .tab-content .panel-heading{
+    text-transform: uppercase;
+    font-size: 18px;
+}
+#tab-tut .tab-content .panel-body{
+    padding: 0px;
+}
+#tab-tut .tab-content .panel-body .list-group-item{
+    border-radius: 0px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 2px;
+}
+#tab-tut .tab-content .panel-body .list-group-item:last-child{
+    border: none;
+}
+#tab-tut .list-group-item-heading span{
+    display: block;
+    padding: 5px 0px;
+}
+#tab-tut .list-group-item-heading .heading{
+    color: #236199;
+}
+#tab-tut .list-group-item-heading span.time{
+    color: #858585;
+    font-size: 14px;
+    padding-bottom: 10px;
+}
+#tab-tut .list-group-item-text {
+    position: relative;
+}
+#tab-tut .list-group-item-text img{
+    width: 100%;
+}
+#tab-tut .list-group-item-text .desc {
+    
+}
+#tab-tut .list-group-item-text .view-more{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: block;
+}
+.account{
+    background: #fff;
+    padding-top: 5px;
+}
+.account .nav-tabs li{
+    width: 25%;
+    /*height: 120px;*/
+    border-radius: 0px;
+}
+.account .nav-tabs li a{
+    height: 120px;
+    border-radius: 0px;
+    text-transform: uppercase;
+    font-size: 16px;
+    transition: ease-in-out, color .35s ease-in-out;
+    border: none;
+}
+.account .nav-tabs li a.active,.account .nav-tabs li a:hover,.account .nav-tabs li a:focus{
+    border: none;
+    outline: none;
+}
+.account .nav-tabs li{
+    background: #dedede
+}
+.account .nav-tabs li.active{
+    background: #fff;
+}
+.account .nav-tabs li a .icon{
+    height: 60px;
+    width: 60px;
+    margin: 10px auto 0px;
+    display: block;
+    transition: ease-in-out, background .35s ease-in-out;
+}
+.account .nav-tabs li.active a, .account .nav-tabs li a:hover{
+    color: #3f3f3f;
+}
+.account .nav-tabs li.tab-account a .icon {
+    background: url('../images/icon-tab-account.png') no-repeat top left;
+}
+.account .nav-tabs li.tab-account.active a .icon, .account .nav-tabs li.tab-account:hover a .icon {
+    background: url('../images/icon-tab-account-active.png') no-repeat top left;
+}
+
+.account .nav-tabs li.tab-drawdown a .icon {
+    background: url('../images/icon-tab-drawdown.png') no-repeat top left;
+}
+.account .nav-tabs li.tab-drawdown.active a .icon, .account .nav-tabs li.tab-drawdown:hover a .icon {
+    background: url('../images/icon-tab-drawdown-active.png') no-repeat top left;
+}
+
+.account .nav-tabs li.tab-information a .icon {
+    background: url('../images/icon-tab-information.png') no-repeat top left;
+}
+.account .nav-tabs li.tab-information.active a .icon, .account .nav-tabs li.tab-information:hover a .icon {
+    background: url('../images/icon-tab-information-active.png') no-repeat top left;
+}
+
+.account .nav-tabs li.tab-notification a .icon {
+    background: url('../images/icon-tab-notification.png') no-repeat top left;
+    position: relative;
+}
+.account .nav-tabs li.tab-notification a .icon::before{
+    background: #ff9600;
+    height: 28px;
+    width: 28px;
+    line-height: 28px;
+    margin: 0 auto;
+    border-radius: 50%;
+    position: absolute;
+    top: 0px;
+    right: -10px;
+    content: attr(data-count);
+    color: #fff;
+}
+.account .nav-tabs li.tab-notification.active a .icon, .account .nav-tabs li.tab-notification:hover a .icon {
+    background: url('../images/icon-tab-notification-active.png') no-repeat top left;
+}
+.banner-account{
+    background: url('../images/background-account.png') repeat-x top left;
+}
+
+.account #tab-account .frm-account,.account #tab-drawdown .frm-drawdown{
+    padding: 40px;
+}
+.account .row.special .input{
+    padding-left: 24px;
+}
+.account .row.special label.custom{
+    padding-right: 0px;
+    position: relative;
+    left: 12px;
+}
+.account .socials .heading{
+    padding: 10px 0px;
+}
+.account .socials .hint{
+    padding: 10px 0px;
+}
+.account .socials .icon{
+    display: inline-block;
+    text-indent: -999px;
+    transition: transform .8s ease-in-out;
+}
+.account .socials .icon-facebook{
+    background: url('../images/icon-facebook.png') no-repeat top left;
+    height: 50px;
+    width: 48px;
+}
+.account .socials .icon:hover{
+    transform: rotate(360deg);
+    animation: roll 3s infinite;
+}
+.account .socials .icon-gmail{
+    background: url('../images/icon-gmail.png') no-repeat top left;
+    height: 50px;
+    width: 57px;
+
+}
+.account .button-submit input{
+    background: #236199;
+    outline: none;
+    border: none;
+    padding: 10px 30px;
+    color: #fff;
+    border-radius: 10px;
+}
+
+.account .frm-drawdown .btn-hdld{
+    padding: 6px 42px;
+}
+.account .frm-drawdown .hint-hdld{
+    font-size: 12px;
+}
+.account .frm-drawdown .btn-draft{
+    padding: 10px 30px;
+    width: 150px;
+}
+.account .frm-drawdown .btn-send{
+    padding: 10px 30px;
+    width: 150px;
+}
+
+.account .frm-information {
+    padding-top: 40px;
+}
+.account #tab-information .heading.list{
+    text-transform: uppercase;
+    color: #236199;
+    padding: 10px;
+}
+.account #tab-information table thead, .account #tab-notification table thead{
+    background: #236199;
+    color: #fff;
+}
+.account #tab-notification table {
+    margin-top: 5px;
+}
+.account #tab-information .btn-export{
+    margin-right: 20px;
+}
+
+.list-history {
+    margin: 20px 0px;
+}
+.list-history .heading{
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px;
+    background: #236199
+}
+.list-history .content{
+    padding: 10px 0px;
+}
+.list-history ul li {
+    list-style: none;
+    padding: 3px 0px;
+}
+.list-history ul li a{
+    color: #3e3e3e;
+}
+.list-history ul li a:hover{
+    color: #236199
+}
+
+td.content-notification{
+    background: #fff;
+}
+#tab-notification table tr td a{
+    color: #282828
+}
+#tab-notification table tr td a:hover{
+    color: #236199
+}
+
 
 @media screen and (min-width: 480px) { 
     .navbar-inverse .navbar-collapse{
@@ -268,6 +707,9 @@ footer{
     }
     .navbar-toggle{
         margin-top: 40px;
+    }
+    .account .nav-tabs li a{
+        height: 135px;
     }
  }
 @media screen and (min-width: 768px) { 
@@ -279,11 +721,17 @@ footer{
         margin-top: 15px;
         /*height: 403px;*/
     }
+    .account .nav-tabs li a{
+        height: 135px;
+    }
  }
 @media screen and (min-width: 992px) { 
     .swiper-container{
         margin-top: 0px;
         height: 403px;
+    }
+    .account .nav-tabs li a{
+        height: 120px;
     }
  }
 @media screen and (min-width: 1200px) { 
