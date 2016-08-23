@@ -189,8 +189,11 @@ footer{
     color: #adadad;
     word-break: break-all;
 }
-.banner-login{
+.banner-login, .banner-faq{
     background: #236199;
+}
+.banner-faq .container .content{
+    background: url('../images/background-contact-header.png') repeat-x top left;
 }
 .frm-login{
     width: 370px;
@@ -381,6 +384,129 @@ footer{
 .hint-contact{
     margin-top: 30px;
 }
+
+.faq{
+    margin: 10px auto 0px;
+    background: #fff;
+}
+.faq .nav-tabs li{
+    padding: 0px;
+    /*height: 50px;*/
+    height: 150px;
+    width: 50%;
+    border: none;
+}
+.faq .nav-tabs{
+    border: none;
+    text-transform: uppercase;
+    font-size: 18px;
+}
+.faq .nav-tabs li a{
+    border: none;
+    height: 150px;
+    border-radius: 0px;
+}
+.faq .nav-tabs li a:hover{
+    border: none;
+}
+.faq .nav-tabs li .icon{
+    height: 87px;
+    width: 87px;
+    display: block;
+    margin: 10px auto 0px;
+
+}
+.faq .nav-tabs li.tab-faq.active .icon, .faq .nav-tabs li.tab-faq:hover .icon{
+    background: url('../images/icon-faq-active.png') no-repeat top left;
+}
+.faq .nav-tabs li.tab-faq .icon{
+    background: url('../images/icon-faq.png') no-repeat top left;
+}
+.faq .nav-tabs li.tab-tut .icon{
+    background: url('../images/icon-tut.png') no-repeat top left;
+}
+
+.faq .nav-tabs li.active a, .faq .nav-tabs li:hover a{
+    background: #236199;
+    color: #fff;
+}
+.faq .nav-tabs li.tab-tut.active .icon, .faq .nav-tabs li.tab-tut:hover .icon{
+    background: url('../images/icon-tut-active.png') no-repeat top left;
+}
+#tab-faq .tab-content, #tab-tut .tab-content{
+    padding: 20px 35px;
+}
+#tab-faq .panel-heading{
+    height: 50px;
+    background: #ddd;
+    padding: 0px;
+    line-height: 50px;
+}
+#tab-faq .item-collapse{
+    position: relative;
+    padding-left: 40px;
+    height: 50px;
+    line-height: 50px;
+    display: block;
+}
+#tab-faq .item-collapse .icon{
+    background: #236199;
+    color: #fff;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    top: 0px;
+    left: -25px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 50px;
+}
+#tab-tut .tab-content .panel-heading{
+    text-transform: uppercase;
+    font-size: 18px;
+}
+#tab-tut .tab-content .panel-body{
+    padding: 0px;
+}
+#tab-tut .tab-content .panel-body .list-group-item{
+    border-radius: 0px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 2px;
+}
+#tab-tut .tab-content .panel-body .list-group-item:last-child{
+    border: none;
+}
+#tab-tut .list-group-item-heading span{
+    display: block;
+    padding: 5px 0px;
+}
+#tab-tut .list-group-item-heading .heading{
+    color: #236199;
+}
+#tab-tut .list-group-item-heading span.time{
+    color: #858585;
+    font-size: 14px;
+    padding-bottom: 10px;
+}
+#tab-tut .list-group-item-text {
+    position: relative;
+}
+#tab-tut .list-group-item-text img{
+    width: 100%;
+}
+#tab-tut .list-group-item-text .desc {
+    
+}
+#tab-tut .list-group-item-text .view-more{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: block;
+}
+
+
+
 
 @media screen and (min-width: 480px) { 
     .navbar-inverse .navbar-collapse{
