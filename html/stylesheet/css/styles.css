@@ -572,6 +572,51 @@ footer{
     background: url('../images/background-account.png') repeat-x top left;
 }
 
+.account #tab-account .frm-account{
+    padding: 40px;
+}
+.account .row.special .input{
+    padding-left: 24px;
+}
+.account .row.special label.custom{
+    padding-right: 0px;
+    position: relative;
+    left: 12px;
+}
+.account .socials .heading{
+    padding: 10px 0px;
+}
+.account .socials .hint{
+    padding: 10px 0px;
+}
+.account .socials .icon{
+    display: inline-block;
+    text-indent: -999px;
+    transition: transform .8s ease-in-out;
+}
+.account .socials .icon-facebook{
+    background: url('../images/icon-facebook.png') no-repeat top left;
+    height: 50px;
+    width: 48px;
+}
+.account .socials .icon:hover{
+    transform: rotate(360deg);
+    animation: roll 3s infinite;
+}
+.account .socials .icon-gmail{
+    background: url('../images/icon-gmail.png') no-repeat top left;
+    height: 50px;
+    width: 57px;
+
+}
+.account .button-submit input{
+    background: #236199;
+    outline: none;
+    border: none;
+    padding: 10px 30px;
+    color: #fff;
+    border-radius: 10px;
+}
 
 
 @media screen and (min-width: 480px) { 
