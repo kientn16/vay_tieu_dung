@@ -564,6 +564,20 @@ footer{
 
 .account .nav-tabs li.tab-notification a .icon {
     background: url('../images/icon-tab-notification.png') no-repeat top left;
+    position: relative;
+}
+.account .nav-tabs li.tab-notification a .icon::before{
+    background: #ff9600;
+    height: 28px;
+    width: 28px;
+    line-height: 28px;
+    margin: 0 auto;
+    border-radius: 50%;
+    position: absolute;
+    top: 0px;
+    right: -10px;
+    content: attr(data-count);
+    color: #fff;
 }
 .account .nav-tabs li.tab-notification.active a .icon, .account .nav-tabs li.tab-notification:hover a .icon {
     background: url('../images/icon-tab-notification-active.png') no-repeat top left;
@@ -641,9 +655,12 @@ footer{
     color: #236199;
     padding: 10px;
 }
-.account #tab-information table thead{
+.account #tab-information table thead, .account #tab-notification table thead{
     background: #236199;
     color: #fff;
+}
+.account #tab-notification table {
+    margin-top: 5px;
 }
 .account #tab-information .btn-export{
     margin-right: 20px;
@@ -670,6 +687,16 @@ footer{
     color: #3e3e3e;
 }
 .list-history ul li a:hover{
+    color: #236199
+}
+
+td.content-notification{
+    background: #fff;
+}
+#tab-notification table tr td a{
+    color: #282828
+}
+#tab-notification table tr td a:hover{
     color: #236199
 }
 
