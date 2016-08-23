@@ -510,7 +510,7 @@ footer{
 }
 .account .nav-tabs li{
     width: 25%;
-    height: 120px;
+    /*height: 120px;*/
     border-radius: 0px;
 }
 .account .nav-tabs li a{
@@ -708,6 +708,9 @@ td.content-notification{
     .navbar-toggle{
         margin-top: 40px;
     }
+    .account .nav-tabs li a{
+        height: 135px;
+    }
  }
 @media screen and (min-width: 768px) { 
     .navbar-inverse .navbar-collapse{
@@ -718,11 +721,17 @@ td.content-notification{
         margin-top: 15px;
         /*height: 403px;*/
     }
+    .account .nav-tabs li a{
+        height: 135px;
+    }
  }
 @media screen and (min-width: 992px) { 
     .swiper-container{
         margin-top: 0px;
         height: 403px;
+    }
+    .account .nav-tabs li a{
+        height: 120px;
     }
  }
 @media screen and (min-width: 1200px) { 
