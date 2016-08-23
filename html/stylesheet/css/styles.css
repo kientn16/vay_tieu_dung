@@ -572,7 +572,7 @@ footer{
     background: url('../images/background-account.png') repeat-x top left;
 }
 
-.account #tab-account .frm-account{
+.account #tab-account .frm-account,.account #tab-drawdown .frm-drawdown{
     padding: 40px;
 }
 .account .row.special .input{
@@ -616,6 +616,61 @@ footer{
     padding: 10px 30px;
     color: #fff;
     border-radius: 10px;
+}
+
+.account .frm-drawdown .btn-hdld{
+    padding: 6px 42px;
+}
+.account .frm-drawdown .hint-hdld{
+    font-size: 12px;
+}
+.account .frm-drawdown .btn-draft{
+    padding: 10px 30px;
+    width: 150px;
+}
+.account .frm-drawdown .btn-send{
+    padding: 10px 30px;
+    width: 150px;
+}
+
+.account .frm-information {
+    padding-top: 40px;
+}
+.account #tab-information .heading.list{
+    text-transform: uppercase;
+    color: #236199;
+    padding: 10px;
+}
+.account #tab-information table thead{
+    background: #236199;
+    color: #fff;
+}
+.account #tab-information .btn-export{
+    margin-right: 20px;
+}
+
+.list-history {
+    margin: 20px 0px;
+}
+.list-history .heading{
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px;
+    background: #236199
+}
+.list-history .content{
+    padding: 10px 0px;
+}
+.list-history ul li {
+    list-style: none;
+    padding: 3px 0px;
+}
+.list-history ul li a{
+    color: #3e3e3e;
+}
+.list-history ul li a:hover{
+    color: #236199
 }
 
 

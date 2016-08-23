@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Drawdown page</title>
+        <link rel="stylesheet" type="text/css" href="stylesheet/css/bootstrap.min.css">
+        <!-- RangerSlider/ -->
+        <link rel="stylesheet" href="stylesheet/plugins/ion-rangeSlider/css/ion.rangeSlider.css" />
+        <link rel="stylesheet" href="stylesheet/plugins/ion-rangeSlider/css/ion.rangeSlider.skinHTML5.css" />
+        <!-- Swiper  -->
+        <link rel="stylesheet" href="stylesheet/plugins/swiper-3.3.1/css/swiper.min.css" />
+        <link rel="stylesheet" type="text/css" href="stylesheet/css/styles.css">
+        <script type="text/javascript" src="javascript/js/jquery.1.12.4.min.js"></script>
+        <script type="text/javascript" src="javascript/js/bootstrap.min.js"></script>
+        <script src="javascript/plugins/ion-rangeSlider/ion.rangeSlider.js"></script>
+        <script src="javascript/plugins/swiper-3.3.1/js/swiper.jquery.min.js"></script>
+        <script type="text/javascript" src="javascript/js/custom.js"></script>
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <nav class="navbar navbar-inverse">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">
+                                <img src="stylesheet/images/logo.png">
+                            </a>
+                        </div>
+                        <div id="navbar" class="navbar-collapse collapse navbar-right">
+                            <ul class="nav navbar-nav menu-top">
+                                <li><a href="#">Trang chủ</a></li>
+                                <li><a href="#">Sản phẩm</a></li>
+                                <li><a href="#">Liên hệ</a></li>
+                                <li class="active"><a href="#">Trợ giúp</a></li>
+                                <li><a href="#">Đăng nhập</a></li>
+                            </ul>
+                            </div><!--/.nav-collapse -->
+                        </div>
+                    </nav>
+                </div>
+            </header>
+            <div class="body">
+                <div class="row banner-account">
+                    <div class="container text-left">
+                        <div class="content">
+                            <img src="stylesheet/images/banner-account.png">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="container">
+                        <div class="account">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs text-center" role="tablist">
+                                <li role="presentation" class="tab-account"><a href="#tab-faq" aria-controls="tab-faq" role="tab" data-toggle="tab">
+                                    <span>Tài khoản</span>
+                                    <span class="icon"></span>
+                                </a></li>
+                                <li role="presentation" class="active tab-drawdown"><a href="#tab-drawdown" aria-controls="tab-drawdown" role="tab" data-toggle="tab">
+                                    <span>Đề nghị vay</span>
+                                    <span class="icon"></span>
+                                </a></li>
+                                <li role="presentation" class="tab-information"><a href="#tab-information" aria-controls="tab-information" role="tab" data-toggle="tab">
+                                    <span>Thông tin tài khoản</span>
+                                    <span class="icon"></span>
+                                </a></li>
+                                <li role="presentation" class="tab-notification"><a href="#tab-notification" aria-controls="tab-notification" role="tab" data-toggle="tab">
+                                    <span>Thông báo</span>
+                                    <span class="icon"></span>
+                                </a></li>
+                            </ul>
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane" id="tab-account">
+                                </div>
+                                <div role="tabpanel" class="tab-pane active" id="tab-drawdown">
+                                    <div class="tab-content">
+                                        <form class="form-horizontal frm-drawdown">
+                                            <div class="row">
+                                                <div class="col-sm-36">
+                                                    <div class="form-group">
+                                                        <label for="input-email" class="col-sm-10 control-label">Nơi làm việc: </label>
+                                                        <div class="col-sm-15">
+                                                          <select class="form-control">
+                                                              <option>AAAAAAAAAAAAA</option>
+                                                          </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-36">
+                                                    <div class="form-group">
+                                                        <label for="input-fullname" class="col-sm-10 control-label">Thời hạn HDLD: </label>
+                                                        <div class="col-sm-26">
+                                                            <div class="row">
+                                                                <div class="col-sm-12">
+                                                                  <select class="form-control">
+                                                                      <option>AAAAAAAAAAAAA</option>
+                                                                  </select>
+                                                              </div>
+                                                              <div class="col-sm-9">
+                                                                  <input type="button" class="btn btn-primary btn-hdld" name="" value="Upload HDLD">
+                                                              </div>
+                                                              <div class="col-sm-15">
+                                                                  <span class="hint-hdld">Chỉ cần các trang có: Tên, chữ ký, thời hạn HDLD, chức vụ, mức lương (Nếu có)</span>
+                                                              </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-36">
+                                                    <div class="form-group">
+                                                        <label for="input-birthday" class="col-sm-10 control-label">HDLD có hiệu lực từ ngày: </label>
+                                                        <div class="col-sm-26">
+                                                          <div class="row">
+                                                              <div class="col-sm-4">
+                                                                    <select class="form-control">
+                                                                        <option>01</option>
+                                                                        <option>02</option>
+                                                                    </select>
+                                                              </div>
+                                                              <div class="col-sm-9">
+                                                                <div class="form-group">
+                                                                    <label for="inputEmail3" class="col-sm-11 control-label">Tháng: </label>
+                                                                    <div class="col-sm-20">
+                                                                        <select class="form-control">
+                                                                            <option>01</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                              </div>
+                                                              <div class="col-sm-9">
+                                                                  <div class="form-group">
+                                                                    <label for="inputEmail3" class="col-sm-11 control-label">Năm: </label>
+                                                                    <div class="col-sm-20">
+                                                                        <select class="form-control">
+                                                                            <option>2016</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                              </div>
+                                                          </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-14">
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-36">
+                                                    <div class="form-group">
+                                                        <label for="input-birthday" class="col-sm-10 control-label">Chức vụ: </label>
+                                                        <div class="col-sm-26">
+                                                          <div class="row">
+                                                              <div class="col-sm-12">
+                                                                    <select class="form-control">
+                                                                        <option>Nhân viên</option>
+                                                                        <option>02</option>
+                                                                    </select>
+                                                              </div>
+                                                              <div class="col-sm-9">
+                                                                  <input type="button" class="btn btn-primary btn-hdld" name="" value="Upload QDBN">
+                                                              </div>
+                                                              <div class="col-sm-9">
+                                                                <div class="checkbox" style="padding-top: 0px;">
+                                                                    <label>
+                                                                      <input type="checkbox"> TT chức vụ đã có trong HĐLĐ
+                                                                    </label>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-14">
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-36">
+                                                    <div class="form-group">
+                                                        <label for="input-birthday" class="col-sm-10 control-label">Mức lương: </label>
+                                                        <div class="col-sm-26">
+                                                          <div class="row">
+                                                              <div class="col-sm-12">
+                                                                <input type="text" class="form-control" name="">
+                                                              </div>
+                                                              <div class="col-sm-9">
+                                                                  <input type="button" class="btn btn-primary btn-hdld" name="" value="Upload QDBN">
+                                                              </div>
+                                                              <div class="col-sm-15">
+                                                                  <span class="hint-hdld">Sao kê ngân hàng hoặc xác nhận bảng lương của công ty</span>
+                                                              </div>
+                                                          </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-14">
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-36">
+                                                    <div class="form-group">
+                                                        <label for="input-birthday" class="col-sm-10 control-label">Số tiền cần vay: </label>
+                                                        <div class="col-sm-26">
+                                                          <div class="row">
+                                                              <div class="col-sm-10">
+                                                                <input type="text" class="form-control" name="" placeholder="VNĐ">
+                                                              </div>
+                                                              <div class="col-sm-15">
+                                                                  <div class="form-group">
+                                                                    <label for="inputEmail3" class="col-sm-14 control-label">Thời hạn vay: </label>
+                                                                    <div class="col-sm-22">
+                                                                        <select class="form-control">
+                                                                            <option>12 tháng</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                              </div>
+                                                          </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-14">
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-36">
+                                                    <div class="form-group">
+                                                        <label for="input-birthday" class="col-sm-10 control-label">Mục đích vay: </label>
+                                                        <div class="col-sm-18">
+                                                          <input type="text" class="form-control" name="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-14">
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-36">
+                                                    <div class="form-group">
+                                                        <label for="input-birthday" class="col-sm-10 control-label">Ngày thanh toán hàng tháng: </label>
+                                                        <div class="col-sm-4">
+                                                            <select class="form-control">
+                                                                <option>30</option>
+                                                                <option>31</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-14">
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-36">
+                                                    <div class="form-group">
+                                                        <label for="input-birthday" class="col-sm-10 control-label">Tài khoản nhận tiền: </label>
+                                                        <div class="col-sm-26">
+                                                            <div class="row" style="padding-top: 10px;">
+                                                                <div class="col-sm-12">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1">Chủ tài khoản</label>
+                                                                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                                                                      </div>
+                                                                </div>
+                                                                <div class="col-sm-12 col-sm-offset-1">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1">Số tài khoản</label>
+                                                                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                                                                      </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row" style="padding-top: 10px;">
+                                                                <div class="col-sm-12">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1">Tại ngân hàng</label>
+                                                                        <select class="form-control">
+                                                                            <option>NH VCB</option>
+                                                                        </select>
+                                                                      </div>
+                                                                </div>
+                                                                <div class="col-sm-12 col-sm-offset-1">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1">Chi nhánh</label>
+                                                                        <select class="form-control">
+                                                                            <option>Chi nhánh thành công</option>
+                                                                        </select>
+                                                                      </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-14">
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-36">
+                                                    <div class="form-group">
+                                                        <label for="input-birthday" class="col-sm-10 control-label"></label>
+                                                        <div class="col-sm-18 text-center">
+                                                            <button class="btn btn-warning btn-draft">Lưu tạm</button>
+                                                            <button class="btn btn-primary btn-send">Gửi</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-14">
+                                                    
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane " id="tab-information">
+                                    <div class="tab-content">
+                                        
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane " id="tab-notification">
+                                    <div class="tab-content">
+                                        
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="text-center">
+                <p class="text-bold">Copyright 2012 - VMG Media JSC. Địa chỉ tầng 8 tòa nhà Viễn Đông,36 Hoàng Cầu Hà Nội,Việt Nam</p>
+                <p>Điện thoại: (+84) 4 35378820 | Fax: (+84) 4 37726091 | E-mail: info@vmgmedia.vn</p>
+            </footer>
+        </body>
+    </html>
