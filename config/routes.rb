@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
+  root to: "users#show"
   controller :register do
     get 'register' => :new, as: :get_register
     post 'register' => :create, as: :post_register
     get 'active_code' => :active_code, as: :get_active_code
     post 'active_code' => :create_active_code, as: :post_active_code
   end
-
   controller :sessions do
     get 'login' => :new, as: :get_login
     post 'login' => :create, as: :post_login
@@ -17,7 +17,25 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect('/')
   get '/signout', to: 'sessions#destroy', as: 'logout'
 
+  resources :users
+  scope "/admin" do
+    get '/' => "contents#index", as: :root_admin
+    resources :contents
+    resources :admins
+    controller :sessions do
+      get 'login' => :login_admin, as: :get_login_admin
+      post 'login' => :create_admin, as: :post_login_admin
+      get 'logout' => :destroy_admin, as: :get_logout_admin
+    end
 
+    controller :admin_users do
+      get 'users' => :index, as: :get_users
+      get 'users/:id' => :edit, as: :get_edit_user
+      patch 'users/:id' => :update, as: :post_update_user
+    end
+
+    resources :admin_drawdowns
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

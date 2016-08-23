@@ -1,0 +1,90 @@
+<%= render 'includes/flash_msg' %>
+<div class="col-lg-6">
+  <%= form_for @user, html: {multipart: true,class: "nifty_form"} do |f| %>
+      <%= render 'error_messages', object: @user %>
+      <div class="form-group">
+        <%= label_tag(:email, "Email") %>
+        <% if @user.by_social == 0 && @user.change_email == 1 %>
+          <%= f.text_field :email, :class => 'form-control', :disabled => 'disabled' %>
+        <% else %>
+          <%= f.text_field :email, :class => 'form-control' %>
+        <% end %>
+      </div>
+      <div class="form-group">
+        <%= label_tag(:password, "Mat Khau") %>
+        <%= f.password_field :password, :class => 'form-control'%>
+      </div>
+      <div class="form-group">
+        <%= label_tag(:name, "Ho Ten") %>
+        <%= f.text_field :name, :class => 'form-control', :pattern => '.{3,}', :title => '3 characters minimum'%>
+      </div>
+
+
+      <div class="form-group">
+        <%= label_tag(:name, "Birthday") %>
+        <% arr = @user.birthday.split("/") %>
+        <select name="date[day]">
+          <option>Day</option>
+          <% (1..31).each do |i| %>
+            <option <% if arr[0].to_i == i %> <%= "selected" %> <% end %> value="<%= i %>"><%= i %></option>
+          <% end %>
+        </select>
+
+        <select name="date[month]">
+          <option>Month</option>
+          <% (1..12).each do |i| %>
+            <option <% if arr[1].to_i == i %> <%= "selected" %> <% end %> value="<%= i %>"><%= i %></option>
+          <% end %>
+        </select>
+        <select name="date[year]">
+          <option>Year</option>
+          <% (Time.now.year - 100..Time.now.year).each do |i| %>
+              <option <% if arr[2].to_i == i %> <%= "selected" %> <% end %> value="<%= i %>"><%= i %></option>
+          <% end %>
+
+        </select>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag(:phone, "Mobile") %>
+        <%= f.number_field :phone, :class => 'form-control',min: 10 %>
+      </div>
+      <div class="form-group">
+        <%= label_tag(:Passport, "CMT/HoChieu") %>
+        <%= f.text_field :passport, :class => 'form-control'%>
+        <%= file_field_tag :document, :class => 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag(:gender, "Gioi tinh") %>
+        <%= f.select(:gender, [['Nam',1],['Nu',2]], {include_blank: "Chon gioi tinh"}, { :class => 'form-control'}) %>
+      </div>
+      <div class="form-group">
+        <%= label_tag(:marriage, "Hon nhan") %>
+        <%= f.select(:marriage, [['Doc Than',0],['Co Gia dinh',1]], {include_blank: "Chon tinh trang hon nhan"}, { :class => 'form-control'}) %>
+      </div>
+      <div class="form-group">
+        <%= label_tag(:address, "Dia chi") %>
+        <%= f.text_field :address, :class => 'form-control',:pattern => '.{10,}', :title => '3 characters minimum' %>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag(:provined_id, "Tinh") %>
+        <%= f.select(:provined_id, [['Ha noi',0],['TP HCM',1]], {include_blank: "Tinh"}, { :class => 'form-control'}) %>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag(:district_id, "Quan/Huyen") %>
+        <%= f.select(:district_id, [['Cau giay',0],['Ba Dinh',1]], {include_blank: "Huyen"}, { :class => 'form-control'}) %>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag(:ward_id, "Xa/Phuong") %>
+        <%= f.select(:ward_id, [['Duy tan',0],['Me tri',1]], {include_blank: "Xa/Phuong"}, { :class => 'form-control'}) %>
+      </div>
+
+      <li><%= link_to "Syns Account Facebook", "/auth/facebook", id: "sign_in" %></li>
+      <li><%= link_to "Syns Account Goog", "/auth/google_oauth2", id: "sign_in" %></li>
+      <%= f.submit "Submit", :class => 'btn btn-default' %>
+  <% end %>
+</div>

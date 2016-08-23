@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160822094533) do
+ActiveRecord::Schema.define(version: 20160823070433) do
+
+  create_table "admins", force: :cascade do |t|
+    t.string   "username",   limit: 255
+    t.string   "password",   limit: 255
+    t.integer  "status",     limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "banks", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -94,11 +102,15 @@ ActiveRecord::Schema.define(version: 20160822094533) do
   add_index "histories", ["contract_id"], name: "index_histories_on_contract_id", using: :btree
 
   create_table "media", force: :cascade do |t|
-    t.string   "path",       limit: 255
-    t.integer  "id_item",    limit: 4
-    t.integer  "type",       limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "path",              limit: 255
+    t.integer  "id_item",           limit: 4
+    t.integer  "type",              limit: 4
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "path_file_name",    limit: 255
+    t.string   "path_content_type", limit: 255
+    t.integer  "path_file_size",    limit: 4
+    t.datetime "path_updated_at"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -146,10 +158,10 @@ ActiveRecord::Schema.define(version: 20160822094533) do
     t.integer  "status",           limit: 4
     t.integer  "count_login_fail", limit: 4
     t.string   "birthday",         limit: 255
-    t.integer  "by_social",        limit: 4
+    t.integer  "by_social",        limit: 4,   default: 0
     t.string   "facebook_id",      limit: 255
     t.string   "google_id",        limit: 255
-    t.integer  "change_email",     limit: 4
+    t.integer  "change_email",     limit: 4,   default: 1
     t.string   "passport",         limit: 255
     t.integer  "media_id",         limit: 4
     t.integer  "gender",           limit: 4
@@ -159,13 +171,14 @@ ActiveRecord::Schema.define(version: 20160822094533) do
     t.integer  "district_id",      limit: 4
     t.integer  "ward_id",          limit: 4
     t.string   "storage_time",     limit: 255
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.string   "provider",         limit: 255
     t.string   "uid",              limit: 255
     t.string   "oauth_token",      limit: 255
     t.datetime "oauth_expires_at"
     t.string   "name",             limit: 255
+    t.integer  "marriage",         limit: 4,   default: 0
   end
 
   add_foreign_key "contracts", "users"

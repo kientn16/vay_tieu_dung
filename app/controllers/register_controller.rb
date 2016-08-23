@@ -33,7 +33,7 @@ class RegisterController < ApplicationController
       #check success
       @result.update(:status => 1)
       session[:user_id] = @result.id
-      redirect_to get_register_path, notice: "Account verify"
+      redirect_to user_path(@result.id), notice: "Register successfully"
     else
       #check false
     end

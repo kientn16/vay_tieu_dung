@@ -16,6 +16,7 @@ gem 'coffee-rails', '~> 4.1.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem "paperclip", "~> 5.0.0"
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -64,3 +65,4 @@ gem 'will_paginate-bootstrap'
 
 gem 'omniauth-facebook', '~> 1.4.1'
 gem "omniauth-google-oauth2", "~> 0.2.1"
+gem 'bootstrap-generators', '~> 3.3.4'
