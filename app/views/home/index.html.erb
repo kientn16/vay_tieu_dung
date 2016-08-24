@@ -20,7 +20,11 @@
 						<span class="hint">(Thông tin mang tính chất tham khảo, bạn sẽ nhận thông tin chính xác sau khi lập đề nghị vay)</span>
 					</div>
 					<div class="button-submit">
-						<input type="submit" name="submit" value="Đề nghị vay"/>
+						<% if session[:user_id] != nil %>
+							<input type="submit" name="submit" class="btn-drawdown" value="Đề nghị vay"/>
+						<% else %>
+							<a href="<%= get_login_admin_path() %>" class="btn-drawdown">Đề nghị vay</a>
+						<% end %>
 					</div>
 				</form>
 			</div>
@@ -50,21 +54,18 @@
 		<div class="col-sm-5"></div>
 		<div class="col-sm-8 item text-center">
 			<span class="icon icon-account"></span>
-			<img src="stylesheet/images/step-account.png">
 			<div class="heading text-bold">ĐĂNG KÝ TÀI KHOẢN <br>TRỰC TUYẾN</div>
 			<span class="hint">Chúng tôi đang giúp đỡ những người tốt được vay vốn tốt hơn.</span>
 		</div>
 		<div class="col-sm-1"></div>
 		<div class="col-sm-8 item text-center">
-			<span class="icon icon-online"></span>
-			<img src="stylesheet/images/step-drawdown.png">
+			<span class="icon icon-drawdown"></span>
 			<div class="heading text-bold">LẬP ĐỀ NGHỊ VAY <br> TRỰC TUYẾN</div>
 			<span class="hint">Kết nối ngân hàng của bạn để xá minh  nhanh nhận phê duyệt khoản vay nhanh chóng của bạn trực tuyến tiền trong vài phút.</span>
 		</div>
 		<div class="col-sm-1"></div>
 		<div class="col-sm-8 item text-center">
-			<span class="icon icon-payment"></span>
-			<img src="stylesheet/images/step-pay.png">
+			<span class="icon icon-pay"></span>
 			<div class="heading text-bold">KÝ HỢP ĐỒNG  <br>VÀ NHẬN GIẢI NGÂN</div>
 			<span class="hint">Tiền mặt trong tài khoản ngân hàng của bạn ngay, tất cả chỉ mất vài phút.</span>
 		</div>

@@ -3,8 +3,7 @@ class SessionsController < ApplicationController
   end
 
   def login_admin
-    admin_root_admin_path
-    binding.pry
+    
   end
   def create
   end
