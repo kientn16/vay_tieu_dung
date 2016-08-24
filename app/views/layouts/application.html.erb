@@ -43,11 +43,12 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse navbar-right">
           <ul class="nav navbar-nav menu-top">
-            <li><a href="#">Trang chủ</a></li>
+            <li class="<%= !@menu_active.nil? && @menu_active == 'home' ? 'active' : '' %>"><a href="#">Trang chủ</a></li>
             <li><a href="#">Sản phẩm</a></li>
             <li><a href="#">Liên hệ</a></li>
             <li><a href="#">Trợ giúp</a></li>
             <li class="active"><a href="<%= get_login_path %>">Đăng nhập</a></li>
+            <li><a href="#">Đăng nhập</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

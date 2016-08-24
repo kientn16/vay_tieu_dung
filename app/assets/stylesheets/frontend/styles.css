@@ -136,16 +136,20 @@ footer{
 .button-submit{
     text-align: center;
 }
-.form-drawdown input[type="submit"]{
+.form-drawdown .button-submit .btn-drawdown{
+    width: 150px;
+    height: 40px;
+    display: block;
     background: #236199;
     border: none;
     outline: none;
     color: #fff;
     font-weight: bold;
-    padding: 10px 40px;
+    padding: 10px 20px;
     border-radius: 10px;
     text-align: center;
-    margin: 0 auto;
+    margin: 10px  auto 0px;
+    text-decoration: none;
 }
 
 /*Swiper  */
@@ -188,6 +192,12 @@ footer{
 }
 .steps-hint .item .icon-account{
     background: url('../images/step-account.png') no-repeat top left;
+}
+.steps-hint .item .icon-drawdown{
+    background: url('../images/step-drawdown.png') no-repeat top left;
+}
+.steps-hint .item .icon-pay{
+    background: url('../images/step-pay.png') no-repeat top left;
 }
 .steps-hint .item .heading{
     margin-top: 10px;
@@ -634,13 +644,16 @@ footer{
     width: 57px;
 
 }
-.account .button-submit input{
+.account .button-submit .btn-drawdown{
+    display: block;
     background: #236199;
     outline: none;
     border: none;
     padding: 10px 30px;
     color: #fff;
     border-radius: 10px;
+    height: 30px;
+    width: 150px;
 }
 
 .account .frm-drawdown .btn-hdld{
