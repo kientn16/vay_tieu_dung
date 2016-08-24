@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get '/signout', to: 'sessions#destroy', as: 'logout'
 
   resources :users
+  resources :contacts
   scope "/admin" do
     # get '/' => "contents#index", as: :root_admin
     # resources :contents

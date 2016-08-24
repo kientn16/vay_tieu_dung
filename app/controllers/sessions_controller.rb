@@ -3,8 +3,8 @@ class SessionsController < ApplicationController
   end
 
   def login_admin
-    admin_root_admin_path
-    binding.pry
+    # admin_root_admin_path
+    # binding.pry
   end
   def create
   end
@@ -32,7 +32,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to get_register_path
+    redirect_to root_path
   end
 
   def destroy_admin

@@ -1,14 +1,44 @@
-
 <!-- app/views/sessions/new.html.erb -->
+<div class="row">
+  <div class="container">
+    <%= form_tag '/login',class: "frm-login" do %>
+      <div class="heading text-center">
+                                <span class="text-bold text-center">
+                                    Đăng nhập
+                                </span>
+      </div>
+      <div class="invite-login text-center">Xin mời bạn đăng nhập tài khoản bằng <br> Facebook/Gmail </div>
+      <div class="button-socials">
+        <a href="/auth/facebook" class="btn-facebook">Facebook</a>
+        <a href="/auth/google_oauth2" class="btn-google">Gmail</a>
+      </div>
+      <p class="text-center text-bold">Hoặc</p>
+      <div class="form-group">
+        <label for="input-email">Email</label>
+        <%= text_field_tag :email,nil, class: 'form-control text-control', placeholder: 'Email' %>
+      </div>
+      <div class="form-group">
+        <label for="input-password">Mật khẩu</label>
+        <%= password_field_tag :password,nil, class: 'form-control text-control', placeholder: 'Password' %>
+      </div>
+      <div class="form-group form-captcha">
+        <label for="input-captcha">Mã xác nhận</label>
+        <div class="row">
+          <div class="col-sm-24">
+            <input type="text" class="form-control captcha-control" id="input-captcha" placeholder="Captcha">
+          </div>
+          <div class="col-sm-9">
+            <img class="img-captcha" src="stylesheet/images/captcha-code.png">
+          </div>
+        </div>
+      </div>
 
-<h1>Login</h1>
-
-<%= form_tag '/login' do %>
-
-    Email: <%= text_field_tag :email %>
-    Password: <%= password_field_tag :password %>
-    <%= submit_tag "Submit" %>
-
-<% end %>
-<li><%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %></li>
-<li><%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %></li>
+      <div class="form-group text-center">
+        <%= submit_tag "Submit", 'class' => 'btn btn-default btn-login' %>
+      </div>
+    <% end %>
+    <p class="text-center link-forget-signup">Quên <a href="">Mật khẩu</a>, Không là thành viên? <a href="<%= get_register_path %>">Đăng ký</a></p>
+    <p class="hint-login text-center"> Sử dụng bảo mật ngân hàng cấp để giữ cho dữ liệu của bạn an toàn.<br>Theo của chúng tôi chính sách bảo mật, chúng tôi sẽ không chia sẻ dữ liệu với các bên thứ ba. </p>
+  </div>
+</div>
+</div>
