@@ -10,8 +10,9 @@
 # Ignore all logfiles and tempfiles.
 /tmp
 .idea
-/log
+/log/*
 config/database.yml
 
 
 .DS_Store
+app/assets/javascripts/bootstrap/

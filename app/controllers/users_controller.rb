@@ -2,6 +2,17 @@ class UsersController < ApplicationController
   before_filter :authorize
   def show
     @user = User.find(params[:id])
+    @birthday = @user.birthday
+    if @birthday == nil
+      @day = Time.now.day
+      @month = Time.now.month
+      @year = Time.now.year
+    else
+      @time = @birthday.split("/")
+      @day = @time[0]
+      @month = @time[1]
+      @year = @time[2]
+    end
     # @start_date = Date.civil(params[:range][:"start_date(1i)"].to_i,params[:range][:"start_date(2i)"].to_i,params[:range][:"start_date(3i)"].to_i)
   end
 

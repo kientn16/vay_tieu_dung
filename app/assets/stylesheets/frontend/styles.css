@@ -609,7 +609,8 @@ footer{
     transition: transform .8s ease-in-out;
 }
 .account .socials .icon-facebook{
-    background: url('../images/icon-facebook.png') no-repeat top left;
+    background: url('icon-facebook.png') no-repeat top left;
+    /*background-image: image-url('icon-facebook.png') no-repeat top left;*/
     height: 50px;
     width: 48px;
 }
@@ -619,6 +620,7 @@ footer{
 }
 .account .socials .icon-gmail{
     background: url('../images/icon-gmail.png') no-repeat top left;
+    /*background: url('../images/icon-gmail.png') no-repeat top left;*/
     height: 50px;
     width: 57px;
 
