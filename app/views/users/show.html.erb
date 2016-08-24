@@ -1,90 +1,253 @@
-<%= render 'includes/flash_msg' %>
-<div class="col-lg-6">
-  <%= form_for @user, html: {multipart: true,class: "nifty_form"} do |f| %>
-      <%= render 'error_messages', object: @user %>
-      <div class="form-group">
-        <%= label_tag(:email, "Email") %>
-        <% if @user.by_social == 0 && @user.change_email == 1 %>
-          <%= f.text_field :email, :class => 'form-control', :disabled => 'disabled' %>
-        <% else %>
-          <%= f.text_field :email, :class => 'form-control' %>
-        <% end %>
-      </div>
-      <div class="form-group">
-        <%= label_tag(:password, "Mat Khau") %>
-        <%= f.password_field :password, :class => 'form-control'%>
-      </div>
-      <div class="form-group">
-        <%= label_tag(:name, "Ho Ten") %>
-        <%= f.text_field :name, :class => 'form-control', :pattern => '.{3,}', :title => '3 characters minimum'%>
-      </div>
+<div class="row">
+  <div class="container">
+    <div class="account">
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs text-center" role="tablist">
+        <li role="presentation" class="active tab-account"><a href="#tab-faq" aria-controls="tab-faq" role="tab" data-toggle="tab">
+          <span>Tài khoản</span>
+          <span class="icon"></span>
+        </a></li>
+        <li role="presentation" class="tab-drawdown"><a href="#tab-drawdown" aria-controls="tab-drawdown" role="tab" data-toggle="tab">
+          <span>Đề nghị vay</span>
+          <span class="icon"></span>
+        </a></li>
+        <li role="presentation" class="tab-information"><a href="#tab-information" aria-controls="tab-information" role="tab" data-toggle="tab">
+          <span>Thông tin tài khoản</span>
+          <span class="icon"></span>
+        </a></li>
+        <li role="presentation" class="tab-notification"><a href="#tab-notification" aria-controls="tab-notification" role="tab" data-toggle="tab">
+          <span>Thông báo</span>
+          <span class="icon"></span>
+        </a></li>
+      </ul>
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="tab-account">
+          <div class="tab-content">
+              <%= form_for @user, html: {multipart: true,class: "form-horizontal frm-account"} do |f| %>
+              <div class="row">
+                <div class="col-sm-22">
+                  <div class="form-group">
+                    <label for="input-email" class="col-sm-6 control-label">Email</label>
+                    <div class="col-sm-30">
+                      <% if @user.by_social == 0 && @user.change_email == 1 %>
+                          <%= f.text_field :email, :class => 'form-control', :disabled => 'disabled' %>
+                      <% else %>
+                          <%= f.text_field :email, :class => 'form-control' %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-14">
+                  <div class="form-group">
+                    <label for="input-password" class="col-sm-10 control-label">Mật khẩu</label>
+                    <div class="col-sm-26">
+                      <%= f.password_field :password, :class => 'form-control','placeholder' => 'Mật khẩu'%>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-22">
+                  <div class="form-group">
+                    <label for="input-fullname" class="col-sm-6 control-label">Họ và tên</label>
+                    <div class="col-sm-30">
+                      <%= f.text_field :name, :class => 'form-control','placeholder' => 'Họ và tên'%>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-14">
+                  <div class="form-group">
+                    <label for="input-mobile" class="col-sm-10 control-label">Mobile</label>
+                    <div class="col-sm-26">
+                      <%= f.number_field :phone, :class => 'form-control',min: 10,'placeholder' => 'Mobile' %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-22">
+                  <div class="form-group">
+                    <label for="input-birthday" class="col-sm-6 control-label">Ngày sinh</label>
+                    <div class="col-sm-30">
+                      <div class="row">
+                        <div class="col-sm-8">
+                          <select name="date[day]" class="form-control">
+                            <option>Day</option>
+                            <% (1..31).each do |i| %>
+                                <option <% if @day.to_i == i %> <%= "selected" %> <% end %> value="<%= i %>"><%= i %></option>
+                            <% end %>
+                          </select>
+                        </div>
+                        <div class="col-sm-14">
+                          <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-9 control-label">Tháng: </label>
+                            <div class="col-sm-27">
+                              <select name="date[month]" class="form-control">
+                                <option>Month</option>
+                                <% (1..12).each do |i| %>
+                                    <option <% if @month.to_i == i %> <%= "selected" %> <% end %> value="<%= i %>"><%= i %></option>
+                                <% end %>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-14">
+                          <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-8 control-label">Năm: </label>
+                            <div class="col-sm-28">
+                              <select name="date[year]" class="form-control">
+                                <option>Year</option>
+                                <% (Time.now.year - 100..Time.now.year).each do |i| %>
+                                    <option <% if @year.to_i == i %> <%= "selected" %> <% end %> value="<%= i %>"><%= i %></option>
+                                <% end %>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-14">
 
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-22">
+                  <div class="form-group">
+                    <label for="input-birthday" class="col-sm-6 control-label">CMT</label>
+                    <div class="col-sm-30">
+                      <div class="row">
+                        <div class="col-sm-23">
+                          <%= f.text_field :passport, :class => 'form-control','placeholder' => 'CMT/Passport'%>
+                        </div>
+                        <div class="col-sm-13">
 
-      <div class="form-group">
-        <%= label_tag(:name, "Birthday") %>
-        <% arr = @user.birthday.split("/") %>
-        <select name="date[day]">
-          <option>Day</option>
-          <% (1..31).each do |i| %>
-            <option <% if arr[0].to_i == i %> <%= "selected" %> <% end %> value="<%= i %>"><%= i %></option>
-          <% end %>
-        </select>
+                          <%= file_field_tag :document, :class => 'form-control' %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-14">
 
-        <select name="date[month]">
-          <option>Month</option>
-          <% (1..12).each do |i| %>
-            <option <% if arr[1].to_i == i %> <%= "selected" %> <% end %> value="<%= i %>"><%= i %></option>
-          <% end %>
-        </select>
-        <select name="date[year]">
-          <option>Year</option>
-          <% (Time.now.year - 100..Time.now.year).each do |i| %>
-              <option <% if arr[2].to_i == i %> <%= "selected" %> <% end %> value="<%= i %>"><%= i %></option>
-          <% end %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-22">
+                  <div class="form-group">
+                    <label for="input-birthday" class="col-sm-6 control-label">Giới tính: </label>
+                    <div class="col-sm-30">
+                      <div class="row">
+                        <div class="col-sm-10">
+                          <%= f.select(:gender, [['Nam',1],['Nu',2]], {include_blank: "Chon gioi tinh"}, { :class => 'form-control'}) %>
+                        </div>
+                        <div class="col-sm-26">
+                          <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-16 control-label">Tình trạng hôn nhân: </label>
+                            <div class="col-sm-20">
+                              <%= f.select(:marriage, [['Độc thân',0],['Đã lập gia đình',1]], {include_blank: "Chon tinh trang hon nhan"}, { :class => 'form-control'}) %>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-14">
 
-        </select>
-      </div>
+                </div>
+              </div>
+              <div class="row special">
+                <div class="col-sm-36">
+                  <div class="form-group">
+                    <label for="input-address" class="col-sm-3 control-label">Địa chỉ</label>
+                    <div class="col-sm-33 input">
+                      <%= f.text_field :address, :class => 'form-control',:pattern => '.{10,}', :title => '3 characters minimum', 'placeholder' => 'Địa chỉ' %>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-14">
 
-      <div class="form-group">
-        <%= label_tag(:phone, "Mobile") %>
-        <%= f.number_field :phone, :class => 'form-control',min: 10 %>
-      </div>
-      <div class="form-group">
-        <%= label_tag(:Passport, "CMT/HoChieu") %>
-        <%= f.text_field :passport, :class => 'form-control'%>
-        <%= file_field_tag :document, :class => 'form-control' %>
-      </div>
+                </div>
+              </div>
+              <div class="row special">
+                <div class="col-sm-36">
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-3 control-label custom"></label>
+                    <div class="col-sm-33 input">
+                      <div class="row">
+                        <div class="col-sm-10">
+                          <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-7 control-label">Tỉnh/TP: </label>
+                            <div class="col-sm-29">
+                              <%= f.select(:provined_id, [['Ha noi',0],['TP HCM',1]], {include_blank: "Tinh"}, { :class => 'form-control'}) %>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-13">
+                          <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-10 control-label">Quận/Huyện: </label>
+                            <div class="col-sm-26">
+                              <%= f.select(:district_id, [['Cau giay',0],['Ba Dinh',1]], {include_blank: "Huyen"}, { :class => 'form-control'}) %>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-13">
+                          <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-10 control-label">Phường/Xã: </label>
+                            <div class="col-sm-26">
+                              <%= f.select(:ward_id, [['Duy tan',0],['Me tri',1]], {include_blank: "Xa/Phuong"}, { :class => 'form-control'}) %>
+                            </div>
+                          </div>
+                        </div>
 
-      <div class="form-group">
-        <%= label_tag(:gender, "Gioi tinh") %>
-        <%= f.select(:gender, [['Nam',1],['Nu',2]], {include_blank: "Chon gioi tinh"}, { :class => 'form-control'}) %>
-      </div>
-      <div class="form-group">
-        <%= label_tag(:marriage, "Hon nhan") %>
-        <%= f.select(:marriage, [['Doc Than',0],['Co Gia dinh',1]], {include_blank: "Chon tinh trang hon nhan"}, { :class => 'form-control'}) %>
-      </div>
-      <div class="form-group">
-        <%= label_tag(:address, "Dia chi") %>
-        <%= f.text_field :address, :class => 'form-control',:pattern => '.{10,}', :title => '3 characters minimum' %>
-      </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row special">
+                <div class="col-sm-36">
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-3 control-label custom"></label>
+                    <div class="col-sm-33 input">
+                      <div class="socials">
+                        <div class="heading text-bold">Đăng nhập nhanh</div>
+                        <div class="content">
+                          <a href="/auth/facebook" style="background-image: url(<%= asset_path 'icon-facebook.png' %>)" class="icon icon-facebook"></a> <a href="/auth/google_oauth2" style="background-image: url(<%= asset_path 'icon-gmail.png' %>)" class="icon icon-gmail"></a>
+                        </div>
+                        <div class="hint">Vui lòng click biểu tượng Facebook/Gmail để đăng ký nhanh</div>
+                      </div>
+                      <div class="button-submit">
+                        <input type="submit" class="text-bold" name="submit" value="Cập nhật">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane " id="tab-drawdown">
+          <div class="tab-content">
 
-      <div class="form-group">
-        <%= label_tag(:provined_id, "Tinh") %>
-        <%= f.select(:provined_id, [['Ha noi',0],['TP HCM',1]], {include_blank: "Tinh"}, { :class => 'form-control'}) %>
-      </div>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane " id="tab-information">
+          <div class="tab-content">
 
-      <div class="form-group">
-        <%= label_tag(:district_id, "Quan/Huyen") %>
-        <%= f.select(:district_id, [['Cau giay',0],['Ba Dinh',1]], {include_blank: "Huyen"}, { :class => 'form-control'}) %>
-      </div>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane " id="tab-notification">
+          <div class="tab-content">
 
-      <div class="form-group">
-        <%= label_tag(:ward_id, "Xa/Phuong") %>
-        <%= f.select(:ward_id, [['Duy tan',0],['Me tri',1]], {include_blank: "Xa/Phuong"}, { :class => 'form-control'}) %>
-      </div>
+          </div>
+        </div>
 
-      <li><%= link_to "Syns Account Facebook", "/auth/facebook", id: "sign_in" %></li>
-      <li><%= link_to "Syns Account Goog", "/auth/google_oauth2", id: "sign_in" %></li>
-      <%= f.submit "Submit", :class => 'btn btn-default' %>
-  <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
