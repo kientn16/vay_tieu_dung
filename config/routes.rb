@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: "users#show"
+  root to: "home#index"
   controller :register do
     get 'register' => :new, as: :get_register
     post 'register' => :create, as: :post_register

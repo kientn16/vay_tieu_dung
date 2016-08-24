@@ -180,6 +180,15 @@ footer{
     color: #fff;
     padding: 0px 20px;
 }
+.steps-hint .item .icon{
+    height: 128px;
+    width: 128px;
+    display: block;
+    margin: 0 auto;
+}
+.steps-hint .item .icon-account{
+    background: url('../images/step-account.png') no-repeat top left;
+}
 .steps-hint .item .heading{
     margin-top: 10px;
 }
