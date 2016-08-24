@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
   end
 
   def login_admin
+    # test
     # admin_root_admin_path
     # binding.pry
   end
