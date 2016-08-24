@@ -19,7 +19,6 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @birthday = params[:date]['day']+"/"+params[:date]['month']+"/"+params[:date]['year']
-
     @params = params[:user]
     @params['birthday'] = @birthday
     # binding.pry
