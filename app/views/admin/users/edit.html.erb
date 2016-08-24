@@ -1,6 +1,6 @@
 <%= render 'includes/flash_msg' %>
 <div class="col-lg-6">
-  <%= form_for @user,:url => post_update_user_path, html: {multipart: true,class: "nifty_form"} do |f| %>
+  <%= form_for @user,:url => admin_user_path, html: {multipart: true,class: "nifty_form"} do |f| %>
       <div class="form-group">
         <%= label_tag(:email, "Email") %>
         <% if @user.by_social == 0 && @user.change_email == 1 %>

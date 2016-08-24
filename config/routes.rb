@@ -36,7 +36,8 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    get '/' => "admin/contents#index", as: :root_admin
+    get '/' => "contents#index", as: :root_admin
+    # root :to => 'admin/contents#index'
     resources :contents,:drawdowns,:users,:admins
   end
   # The priority is based upon order of creation: first created -> highest priority.

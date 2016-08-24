@@ -22,7 +22,7 @@ class Admin::UsersController < ApplicationController
           @media = Medium.create(path: params[:document])
           @user.update(:media_id => @media.id)
         end
-        format.html {redirect_to get_users_path, notice: 'User was successfully updated'}
+        format.html {redirect_to admin_users_path, notice: 'User was successfully updated'}
         format.json { render :show, status: :ok, location: @user}
       else
         format.html { render :show }

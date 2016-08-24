@@ -3,7 +3,8 @@ class SessionsController < ApplicationController
   end
 
   def login_admin
-
+    admin_root_admin_path
+    binding.pry
   end
   def create
   end
@@ -12,7 +13,7 @@ class SessionsController < ApplicationController
     admin = Admin.authenticate(params[:username],params[:password])
     if admin
       session[:admin_id] = admin.id
-      redirect_to root_admin_path
+      redirect_to admin_root_admin_path
     else
       redirect_to get_login_admin_path,:flash => { :error => "Username or Password invalid" }
     end

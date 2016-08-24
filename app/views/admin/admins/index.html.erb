@@ -11,7 +11,7 @@
   <div class="col-lg-12">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <%= button_to 'New',new_admin_path,class: 'btn btn-success',style: '',method: :get %>
+        <%= button_to 'New', new_admin_admin_path(),class: 'btn btn-success',style: '',method: :get %>
       </div>
       <!-- /.panel-heading -->
       <div class="panel-body">
@@ -29,8 +29,8 @@
                 <tr>
                   <td><%= admin.username %></td>
                   <td><%= admin.status %></td>
-                  <td><%= link_to 'Edit', edit_admin_path(admin) %></td>
-                  <td><%= link_to 'Destroy', admin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  <td><%= link_to 'Edit', edit_admin_admin_path(admin) %></td>
+                  <td><%= link_to 'Destroy', admin_admin_path(admin), method: :delete, data: { confirm: 'Are you sure?' } %></td>
                 </tr>
             <% end %>
             </tbody>

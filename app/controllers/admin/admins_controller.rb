@@ -29,7 +29,7 @@ class Admin::AdminsController < ApplicationController
 
     respond_to do |format|
       if @admin.save
-        format.html { redirect_to admins_path, notice: 'Admin was successfully created.' }
+        format.html { redirect_to admin_admins_path, notice: 'Admin was successfully created.' }
         format.json { render :show, status: :created, location: @admin }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class Admin::AdminsController < ApplicationController
   def update
     respond_to do |format|
       if @admin.update(admin_params)
-        format.html { redirect_to admins_path, notice: 'Admin was successfully updated.' }
+        format.html { redirect_to admin_admins_path, notice: 'Admin was successfully updated.' }
         format.json { render :show, status: :ok, location: @admin }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class Admin::AdminsController < ApplicationController
   def destroy
     @admin.destroy
     respond_to do |format|
-      format.html { redirect_to admins_url, notice: 'Admin was successfully destroyed.' }
+      format.html { redirect_to admin_root_admin_path, notice: 'Admin was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
