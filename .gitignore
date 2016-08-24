@@ -10,7 +10,7 @@
 # Ignore all logfiles and tempfiles.
 /tmp
 .idea
-/log1/*
+/log/*
 config/database.yml
 
 
