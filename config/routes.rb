@@ -19,22 +19,25 @@ Rails.application.routes.draw do
 
   resources :users
   scope "/admin" do
-    get '/' => "contents#index", as: :root_admin
-    resources :contents
-    resources :admins
+    # get '/' => "contents#index", as: :root_admin
+    # resources :contents
+    # resources :admins
     controller :sessions do
       get 'login' => :login_admin, as: :get_login_admin
       post 'login' => :create_admin, as: :post_login_admin
       get 'logout' => :destroy_admin, as: :get_logout_admin
     end
 
-    controller :admin_users do
-      get 'users' => :index, as: :get_users
-      get 'users/:id' => :edit, as: :get_edit_user
-      patch 'users/:id' => :update, as: :post_update_user
-    end
+    # controller :admin_users do
+    #   get 'users' => :index, as: :get_users
+    #   get 'users/:id' => :edit, as: :get_edit_user
+    #   patch 'users/:id' => :update, as: :post_update_user
+    # end
+  end
 
-    resources :admin_drawdowns
+  namespace :admin do
+    get '/' => "admin/contents#index", as: :root_admin
+    resources :contents,:drawdowns,:users,:admins
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
