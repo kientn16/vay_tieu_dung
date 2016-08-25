@@ -21,24 +21,23 @@
 
       <div class="form-group">
         <%= label_tag(:name, "Birthday") %>
-        <% arr = @user.birthday.split("/") %>
         <select name="date[day]" readonly="readonly">
           <option>Day</option>
           <% (1..31).each do |i| %>
-              <option <% if arr[0].to_i == i %> <%= "selected" %> <% end %> value="<%= i %>"><%= i %></option>
+              <option <% if @day.to_i == i %> <%= "selected" %> <% end %> value="<%= i %>"><%= i %></option>
           <% end %>
         </select>
 
         <select name="date[month]" readonly="readonly">
           <option>Month</option>
           <% (1..12).each do |i| %>
-              <option <% if arr[1].to_i == i %> <%= "selected" %> <% end %> value="<%= i %>"><%= i %></option>
+              <option <% if @month.to_i == i %> <%= "selected" %> <% end %> value="<%= i %>"><%= i %></option>
           <% end %>
         </select>
         <select name="date[year]" readonly="readonly">
           <option>Year</option>
           <% (Time.now.year - 100..Time.now.year).each do |i| %>
-              <option <% if arr[2].to_i == i %> <%= "selected" %> <% end %> value="<%= i %>"><%= i %></option>
+              <option <% if @year.to_i == i %> <%= "selected" %> <% end %> value="<%= i %>"><%= i %></option>
           <% end %>
 
         </select>

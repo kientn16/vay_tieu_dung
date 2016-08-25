@@ -8,6 +8,17 @@ class Admin::UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    @birthday = @user.birthday
+    if @birthday == nil
+      @day = Time.now.day
+      @month = Time.now.month
+      @year = Time.now.year
+    else
+      @time = @birthday.split("/")
+      @day = @time[0]
+      @month = @time[1]
+      @year = @time[2]
+    end
   end
 
   def update

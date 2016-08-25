@@ -32,7 +32,12 @@
         <h4 class="modal-title">Quyết định bổ nhiệm</h4>
       </div>
       <div class="modal-body">
-        <p>Some text in the modal.</p>
+        <% if Medium.find(@drawdown.media_appoint_id).path_content_type != ("image/jpeg" || "image/png") %>
+            <p>Không có bản xem trước</p>
+            <p><a href="<%= Medium.find(@drawdown.media_appoint_id).path.url(:original, false) %>" download>Download</a> </p>
+        <% else %>
+            <p><%= image_tag Medium.find(@drawdown.media_appoint_id).path %></p>
+        <% end %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -51,7 +56,12 @@
         <h4 class="modal-title">Sao kê bảng lương</h4>
       </div>
       <div class="modal-body">
-        <p>Some text in the modal.</p>
+        <% if Medium.find(@drawdown.media_salary_id).path_content_type != ("image/jpeg" || "image/png") %>
+            <p>Không có bản xem trước</p>
+            <p><a href="<%= Medium.find(@drawdown.media_salary_id).path.url(:original, false) %>" download>Download</a> </p>
+        <% else %>
+            <p><%= image_tag Medium.find(@drawdown.media_salary_id).path %></p>
+        <% end %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
