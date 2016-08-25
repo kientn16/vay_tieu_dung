@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authorize
+
   def show
     @user = User.find(params[:id])
     @birthday = @user.birthday
@@ -147,6 +148,9 @@ class UsersController < ApplicationController
     end
   end
 
+  def draff
+
+  end
   private
   def user_params
     params.require(:user).permit(:email,:password,:name,:birthday,:phone,:passport,:gender,:marriage,:address,:provined_id,:district_id,:ward_id)

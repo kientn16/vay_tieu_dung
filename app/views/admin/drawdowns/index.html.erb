@@ -37,7 +37,7 @@
                   <td><%= Drawdown.get_amount_time(drawdown.amount_time) %></td>
                   <td><%= drawdown.purpose %></td>
                   <td><%= drawdown.user.name %></td>
-                  <td><%= link_to 'Detail', admin_drawdown_path(drawdown) %></td>
+                  <td><% if drawdown.is_draft == 0 %><%= link_to 'Detail', admin_drawdown_path(drawdown) %> <% end %></td>
                 </tr>
             <% end %>
             </tbody>

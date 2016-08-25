@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   resources :users
   match '/users/drawdown/:id', to: 'users#drawdown', via: [:get, :post, :patch], as: :drawdown
+  match '/users/info/:id', to: 'info#index', via: [:get, :post, :patch], as: :info_account
   resources :contacts
   resources :helps
   scope "/admin" do
@@ -41,7 +42,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/' => "contents#index", as: :root_admin
     # root :to => 'admin/contents#index'
-    resources :contents,:users,:admins
+    resources :contents,:users,:admins,:contracts
     resources :drawdowns do
       post '/accept_drawdowns' => "drawdowns#accept_drawdowns"
       post '/un_accept_drawdowns' => "drawdowns#un_accept_drawdowns"

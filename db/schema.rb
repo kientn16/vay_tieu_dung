@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160825040735) do
+ActiveRecord::Schema.define(version: 20160825084138) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "username",   limit: 255
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 20160825040735) do
     t.integer  "orgin_rate",      limit: 8
     t.integer  "interest_rate",   limit: 8
     t.datetime "updated_at",                null: false
+    t.integer  "user_id",         limit: 4
   end
 
   add_index "histories", ["contract_id"], name: "index_histories_on_contract_id", using: :btree

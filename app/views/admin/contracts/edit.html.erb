@@ -1,0 +1,67 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+  </div>
+
+  <div class="panel-body">
+    <%= form_for @contract, url: {action: "update"} do |f| %>
+        <% if @contract.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@contract.errors.count, "error") %> prohibited this content from being saved:</h2>
+
+              <ul>
+                <% @contract.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+        <div class="form-group">
+          <div class="field">
+            <%= f.label "Ngay vay" %><br>
+            <%= f.text_field :created_at, :class => 'form-control', :disabled => 'desabled' %>
+          </div>
+          <div class="field">
+            <%= f.label "Ma HD vay" %><br>
+            <%= f.text_field :code, :class => 'form-control', :disabled => 'desabled' %>
+          </div>
+          <div class="field">
+            <%= f.label "So tien" %><br>
+            <input type="text" value="<%= num_currency(@contract.value) %>" disabled class="form-control">
+          </div>
+          <div class="field">
+            <%= f.label "Thoi han vay" %><br>
+            <input type="text" value="<%= Drawdown.get_amount_time(@contract.deadline)%>" disabled class="form-control">
+          </div>
+          <div class="field">
+            <%= f.label "So tien da thanh toan" %><br>
+            <input type="text" value="<%= num_currency(@contract.paid) %>" disabled class="form-control">
+          </div>
+          <div class="field">
+            <%= f.label "So tien Phat" %><br>
+            <input type="text" value="<%= num_currency(@contract.penance) %>" disabled class="form-control">
+          </div>
+          <div class="field">
+            <%= f.label "So tien Phat" %><br>
+            <input type="text" value="<%= num_currency(@contract.debt) %>" disabled class="form-control">
+          </div>
+          <div class="field">
+            <%= f.label "Status" %><br>
+            <select name="contract[status]" class="form-control">
+              <option <% if @contract.status == 0 %> selected <% end %> value="0">Chấp nhận đề nghị vay.</option>
+              <option <% if @contract.status == 1 %> selected <% end %> value="1">Chờ xử lý.</option>
+              <option <% if @contract.status == 2 %> selected <% end %> value="2">Không chấp nhận đề nghị vay.</option>
+              <option <% if @contract.status == 3 %> selected <% end %> value="3">Đã ký HĐ vay. Chờ giải ngân.</option>
+              <option <% if @contract.status == 4 %> selected <% end %> value="4">Đã giải ngân.</option>
+              <option <% if @contract.status == 5 %> selected <% end %> value="5">Đã tất toán..</option>
+            </select>
+          </div>
+        </div>
+        <input type="hidden" value="<%= @contract.user_id %>" name="contract[user_id]">
+        <div class="actions">
+          <%= f.submit 'Submit',:class => 'btn btn-default' %>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+

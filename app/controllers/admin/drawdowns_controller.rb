@@ -24,7 +24,7 @@ class Admin::DrawdownsController < ApplicationController
     contract.save
 
     # insert history
-    history = History.new(:contract_id => contract.id, :status_contract => 0, :summery => contract.value, :orgin_rate => contract.value)
+    history = History.new(:contract_id => contract.id, :status_contract => 0, :summery => contract.value, :orgin_rate => contract.value, :user_id => contract.user_id)
     history.save
 
     # insert notifications
@@ -43,10 +43,11 @@ class Admin::DrawdownsController < ApplicationController
     # update status contract
     contract = Contract.find_by_drawdowns_id(drawdowns_id)
     contract.status = 2
+    contract.debt = 0
     contract.save
 
     # insert history
-    history = History.new(:contract_id => contract.id, :status_contract => 2, :summery => contract.value, :orgin_rate => contract.value)
+    history = History.new(:contract_id => contract.id, :status_contract => 2, :summery => contract.value, :orgin_rate => contract.value, :user_id => contract.user_id)
     history.save
 
     # insert notifications

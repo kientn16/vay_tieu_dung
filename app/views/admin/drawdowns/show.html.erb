@@ -93,8 +93,8 @@
         </div>
         <% if Contract.find_by_drawdowns_id(@drawdown).status == 1 %>
           <div class="panel-footer">
-              <a data-original-title="Broadcast Message" onclick="accept_drawdowns(<%= @drawdown.id %>,'<%= admin_drawdown_accept_drawdowns_path(@drawdown) %>')" title="Duyệt vay vốn" data-toggle="tooltip" type="button" class="btn btn-lg btn-success"><i class="glyphicon glyphicon-ok"></i></a>
-              <a data-original-title="Remove this user" onclick="un_accept_drawdowns(<%= @drawdown.id %>,'<%= admin_drawdown_un_accept_drawdowns_path(@drawdown) %>')" title="Không duyệt" data-toggle="tooltip" type="button" class="btn btn-lg btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+              <a data-original-title="Broadcast Message" onclick="accept_drawdowns(<%= @drawdown.id %>,'<%= admin_drawdown_accept_drawdowns_path(@drawdown) %>')" title="Duyệt vay vốn" data-toggle="tooltip" type="button" class="btn btn-lg btn-success">Duyệt Hồ Sơ</a>
+              <a data-original-title="Remove this user" onclick="un_accept_drawdowns(<%= @drawdown.id %>,'<%= admin_drawdown_un_accept_drawdowns_path(@drawdown) %>')" title="Không duyệt" data-toggle="tooltip" type="button" class="btn btn-lg btn-danger">Không Duyệt Hồ Sơ </a>
           </div>
         <% else %>
             <div class="alert alert-info">

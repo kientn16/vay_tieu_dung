@@ -1,0 +1,120 @@
+<div class="row banner-account">
+  <div class="container text-left">
+    <div class="content">
+      <%= image_tag 'banner-account.png' %>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="container">
+    <div class="account">
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs text-center" role="tablist">
+        <li role="presentation" class="tab-account"><a href="<%= user_path %>">
+          <span>Tài khoản</span>
+          <span class="icon"></span>
+        </a></li>
+        <li role="presentation" class="tab-drawdown"><a href="<%= drawdown_path %>">
+          <span>Đề nghị vay</span>
+          <span class="icon"></span>
+        </a></li>
+        <li role="presentation" class="active tab-information"><a href="#">
+          <span>Thông tin tài khoản</span>
+          <span class="icon"></span>
+        </a></li>
+        <li role="presentation" class="tab-notification"><a href="#tab-notification">
+          <span>Thông báo</span>
+          <span class="icon"></span>
+        </a></li>
+      </ul>
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane" id="tab-account">
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab-drawdown">
+        </div>
+        <div role="tabpanel" class="tab-pane active" id="tab-information">
+          <div class="tab-content">
+            <div class="heading list text-bold">Chi tiết thông tin khoản vay</div>
+            <div class="list">
+              <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered">
+                  <thead>
+                  <tr>
+                    <td>Ngày vay</td>
+                    <td>Số HĐ vay</td>
+                    <td>Số tiền</td>
+                    <td>Thời hạn</td>
+                    <td>Trạng thái</td>
+                    <td>Số tiền đã TT</td>
+                    <td>Số tiền phạt</td>
+                    <td>Dư nợ</td>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <% @contracts.each do |contract| %>
+                  <tr>
+                    <td><%= contract.loans_time %></td>
+                    <td><%= contract.code %></td>
+                    <td><%= num_currency(contract.value) %></td>
+                    <td><%= Drawdown.get_amount_time(contract.deadline) %></td>
+                    <td><%= Contract.get_status(contract.status) %></td>
+                    <td><%= num_currency(contract.paid) %></td>
+                    <td><%= num_currency(contract.penance) %></td>
+                    <td><%= num_currency(contract.debt) %></td>
+                  </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+              </div>
+              <div class="row">
+                <button class="pull-right btn btn-primary btn-export">Xuất ra Excel</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-36">
+                <div class="list-history status">
+                  <div class="heading text-bold">Lịch sử trạng thái</div>
+                  <div class="content">
+                    <ul>
+                    <% @historys.each do |history| %>
+                        <li><a href=""><span class="text-bold">Ngày <%= history.created_at %></span></a>: <%= Contract.get_status(history.status_contract)%></li>
+                    <% end %>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-36">
+                <div class="list-history payment">
+                  <div class="heading text-bold">Lịch sử thanh toán</div>
+                  <div class="content">
+                    <ul>
+                      <li><a href=""><span class="text-bold">Ngày 26/06/2016</span>: Nhận đề nghị vay</a></li>
+                      <li><a href=""><span class="text-bold">Ngày 26/06/2016</span>: Nhận đề nghị vay</a></li>
+                      <li><a href=""><span class="text-bold">Ngày 26/06/2016</span>: Nhận đề nghị vay</a></li>
+                      <li><a href=""><span class="text-bold">Ngày 26/06/2016</span>: Nhận đề nghị vay</a></li>
+                      <li><a href=""><span class="text-bold">Ngày 26/06/2016</span>: Nhận đề nghị vay</a></li>
+                      <li><a href=""><span class="text-bold">Ngày 26/06/2016</span>: Nhận đề nghị vay</a></li>
+                      <li><a href=""><span class="text-bold">Ngày 26/06/2016</span>: Nhận đề nghị vay</a></li>
+                      <li><a href=""><span class="text-bold">Ngày 26/06/2016</span>: Nhận đề nghị vay</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane " id="tab-notification">
+          <div class="tab-content">
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
