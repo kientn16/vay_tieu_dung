@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   validates_uniqueness_of :email
-  validates_presence_of :email,:passport,:address,:district_id,:provined_id,:ward_id,:phone, :on => :update
+  # validates_presence_of :email,:passport,:address,:district_id,:provined_id,:ward_id,:phone, :on => :update
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
   # validates_length_of :phone, :minimum => 10, :allow_blank => false, :on => :update
   validates :phone,:presence => true,
@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
             :on => :update
   validates_length_of :name, :minimum => 3, :allow_blank => false, :on => :update
   validates_length_of :address, :minimum => 10, :allow_blank => false, :on => :update
+  validates_length_of :password, :minimum => 6, :allow_blank => true, :on => :update
 
   before_update :hash_field
 
