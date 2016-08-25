@@ -1,4 +1,22 @@
 $(document).ready(function() {
+    $('body').on('click', '.btn-upload-file', function(e) {
+        e.preventDefault();
+        var id = $(this).attr('data-item-id');
+        if(typeof id !== 'undefined') {
+            $(id).click();
+        }
+    });
+    $('body').on('click', '.btn-draft', function(e){
+        e.preventDefault();
+        $('#input-hidden-draft').val(1);
+        $(this).parents('form').submit();
+    });
+
+    $('body').on('click', '.btn-send', function(e){
+        e.preventDefault();
+        $('#input-hidden-draft').val(0);
+        $(this).parents('form').submit();
+    });
     $("#range-money").ionRangeSlider({
         type: "single",
         min: 0,

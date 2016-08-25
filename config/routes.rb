@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get '/signout', to: 'sessions#destroy', as: 'logout'
 
   resources :users
+  match '/users/drawdown/:id', to: 'users#drawdown', via: [:get, :post, :patch], as: :drawdown
   resources :contacts
   resources :helps
   scope "/admin" do
