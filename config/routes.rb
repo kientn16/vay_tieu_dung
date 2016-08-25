@@ -41,7 +41,12 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/' => "contents#index", as: :root_admin
     # root :to => 'admin/contents#index'
-    resources :contents,:drawdowns,:users,:admins
+    resources :contents,:users,:admins
+    resources :drawdowns do
+      post '/accept_drawdowns' => "drawdowns#accept_drawdowns"
+      post '/un_accept_drawdowns' => "drawdowns#un_accept_drawdowns"
+    end
+
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

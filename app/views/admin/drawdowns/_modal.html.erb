@@ -1,0 +1,71 @@
+<!-- Modal -->
+<div id="modal-contact" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Hợp đồng lao động</h4>
+      </div>
+      <div class="modal-body">
+        <% if Medium.find(@drawdown.media_contract_id).path_content_type != ("image/jpeg" || "image/png") %>
+          <p>Không có bản xem trước</p>
+          <p><a href="<%= Medium.find(@drawdown.media_contract_id).path.url(:original, false) %>" download>Download</a> </p>
+        <% else %>
+          <p><%= image_tag Medium.find(@drawdown.media_contract_id).path %></p>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="modal-appoint" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Quyết định bổ nhiệm</h4>
+      </div>
+      <div class="modal-body">
+        <% if Medium.find(@drawdown.media_appoint_id).path_content_type != ("image/jpeg" || "image/png") %>
+            <p>Không có bản xem trước</p>
+            <p><a href="<%= Medium.find(@drawdown.media_appoint_id).path.url(:original, false) %>" download>Download</a> </p>
+        <% else %>
+            <p><%= image_tag Medium.find(@drawdown.media_appoint_id).path %></p>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="modal-contact" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Sao kê bảng lương</h4>
+      </div>
+      <div class="modal-body">
+        <% if Medium.find(@drawdown.media_salary_id).path_content_type != ("image/jpeg" || "image/png") %>
+            <p>Không có bản xem trước</p>
+            <p><a href="<%= Medium.find(@drawdown.media_salary_id).path.url(:original, false) %>" download>Download</a> </p>
+        <% else %>
+            <p><%= image_tag Medium.find(@drawdown.media_salary_id).path %></p>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
