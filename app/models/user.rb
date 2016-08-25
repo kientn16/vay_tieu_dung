@@ -89,4 +89,61 @@ class User < ActiveRecord::Base
     end
     return @user
   end
+
+  def self.authenticate(email,password)
+    @check = self.where(["email = ? AND password = ? AND status != ?", email, md5(password), 2]).first
+    # binding.pry
+    if @check
+      return [@check,{:success => "true"}]
+    else
+      check = User.find_by_email(email)
+      if check
+        #ton tai email
+        if check.status == 2
+          #   user locked
+          return [nil, { :error => "User Da bi Khoa, vui long contact voi Tu van vien de mo khoa user" }]
+        else
+          if check.expired_time == nil
+            #   insert expired_time = time now + 5 minutes va count_login_fails + 1
+            check.expired_time = (Time.now + 2.minutes).to_i
+            check.count_login_fail = 1
+            check.save
+            return [nil, { :error => "Email or Password invalid" }]
+          else
+            time_now = Time.now.to_i
+            if time_now < check.expired_time.to_i && check.count_login_fail == 3
+              #lock user
+              check.status = 2
+              check.count_login_fail = 0
+              check.expired_time = nil
+              check.save
+              return [nil, { :error => "User Da bi Khoa, vui long contact voi Tu van vien de mo khoa user" }]
+            else
+              if time_now > check.expired_time.to_i && check.count_login_fail < 3
+                #qua 5 phut nhung chi login fail duoi 3 lan
+                # reset expried_time va count_login_fail
+                check.count_login_fail = 1
+                check.expired_time = (Time.now + 5.minutes).to_i
+                check.save
+                return [nil, { :error => "Email or Password invalid" }]
+              else
+                #neu chua qua 5 phut va count chua = 3
+                #count tiep
+                check.count_login_fail = check.count_login_fail + 1
+                check.save
+                return [nil, { :error => "Email or Password invalid" }]
+              end
+            end
+          end
+        end
+      else
+        #ko ton tai email
+        return [nil, { :error => "Email or Password invalid" }]
+      end
+    end
+  end
+
+  def self.md5(pass)
+    Digest::MD5.hexdigest("#{pass}")
+  end
 end

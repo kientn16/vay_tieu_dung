@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
+  # prepend_before_action :check_captcha, only: [:create] # Change this to be any actions you want to protect.
   def new
+
   end
 
   def login_admin
@@ -9,6 +11,15 @@ class SessionsController < ApplicationController
   end
   
   def create
+    # binding.pry
+      @data, @message = User.authenticate(params[:email], params[:password])
+      if @message[:error].present?
+        redirect_to get_login_path, :flash => { :error => @message[:error] }
+      else
+        session[:user_id] = @data.id
+        redirect_to user_path(@data.id)
+      end
+
   end
 
   def create_admin
@@ -40,5 +51,18 @@ class SessionsController < ApplicationController
   def destroy_admin
     session[:admin_id] = nil
     redirect_to get_login_admin_path
+  end
+
+  def forgot_password
+
+  end
+
+
+  private
+  def check_captcha
+    unless verify_recaptcha
+
+      redirect_to get_login_path,:flash => { :recaptcha_error => "Captcha invalid" }
+    end
   end
 end

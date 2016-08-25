@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :contacts
+  resources :helps
   scope "/admin" do
     # get '/' => "contents#index", as: :root_admin
     # resources :contents

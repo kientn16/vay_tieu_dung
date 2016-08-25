@@ -223,6 +223,8 @@ GEM
       ffi (>= 0.5.0)
     rdoc (4.2.2)
       json (~> 1.4)
+    recaptcha (3.3.0)
+      json
     rspec (3.5.0)
       rspec-core (~> 3.5.0)
       rspec-expectations (~> 3.5.0)
@@ -311,6 +313,7 @@ DEPENDENCIES
   paperclip (~> 5.0.0)
   pry-rails
   rails (= 4.2.6)
+  recaptcha
   rspec-rails (~> 3.5)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

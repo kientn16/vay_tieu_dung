@@ -46,9 +46,8 @@
             <li class="<%= !@menu_active.nil? && @menu_active == 'home' ? 'active' : '' %>"><a href="#">Trang chủ</a></li>
             <li><a href="#">Sản phẩm</a></li>
             <li><a href="#">Liên hệ</a></li>
-            <li><a href="#">Trợ giúp</a></li>
+            <li><a href="<%= helps_path %>">Trợ giúp</a></li>
             <li class="active"><a href="<%= get_login_path %>">Đăng nhập</a></li>
-            <li><a href="#">Đăng nhập</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -67,7 +66,7 @@
     <%= yield %>
   </div>
 <footer class="text-center">
-  <p class="text-bold">Copyright 2012 - VMG Media JSC. Địa chỉ tầng 8 tòa nhà Viễn Đông,36 Hoàng Cầu Hà Nội,Việt Nam</p>
+  <p class="text-bold">Copyright <%= Time.now.year %> - VMG Media JSC. Địa chỉ tầng 8 tòa nhà Viễn Đông,36 Hoàng Cầu Hà Nội,Việt Nam</p>
   <p>Điện thoại: (+84) 4 35378820 | Fax: (+84) 4 37726091 | E-mail: info@vmgmedia.vn</p>
 </footer>
 </body>

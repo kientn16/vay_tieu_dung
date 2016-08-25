@@ -48,4 +48,8 @@ $(document).ready(function() {
         pagination: '.swiper-pagination',
         paginationClickable: true
     });
+
+    $(".refresh_image").click(function() {
+        $('#captcha').load("/users/dashboard/refresh_captcha_div");
+    });
 })

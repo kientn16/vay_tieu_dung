@@ -66,3 +66,5 @@ gem 'will_paginate-bootstrap'
 gem 'omniauth-facebook', '~> 1.4.1'
 gem "omniauth-google-oauth2", "~> 0.2.1"
 gem 'bootstrap-generators', '~> 3.3.4'
+
+gem "recaptcha", require: "recaptcha/rails"

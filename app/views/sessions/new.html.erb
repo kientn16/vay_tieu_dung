@@ -1,8 +1,10 @@
 <!-- app/views/sessions/new.html.erb -->
 <div class="row">
   <div class="container">
+
     <%= form_tag '/login',class: "frm-login" do %>
       <div class="heading text-center">
+        <%= render 'includes/flash_msg' %>
                                 <span class="text-bold text-center">
                                     Đăng nhập
                                 </span>
@@ -21,17 +23,15 @@
         <label for="input-password">Mật khẩu</label>
         <%= password_field_tag :password,nil, class: 'form-control text-control', placeholder: 'Password' %>
       </div>
-      <div class="form-group form-captcha">
-        <label for="input-captcha">Mã xác nhận</label>
-        <div class="row">
-          <div class="col-sm-24">
-            <input type="text" class="form-control captcha-control" id="input-captcha" placeholder="Captcha">
-          </div>
-          <div class="col-sm-9">
-            <img class="img-captcha" src="stylesheet/images/captcha-code.png">
-          </div>
-        </div>
-      </div>
+      <!--<div class="form-group form-captcha">-->
+        <!--<label for="input-captcha">Mã xác nhận</label>-->
+        <!--<div class="row">-->
+          <!--<div class="col-sm-12">-->
+            <!--<#%= flash[:recaptcha_error] %>-->
+            <!--<#%= recaptcha_tags %>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
 
       <div class="form-group text-center">
         <%= submit_tag "Submit", 'class' => 'btn btn-default btn-login' %>
