@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
     # test
     admin_root_admin_path
     binding.pry
+    #conflict
   end
   
   def create
