@@ -1,0 +1,297 @@
+<div class="row banner-account">
+  <div class="container text-left">
+    <div class="content">
+      <img src="<%= image_url('banner-account.png') %>">
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="container">
+    <div class="account">
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs text-center" role="tablist">
+        <li role="presentation" class="tab-account"><a href="<%= user_path() %>">
+          <span>Tài khoản</span>
+          <span class="icon"></span>
+        </a></li>
+        <li role="presentation" class="active tab-drawdown"><a href="<%= drawdown_path() %>">
+          <span>Đề nghị vay</span>
+          <span class="icon"></span>
+        </a></li>
+        <li role="presentation" class="tab-information"><a href="#tab-information" aria-controls="tab-information" role="tab" data-toggle="tab">
+          <span>Thông tin tài khoản</span>
+          <span class="icon"></span>
+        </a></li>
+        <li role="presentation" class="tab-notification"><a href="#tab-notification" aria-controls="tab-notification" role="tab" data-toggle="tab">
+          <span>Thông báo</span>
+          <span class="icon"></span>
+        </a></li>
+      </ul>
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="tab-account">
+          <div class="tab-content">
+            <%= form_for @drawdown, url: {action: "drawdown"}, html: {class: "form-horizontal frm-drawdown", multipart: true} do |item|  %>
+                <%= render 'includes/flash_msg' %>
+                <input type="hidden" name="draft" id="input-hidden-draft" value="1">
+                <div class="row">
+                    <div class="col-sm-36">
+                        <div class="form-group">
+                            <label for="input-email" class="col-sm-10 control-label">Nơi làm việc: </label>
+                            <div class="col-sm-15">
+                              <%= collection_select(:drawdown, :sponsor_id, @sponsors, :id, :name, {prompt: "Chon noi lam viec"}, { class: "form-control"}) %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-36">
+                        <div class="form-group">
+                            <label for="input-fullname" class="col-sm-10 control-label">Thời hạn HDLD: </label>
+                            <div class="col-sm-26">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                      <select class="form-control" name="drawdown[contract_date]">
+                                          <option value="1">Từ 1 đến 3 năm</option>
+                                          <option value="2">Từ 6 tháng đến 1 năm</option>
+                                          <option value="3">Dưới 6 tháng</option>
+                                          <option value="4">Trên 3 năm/Không xác định thời hạn</option>
+                                          <option value="5">Làm việc tại DN người cùng tham gia trả nợ sở hữu.</option>
+                                      </select>
+                                  </div>
+                                  <div class="col-sm-9">
+                                    <input type="file" id="media_contract_id" name="media_contract_id" class="hide">
+                                    <input type="button" data-item-id="#media_contract_id" class="btn-upload-file btn btn-primary btn-hdld" name="" value="Upload HDLD">
+                                  </div>
+                                  <div class="col-sm-15">
+                                      <span class="hint-hdld">Chỉ cần các trang có: Tên, chữ ký, thời hạn HDLD, chức vụ, mức lương (Nếu có)</span>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-36">
+                        <div class="form-group">
+                            <label for="input-birthday" class="col-sm-10 control-label">HDLD có hiệu lực từ ngày: </label>
+                            <div class="col-sm-26">
+                              <div class="row">
+                                  <div class="col-sm-4">
+                                    <%= select_tag 'day', options_for_select((1..31).collect { |v| v.to_s }), include_blank: false, class: "form-control" %>
+                                  </div>
+                                  <div class="col-sm-9">
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-11 control-label">Tháng: </label>
+                                        <div class="col-sm-20">
+                                          <%= select_tag 'month', options_for_select((1..12).collect { |v| v.to_s }), include_blank: false, class: "form-control" %>
+                                        </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-9">
+                                      <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-11 control-label">Năm: </label>
+                                        <div class="col-sm-20">
+                                          <%= select_tag 'year', options_for_select((1900..Date.today.year).collect { |v| v.to_s }), include_blank: false, class: "form-control" %>
+                                        </div>
+                                    </div>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-14">
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-36">
+                        <div class="form-group">
+                            <label for="input-birthday" class="col-sm-10 control-label">Chức vụ: </label>
+                            <div class="col-sm-26">
+                              <div class="row">
+                                  <div class="col-sm-12">
+                                        <select class="form-control" name="drawdown[position]">
+                                            <option value="1">Chuyên viên</option>
+                                            <option value="2">Cán bộ quản lý</option>
+                                            <option value="3">Cán bộ được đào tạo nghề</option>
+                                            <option value="4">Lao động thời vụ</option>
+                                        </select>
+                                  </div>
+                                  <div class="col-sm-9">
+                                    <input type="file" id="media_appoint_id" name="media_appoint_id" class="hide">
+                                    <input type="button" data-item-id="#media_appoint_id" class="btn-upload-file btn btn-primary btn-hdld" name="" value="Upload QDBN">
+                                  </div>
+                                  <div class="col-sm-9">
+                                    <div class="checkbox" style="padding-top: 0px;">
+                                        <label>
+                                          <input type="checkbox" name="drawdown[appoint_in_contact]"> TT chức vụ đã có trong HĐLĐ
+                                        </label>
+                                      </div>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-14">
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-36">
+                        <div class="form-group">
+                            <label for="input-birthday" class="col-sm-10 control-label">Mức lương: </label>
+                            <div class="col-sm-26">
+                              <div class="row">
+                                  <div class="col-sm-12">
+                                    <input type="text" class="form-control" name="drawdown[salary]">
+                                  </div>
+                                  <div class="col-sm-9">
+                                    <input type="file" id="media_salary_id" name="media_salary_id" class="hide">
+                                    <input type="button" data-item-id="#media_salary_id" class="btn-upload-file btn btn-primary btn-hdld" name="" value="Upload QDBN">
+                                  </div>
+                                  <div class="col-sm-15">
+                                      <span class="hint-hdld">Sao kê ngân hàng hoặc xác nhận bảng lương của công ty</span>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-14">
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-36">
+                        <div class="form-group">
+                            <label for="input-birthday" class="col-sm-10 control-label">Số tiền cần vay: </label>
+                            <div class="col-sm-26">
+                              <div class="row">
+                                  <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="drawdown[amount]" placeholder="VNĐ">
+                                  </div>
+                                  <div class="col-sm-15">
+                                      <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-14 control-label">Thời hạn vay: </label>
+                                        <div class="col-sm-22">
+                                            <select class="form-control" name="drawdown[amount_time]">
+                                                <option value="12">12 tháng</option>
+                                                <option value="18">18 tháng</option>
+                                                <option value="24">24 tháng</option>
+                                                <option value="36">36 tháng</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-14">
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-36">
+                        <div class="form-group">
+                            <label for="input-birthday" class="col-sm-10 control-label">Mục đích vay: </label>
+                            <div class="col-sm-18">
+                              <input type="text" class="form-control" name="drawdown[purpose]">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-14">
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-36">
+                        <div class="form-group">
+                            <label for="input-birthday" class="col-sm-10 control-label">Ngày thanh toán hàng tháng: </label>
+                            <div class="col-sm-4">
+                                <%= select_tag 'drawdown[pay_time]', options_for_select((1..31).collect { |v| v.to_s }), include_blank: false, class: "form-control" %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-14">
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-36">
+                        <div class="form-group">
+                            <label for="input-birthday" class="col-sm-10 control-label">Tài khoản nhận tiền: </label>
+                            <div class="col-sm-26">
+                                <div class="row" style="padding-top: 10px;">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="input-account-holder">Chủ tài khoản</label>
+                                            <input type="text" name="drawdown[account_holders]" class="form-control" id="input-account-holder" placeholder="Chủ tài khoản">
+                                          </div>
+                                    </div>
+                                    <div class="col-sm-12 col-sm-offset-1">
+                                        <div class="form-group">
+                                            <label for="input-account-number">Số tài khoản</label>
+                                            <input type="text" name="drawdown[account_number]" class="form-control" id="input-account-number" placeholder="Số tài khoản">
+                                          </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-top: 10px;">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="input-bank">Tại ngân hàng</label>
+                                            <%= collection_select(:drawdown, :bank_id, @banks, :id, :name, {prompt: "Chon ngan hang"}, { class: "form-control", id: "input-bank"}) %>
+                                          </div>
+                                    </div>
+                                    <div class="col-sm-12 col-sm-offset-1">
+                                        <div class="form-group">
+                                            <label for="input-branch">Chi nhánh</label>
+                                            <%= collection_select(:drawdown, :branch_id, @banks, :id, :name, {prompt: "Chon chi nhanh"}, { class: "form-control", id: "input-branch"}) %>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-14">
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-36">
+                        <div class="form-group">
+                            <label for="input-birthday" class="col-sm-10 control-label"></label>
+                            <div class="col-sm-18 text-center">
+                                <button class="btn btn-warning btn-draft">Lưu tạm</button>
+                                <button class="btn btn-primary btn-send">Gửi</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-14">
+                        
+                    </div>
+                </div>
+            <% end %>
+        </div>
+        </div>
+        <div role="tabpanel" class="tab-pane " id="tab-drawdown">
+          <div class="tab-content">
+
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane " id="tab-information">
+          <div class="tab-content">
+
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane " id="tab-notification">
+          <div class="tab-content">
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
