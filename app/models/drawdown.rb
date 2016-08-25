@@ -1,9 +1,24 @@
 class Drawdown < ActiveRecord::Base
-  belongs_to :bank, class_name: 'Bank', foreign_key: 'bank_id'
-  belongs_to :branch, class_name: 'Bank', foreign_key: 'branch_id'
-  belongs_to :user
-  belongs_to :sponsor
-  has_one :contract
+	attr_accessor :is_validate
+	validates_presence_of :sponsor_id, :contract_date, :media_contract_id, :contract_time, :position, :media_appoint_id, :salary, :media_salary_id, :amount, :amount_time, :purpose, :pay_time, :account_holders, :account_number, :bank_id, :branch_id, if: Proc.new{|u| u.is_validate }
+
+	belongs_to :bank, class_name: 'Bank', foreign_key: 'bank_id'
+	belongs_to :branch, class_name: 'Bank', foreign_key: 'branch_id'
+	belongs_to :user
+	belongs_to :sponsor
+	has_one :contract
+
+
+	# def is_validate
+	#     editting_context_interface == :interface
+	#   end
+	def get_day(format)
+		if !self.contract_time.nil? || !self.contract_time.blank?
+		DateTime.parse(self.contract_time).strftime(format)
+		else
+			nil
+		end
+	end
 
   def self.get_contract_date(contract_date)
     case contract_date.to_i
@@ -56,6 +71,4 @@ class Drawdown < ActiveRecord::Base
     end
     return result
   end
-
-
 end

@@ -29,21 +29,26 @@ class UsersController < ApplicationController
         @sponsors = Sponsor.all
         @banks = Bank.where('parent_id =?', 0)
         @drawdown = Drawdown.where('user_id = ? AND is_draft = ?', params[:id], 1).first
-        
+        # binding.pry
         if request.request_method() == 'PATCH'
+          params[:drawdown][:appoint_in_contact] = params[:drawdown][:appoint_in_contact] != nil ? params[:drawdown][:appoint_in_contact] : 0
+          params[:drawdown][:contract_time] = params['day']+"/"+params['month']+"/"+params['year']
           flag = proccess_drawdown(params)
           if flag != false
             flash[:success] = 'Cap nhat de nghi vay thanh cong'
+            redirect_to drawdown_path()
           else
             flash[:error] = 'Error'
           end
         end
 
         if request.request_method() == 'POST'
-
+          params[:drawdown][:appoint_in_contact] = params[:drawdown][:appoint_in_contact] != nil ? params[:drawdown][:appoint_in_contact] : 0
+          params[:drawdown][:contract_time] = params['day']+"/"+params['month']+"/"+params['year']
           flag = proccess_drawdown(params)
           if flag != false
             flash[:success] = 'De nghi vay da duoc gui di. Chung toi se duyet de nghi cua ban trong thoi gian som nhat'
+            redirect_to drawdown_path()
           else
             flash[:error] = 'Error'
           end
@@ -62,26 +67,62 @@ class UsersController < ApplicationController
     flag = false
     if draft.to_i == 1.to_i
       if @drawdown.nil?
-        flag = save_drawdown(params)
+        flag = save_drawdown(params, false)
       else
-        flag = update_drawdown(@drawdown, params, 1)
+        flag = update_drawdown(@drawdown, params, 1, false)
       end
+      contract = proccess_contract(@drawdown, session[:user_id], 99)
+      history = create_history(contract)
+      notification = create_notification(session[:user_id], "Da luu tam de nghi vay", "Ban da luu tam de nghi vay")
     else
       if @drawdown.nil?
-        flag = save_drawdown(params)
+        flag = save_drawdown(params, true)
       else
-        flag = update_drawdown(@drawdown, params, 0)
+        flag = update_drawdown(@drawdown, params, 0, true)
       end
+      contract = proccess_contract(@drawdown, session[:user_id], 1)
+      history = create_history(contract)
+      notification = create_notification(session[:user_id], "Da gui de nghi vay", "Ban da gui de nghi vay, Dang cho xu ly")
     end
     return flag
   end
 
+  def proccess_contract(drawdown, user_id, status)
+    contract = Contract.where('drawdowns_id = ? AND user_id = ?', drawdown.id, user_id).first
+    if contract.nil?
+      contract = Contract.create(:code => 'HD-' + user_id.to_s + '-' + Time.now.strftime('%s').to_s, :value => drawdown.amount, :deadline => drawdown.amount_time, :status => status, :drawdowns_id => drawdown.id, :loans_time => drawdown.created_at, :user_id => user_id)
+      return contract
+    else
+      if contract.status != 2 && contract.status != 4 && contract.status != 5
+        if contract.update(:status => status)
+          return contract
+        end
+      end
+      return nil
+    end
+  end
+
+  def create_history(contract)
+    if !contract.nil?
+      history = History.create(:contract_id => contract.id, :status_contract => contract.status, :summery => contract.value)
+    else
+      nil
+    end
+  end
+
+  def create_notification(user_id, title, content)
+    notification = Notification.create(:user_id => user_id, :title => title, :content => content, :is_read => 0 )
+  end
 
 
-  def save_drawdown(params)
+
+  def save_drawdown(params, validate)
+    params[:drawdown][:appoint_in_contract] = 0
     @drawdown = Drawdown.new(drawdown_params)
     @drawdown.user_id = session[:user_id]
     @drawdown.is_draft = params[:draft];
+    # @drawdown.contract_date = params[:contract_date]
+    @drawdown.is_validate = validate
     if @drawdown.save
       if params[:media_contract_id]
         media = Medium.create(path: params[:media_contract_id])
@@ -103,7 +144,8 @@ class UsersController < ApplicationController
     end
   end
 
-  def update_drawdown(drawdown, params, is_draft)
+  def update_drawdown(drawdown, params, is_draft, validate)
+    drawdown.is_validate = validate
     if drawdown.update(drawdown_params)
       drawdown.update(:is_draft => is_draft)
       if params[:media_contract_id]
@@ -158,7 +200,7 @@ class UsersController < ApplicationController
 
   private
   def drawdown_params
-    params.require(:drawdown).permit(:sponsor_id, :contract_date, :media_contract_id, :contract_time, :position, :media_appoint_id, :appoint_in_contract, :salary, :media_salary_id, :amount, :amount_time, :purpose, :pay_time, :account_holders, :account_number, :bank_id, :branch_id, :user_id, :is_draft)
+    params.require(:drawdown).permit(:sponsor_id, :contract_date, :media_contract_id, :contract_time, :position, :media_appoint_id, :appoint_in_contact, :salary, :media_salary_id, :amount, :amount_time, :purpose, :pay_time, :account_holders, :account_number, :bank_id, :branch_id, :user_id, :is_draft)
   end
 
 
