@@ -6,8 +6,8 @@ class SessionsController < ApplicationController
 
   def login_admin
     # test
-    # admin_root_admin_path
-    # binding.pry
+    admin_root_admin_path
+    binding.pry
   end
   
   def create
