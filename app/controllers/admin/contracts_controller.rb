@@ -13,7 +13,12 @@ class Admin::ContractsController < ApplicationController
     # binding.pry
     params_contract = params[:contract]
     status_contract = params_contract['status'].to_i
-    if @contract.update(:status => status_contract)
+    if status_contract == 4
+      flag = @contract.update(:status => status_contract,:debt => @contract.value, :paid => 0, :penance => 0)
+    else
+      flag = @contract.update(:status => status_contract)
+    end
+    if flag
       # insert history
       history = History.new(:contract_id => params[:id], :status_contract => status_contract, :summery => params_contract['value'], :orgin_rate => params_contract['orgin_rate'], :user_id => params_contract['user_id'])
       history.save

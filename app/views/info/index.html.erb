@@ -50,8 +50,8 @@
                     <% end %>
                     <td><%= num_currency(contract.value) %></td>
                     <td><%= Drawdown.get_amount_time(contract.deadline) %></td>
-                    <td><a class="show-drawdowns" href="<%= show_status_drawdown_path(contract.drawdowns_id) %>"><%= Contract.get_status(contract.status) %></a></td>
-                    <td><a class="show-drawdowns" href="<%= show_pay_contract_path(contract.drawdowns_id) %>"><%= num_currency(contract.paid) %></a></td>
+                    <td><a class="show-drawdowns" href="<%= show_status_drawdown_path(contract.id) %>"><%= Contract.get_status(contract.status) %></a></td>
+                    <td><a class="show-drawdowns" href="<%= show_pay_contract_path(contract.id) %>"><%= num_currency(contract.paid) %></a></td>
                     <td><%= num_currency(contract.penance) %></td>
                     <td><%= num_currency(contract.debt) %></td>
                   </tr>
@@ -70,7 +70,9 @@
                   <div class="content">
                     <ul>
                     <% @historys.each do |history| %>
+                      <% if history.status_contract != 88 %>
                         <li><span class="text-bold">Ngày <%= history.created_at %></span>: <%= Contract.get_status(history.status_contract)%></li>
+                      <% end %>
                     <% end %>
                     </ul>
                   </div>

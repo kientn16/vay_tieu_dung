@@ -1,5 +1,6 @@
 class ContactsController < ApplicationController
   def new
+    @menu_active = 'contact'
     @contact = Contact.new
   end
 

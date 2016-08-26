@@ -196,7 +196,20 @@ class UsersController < ApplicationController
     @params['birthday'] = @birthday
     # binding.pry
     respond_to do |format|
-      if @user.update(user_params)
+      # check change email
+      if @user.by_social == 1
+        # binding.pry
+        if user_params['email'] != @user.email
+          # ko dc phep doi tiep
+          @user_params = user_params.merge(change_email: 1)
+          @user_update = @user.update(@user_params)
+        else
+          # dc phep doi tiep
+          @user_params = user_params.merge(change_email: 0)
+          @user_update = @user.update(@user_params)
+        end
+      end
+      if @user_update
         # upload document user here
         if params[:document]
           # binding.pry
@@ -228,8 +241,13 @@ class UsersController < ApplicationController
     end
     @notifications = Notification.get_all(params)
     @numberNotification = Notification.get_notifications(0, session[:user_id]).count
+  end
 
 
+  # select district
+  def select_district
+    @datas = Province.where('parent_id =?', params[:province_id])
+    render json: @datas
   end
 
 

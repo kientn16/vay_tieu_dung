@@ -31,7 +31,7 @@
               <tr>
                 <td><%= contract.created_at %></td>
                 <td><%= contract.code %></td>
-                <td><%= contract.value %></td>
+                <td><%= num_currency(contract.value) %></td>
                 <td><%= contract.deadline %></td>
                 <td><%= Contract.get_status(contract.status) %></td>
                 <td><%= num_currency(contract.paid) %></td>

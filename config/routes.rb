@@ -27,6 +27,10 @@ Rails.application.routes.draw do
   match '/users/notifications/:id(/:notification_id)', to: 'users#notifications', via: [:get, :post], as: :notifications
   resources :contacts
   resources :helps
+
+  # ajax select district
+  post '/users/select_district' => 'users#select_district', as: :post_select_district
+
   scope "/admin" do
     # get '/' => "contents#index", as: :root_admin
     # resources :contents
