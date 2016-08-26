@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :users
   match '/users/drawdown/:id', to: 'users#drawdown', via: [:get, :post, :patch], as: :drawdown
   match '/users/info/:id', to: 'info#index', via: [:get, :post, :patch], as: :info_account
+  match '/users/notifications/:id(/:notification_id)', to: 'users#notifications', via: [:get, :post], as: :notifications
   resources :contacts
   resources :helps
   scope "/admin" do

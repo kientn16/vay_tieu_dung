@@ -19,5 +19,7 @@ class ApplicationController < ActionController::Base
     redirect_to get_login_admin_path unless current_admin
   end
 
+  
+
 
 end
