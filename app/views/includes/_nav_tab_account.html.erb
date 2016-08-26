@@ -7,7 +7,7 @@
     <span>Đề nghị vay</span>
     <span class="icon"></span>
   </a></li>
-  <li role="presentation" class="tab-information"><a href="<%= info_account_path %>">
+  <li role="presentation" class="<%= (active == 'info_account') ? 'active' : '' %> tab-information"><a href="<%= info_account_path %>">
     <span>Thông tin tài khoản</span>
     <span class="icon"></span>
   </a></li>
