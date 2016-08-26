@@ -30,7 +30,6 @@ class User < ActiveRecord::Base
     else
       self.password = Digest::MD5.hexdigest(self.password)
     end
-
   end
 
   def self.from_omniauth(auth,current_user = nil)
@@ -71,8 +70,8 @@ class User < ActiveRecord::Base
       @user.google_id = auth.uid
       @user.save
     else
-      check = self.find_by_google_id(auth.uid)
-      if check
+      check = self.where("google_id = #{auth.uid} OR email = '#{auth.info.email}'").first
+      if check != nil
         @user = check
       else
         @user = User.new
@@ -87,8 +86,10 @@ class User < ActiveRecord::Base
         @user.change_email = 0
         # binding.pry
         @user.save
+        # binding.pry
       end
     end
+    # binding.pry
     return @user
   end
 
