@@ -20,6 +20,41 @@ footer{
     background: #c2c2c2;
     padding: 30px 0px;
 }
+header .links-account>.dropdown>.dropdown-toggle{
+    background: #236199;
+    color: #fff;
+}
+header .links-account>.dropdown>.dropdown-toggle .icon-user{
+    background: url('../images/icon-user-login.png') no-repeat top left;
+    height: 14px;
+    width: 19px;
+    display: inline-block;
+    margin: 0px 10px 0px 0px;
+}
+header .links-account>.dropdown>.dropdown-toggle .icon-arrow{
+    background: url('../images/icon-arrow.png') no-repeat 7px 2px;
+    height: 11px;
+    width: 21px;
+    display: inline-block;
+    border-style: solid;
+    border-width: 0px 2px 0px 0px;
+    -moz-border-image: url('../images/border-user-login.png') 27 repeat;
+    -webkit-border-image: url('../images/border-user-login.png') 27 repeat;
+    -o-border-image: url('../images/border-user-login.png') 27 repeat;
+    border-image: url('../images/border-user-login.png') 27 fill repeat;
+}
+header .links-account .dropdown-menu{
+    right: 0px;
+    width: 100%;
+}
+
+header .open>.dropdown-toggle.btn-default:hover, header .open>.dropdown-toggle.btn-default:focus{
+    background: #236199;
+    color: #fff;
+}
+header .links-account>.dropdown>.dropdown-toggle a{
+    color: #fff;
+}
 .text-bold{
     font-weight: bold;
 }

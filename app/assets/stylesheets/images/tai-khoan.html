@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Account page</title>
+        <link rel="stylesheet" type="text/css" href="stylesheet/css/bootstrap.min.css">
+        <!-- RangerSlider/ -->
+        <link rel="stylesheet" href="stylesheet/plugins/ion-rangeSlider/css/ion.rangeSlider.css" />
+        <link rel="stylesheet" href="stylesheet/plugins/ion-rangeSlider/css/ion.rangeSlider.skinHTML5.css" />
+        <!-- Swiper  -->
+        <link rel="stylesheet" href="stylesheet/plugins/swiper-3.3.1/css/swiper.min.css" />
+        <link rel="stylesheet" type="text/css" href="stylesheet/css/styles.css">
+        <script type="text/javascript" src="javascript/js/jquery.1.12.4.min.js"></script>
+        <script type="text/javascript" src="javascript/js/bootstrap.min.js"></script>
+        <script src="javascript/plugins/ion-rangeSlider/ion.rangeSlider.js"></script>
+        <script src="javascript/plugins/swiper-3.3.1/js/swiper.jquery.min.js"></script>
+        <script type="text/javascript" src="javascript/js/custom.js"></script>
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <nav class="navbar navbar-inverse">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">
+                                <img src="stylesheet/images/logo.png">
+                            </a>
+                        </div>
+                        <div id="navbar" class="navbar-collapse collapse navbar-right">
+                            <ul class="nav navbar-nav menu-top">
+                                <li><a href="#">Trang chủ</a></li>
+                                <li><a href="#">Sản phẩm</a></li>
+                                <li><a href="#">Liên hệ</a></li>
+                                <li class="active"><a href="#">Trợ giúp</a></li>
+                                <li><a href="#">Đăng nhập</a></li>
+                            </ul>
+                        </div><!--/.nav-collapse -->
+                    </div>
+                </nav>
+                <div class="row">
+                    <div class="container">
+                        <div class="links-account pull-right">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <span class="icon-user"></span>
+                                Tài khoản: <a href="" class="text-bold">Thangslco@gmail.com</a>
+                                <span class="icon-arrow"></span>
+                              </button>
+                              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                              </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="body">
+            <div class="row banner-account">
+                <div class="container text-left">
+                    <div class="content">
+                        <img src="stylesheet/images/banner-account.png">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="container">
+                    <div class="account">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs text-center" role="tablist">
+                            <li role="presentation" class="active tab-account"><a href="#tab-faq" aria-controls="tab-faq" role="tab" data-toggle="tab">
+                                <span>Tài khoản</span>
+                                <span class="icon"></span>
+                            </a></li>
+                            <li role="presentation" class="tab-drawdown"><a href="#tab-drawdown" aria-controls="tab-drawdown" role="tab" data-toggle="tab">
+                                <span>Đề nghị vay</span>
+                                <span class="icon"></span>
+                            </a></li>
+                            <li role="presentation" class="tab-information"><a href="#tab-information" aria-controls="tab-information" role="tab" data-toggle="tab">
+                                <span>Thông tin tài khoản</span>
+                                <span class="icon"></span>
+                            </a></li>
+                            <li role="presentation" class="tab-notification"><a href="#tab-notification" aria-controls="tab-notification" role="tab" data-toggle="tab">
+                                <span>Thông báo</span>
+                                <span class="icon"></span>
+                            </a></li>
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="tab-account">
+                                <div class="tab-content">
+                                    <form class="form-horizontal frm-account">
+                                        <div class="row">
+                                            <div class="col-sm-22">
+                                                <div class="form-group">
+                                                    <label for="input-email" class="col-sm-6 control-label">Email</label>
+                                                    <div class="col-sm-30">
+                                                      <input type="email" class="form-control" id="input-email" placeholder="Email">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-14">
+                                                <div class="form-group">
+                                                    <label for="input-password" class="col-sm-10 control-label">Mật khẩu</label>
+                                                    <div class="col-sm-26">
+                                                      <input type="password" class="form-control" id="input-password" placeholder="Mật khẩu">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-22">
+                                                <div class="form-group">
+                                                    <label for="input-fullname" class="col-sm-6 control-label">Họ và tên</label>
+                                                    <div class="col-sm-30">
+                                                      <input type="text" class="form-control" id="input-fullname" placeholder="Họ và tên">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-14">
+                                                <div class="form-group">
+                                                    <label for="input-mobile" class="col-sm-10 control-label">Mobile</label>
+                                                    <div class="col-sm-26">
+                                                      <input type="text" class="form-control" id="input-mobile" placeholder="Mobile">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-22">
+                                                <div class="form-group">
+                                                    <label for="input-birthday" class="col-sm-6 control-label">Ngày sinh</label>
+                                                    <div class="col-sm-30">
+                                                      <div class="row">
+                                                          <div class="col-sm-8">
+                                                                <select class="form-control">
+                                                                    <option>01</option>
+                                                                    <option>02</option>
+                                                                </select>
+                                                          </div>
+                                                          <div class="col-sm-14">
+                                                            <div class="form-group">
+                                                                <label for="inputEmail3" class="col-sm-9 control-label">Tháng: </label>
+                                                                <div class="col-sm-27">
+                                                                    <select class="form-control">
+                                                                        <option>ABAAA</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="col-sm-14">
+                                                              <div class="form-group">
+                                                                <label for="inputEmail3" class="col-sm-8 control-label">Năm: </label>
+                                                                <div class="col-sm-28">
+                                                                    <select class="form-control">
+                                                                        <option>ABAAA</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                          </div>
+                                                      </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-14">
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-22">
+                                                <div class="form-group">
+                                                    <label for="input-birthday" class="col-sm-6 control-label">CMT</label>
+                                                    <div class="col-sm-30">
+                                                      <div class="row">
+                                                          <div class="col-sm-23">
+                                                            <input type="text" class="form-control" name="">
+                                                          </div>
+                                                          <div class="col-sm-13">
+                                                            <input type="button" class="btn btn-primary" name="" value="Upload CMT/Hộ chiếu">
+                                                          </div>
+                                                      </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-14">
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-22">
+                                                <div class="form-group">
+                                                    <label for="input-birthday" class="col-sm-6 control-label">Giới tính: </label>
+                                                    <div class="col-sm-30">
+                                                      <div class="row">
+                                                          <div class="col-sm-10">
+                                                                <select class="form-control">
+                                                                    <option>Nam</option>
+                                                                    <option>Nữ</option>
+                                                                </select>
+                                                          </div>
+                                                          <div class="col-sm-26">
+                                                            <div class="form-group">
+                                                                <label for="inputEmail3" class="col-sm-16 control-label">Tình trạng hôn nhân: </label>
+                                                                <div class="col-sm-20">
+                                                                    <select class="form-control">
+                                                                        <option>Độc thân</option>
+                                                                        <option>Đã lập gia đình</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                          </div>
+                                                      </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-14">
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="row special">
+                                            <div class="col-sm-36">
+                                                <div class="form-group">
+                                                    <label for="input-address" class="col-sm-3 control-label">Địa chỉ</label>
+                                                    <div class="col-sm-33 input">
+                                                      <input type="text" class="form-control" id="input-address" placeholder="Địa chỉ">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-14">
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="row special">
+                                            <div class="col-sm-36">
+                                                <div class="form-group">
+                                                    <label for="inputEmail3" class="col-sm-3 control-label custom"></label>
+                                                    <div class="col-sm-33 input">
+                                                        <div class="row">
+                                                            <div class="col-sm-10">
+                                                                <div class="form-group">
+                                                                    <label for="inputEmail3" class="col-sm-7 control-label">Tỉnh/TP: </label>
+                                                                    <div class="col-sm-29">
+                                                                        <select class="form-control">
+                                                                            <option>ABAAA</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-13">
+                                                                <div class="form-group">
+                                                                    <label for="inputEmail3" class="col-sm-10 control-label">Quận/Huyện: </label>
+                                                                    <div class="col-sm-26">
+                                                                        <select class="form-control">
+                                                                            <option>ABAAA</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-13">
+                                                                <div class="form-group">
+                                                                    <label for="inputEmail3" class="col-sm-10 control-label">Phường/Xã: </label>
+                                                                    <div class="col-sm-26">
+                                                                        <select class="form-control">
+                                                                            <option>ABAAA</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row special">
+                                            <div class="col-sm-36">
+                                                <div class="form-group">
+                                                    <label for="inputEmail3" class="col-sm-3 control-label custom"></label>
+                                                    <div class="col-sm-33 input">
+                                                        <div class="socials">
+                                                            <div class="heading text-bold">Đăng nhập nhanh</div>
+                                                            <div class="content">
+                                                                <a href="" class="icon icon-facebook"></a> <a href="" class="icon icon-gmail"></a>
+                                                            </div>
+                                                            <div class="hint">Vui lòng click biểu tượng Facebook/Gmail để đăng ký nhanh</div>
+                                                        </div>
+                                                        <div class="button-submit">
+                                                            <input type="submit" class="text-bold" name="submit" value="Cập nhật">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane " id="tab-drawdown">
+                                <div class="tab-content">
+                                    
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane " id="tab-information">
+                                <div class="tab-content">
+                                    
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane " id="tab-notification">
+                                <div class="tab-content">
+                                    
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="text-center">
+            <p class="text-bold">Copyright 2012 - VMG Media JSC. Địa chỉ tầng 8 tòa nhà Viễn Đông,36 Hoàng Cầu Hà Nội,Việt Nam</p>
+            <p>Điện thoại: (+84) 4 35378820 | Fax: (+84) 4 37726091 | E-mail: info@vmgmedia.vn</p>
+        </footer>
+    </body>
+</html>
