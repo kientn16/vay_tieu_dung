@@ -26,6 +26,17 @@
   <%= javascript_include_tag 'plugins/swiper-3.3.1/js/swiper.jquery.min', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'frontend/custom', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <meta id="authenticity_token" value="<%= form_authenticity_token %>">
+  <script type="text/javascript">
+    $(document).ready(function(){
+      var authenticity_token = $('#authenticity_token').attr('value');
+      $.ajaxSetup({
+        data: {
+          authenticity_token: authenticity_token,
+        }
+      });
+    });
+  </script>
 </head>
 <body>
 <header>
@@ -46,9 +57,9 @@
         <div id="navbar" class="navbar-collapse collapse navbar-right">
           <ul class="nav navbar-nav menu-top">
             <li class="<%= !@menu_active.nil? && @menu_active == 'home' ? 'active' : '' %>"><a href="#">Trang chủ</a></li>
-            <li><a href="#">Sản phẩm</a></li>
-            <li><a href="#">Liên hệ</a></li>
-            <li><a href="<%= helps_path %>">Trợ giúp</a></li>
+            <li class="<%= !@menu_active.nil? && @menu_active == 'product' ? 'active' : '' %>"><a href="#">Sản phẩm</a></li>
+            <li class="<%= !@menu_active.nil? && @menu_active == 'contact' ? 'active' : '' %>"><a href="<%= new_contact_path %>">Liên hệ</a></li>
+            <li class="<%= !@menu_active.nil? && @menu_active == 'help' ? 'active' : '' %>"><a href="<%= helps_path %>">Trợ giúp</a></li>
             <% if current_user %>
                 <li><a href="<%= get_logout_path %>">Đăng xuất</a></li>
             <% else %>
