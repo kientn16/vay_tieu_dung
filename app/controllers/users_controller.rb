@@ -37,7 +37,7 @@ class UsersController < ApplicationController
           params[:drawdown][:contract_time] = params['day']+"/"+params['month']+"/"+params['year']
           flag = proccess_drawdown(params)
           if flag != false
-            flash[:success] = 'Cap nhat de nghi vay thanh cong'
+            flash[:success] = 'De nghi vay da duoc gui di. Chung toi se duyet de nghi cua ban trong thoi gian som nhat'
             redirect_to drawdown_path()
           else
             flash[:error] = 'Error'
@@ -73,18 +73,22 @@ class UsersController < ApplicationController
       else
         flag = update_drawdown(@drawdown, params, 1, false)
       end
-      contract = proccess_contract(@drawdown, session[:user_id], 99)
-      history = create_history(contract)
-      notification = create_notification(session[:user_id], "Da luu tam de nghi vay", "Ban da luu tam de nghi vay")
+      if flag == true
+        contract = proccess_contract(@drawdown, session[:user_id], 99)
+        history = create_history(contract)
+        notification = create_notification(session[:user_id], "Da luu tam de nghi vay", "Ban da luu tam de nghi vay")
+      end
     else
       if @drawdown.nil?
         flag = save_drawdown(params, true)
       else
         flag = update_drawdown(@drawdown, params, 0, true)
       end
-      contract = proccess_contract(@drawdown, session[:user_id], 1)
-      history = create_history(contract)
-      notification = create_notification(session[:user_id], "Da gui de nghi vay", "Ban da gui de nghi vay, Dang cho xu ly")
+      if flag == true
+        contract = proccess_contract(@drawdown, session[:user_id], 99)
+        history = create_history(contract)
+        notification = create_notification(session[:user_id], "Da gui de nghi vay", "Ban da gui de nghi vay, Dang cho xu ly")
+      end
     end
     return flag
   end
@@ -120,26 +124,26 @@ class UsersController < ApplicationController
 
   def save_drawdown(params, validate)
     params[:drawdown][:appoint_in_contract] = 0
+    if params[:media_contract_id]
+      media = Medium.create(path: params[:media_contract_id])
+      params[:drawdown][:media_contract_id] = media.id
+    end
+
+    if params[:media_appoint_id]
+      media = Medium.create(path: params[:media_appoint_id])
+      params[:drawdown][:media_appoint_id] = media.id
+    end
+
+    if params[:media_salary_id]
+      media = Medium.create(path: params[:media_salary_id])
+      params[:drawdown][:media_salary_id] = media.id
+    end
     @drawdown = Drawdown.new(drawdown_params)
     @drawdown.user_id = session[:user_id]
     @drawdown.is_draft = params[:draft];
     # @drawdown.contract_date = params[:contract_date]
     @drawdown.is_validate = validate
     if @drawdown.save
-      if params[:media_contract_id]
-        media = Medium.create(path: params[:media_contract_id])
-        @drawdown.update(:media_contract_id => media.id)
-      end
-
-      if params[:media_appoint_id]
-        media = Medium.create(path: params[:media_appoint_id])
-        @drawdown.update(:media_appoint_id => media.id)
-      end
-
-      if params[:media_salary_id]
-        media = Medium.create(path: params[:media_salary_id])
-        @drawdown.update(:media_salary_id => media.id)
-      end
       return true
     else
       return false
@@ -148,22 +152,23 @@ class UsersController < ApplicationController
 
   def update_drawdown(drawdown, params, is_draft, validate)
     drawdown.is_validate = validate
+    if params[:media_contract_id]
+      media = Medium.create(path: params[:media_contract_id])
+      params[:drawdown][:media_contract_id] = media.id
+    end
+
+    if params[:media_appoint_id]
+      media = Medium.create(path: params[:media_appoint_id])
+      params[:drawdown][:media_appoint_id] = media.id
+    end
+
+    if params[:media_salary_id]
+      media = Medium.create(path: params[:media_salary_id])
+      params[:drawdown][:media_salary_id] = media.id
+    end
+    params[:drawdown][:is_draft] = is_draft
+    
     if drawdown.update(drawdown_params)
-      drawdown.update(:is_draft => is_draft)
-      if params[:media_contract_id]
-        media = Medium.create(path: params[:media_contract_id])
-        @drawdown.update(:media_contract_id => media.id)
-      end
-
-      if params[:media_appoint_id]
-        media = Medium.create(path: params[:media_appoint_id])
-        @drawdown.update(:media_appoint_id => media.id)
-      end
-
-      if params[:media_salary_id]
-        media = Medium.create(path: params[:media_salary_id])
-        @drawdown.update(:media_salary_id => media.id)
-      end
       return true
     end
     return false
