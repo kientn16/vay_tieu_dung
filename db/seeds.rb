@@ -19,15 +19,28 @@ require 'csv'
 #   t.save
 # end
 
-puts "There are now #{Content.count} rows in the transactions table"
+# puts "There are now #{Content.count} rows in the transactions table"
 
-# seeds sponsor
-csv_sponsor_text = File.read(Rails.root.join('lib', 'seeds', 'seed_csv_sponsors.csv'))
-csv_sponsor = CSV.parse(csv_sponsor_text, :headers => true, :encoding => 'iso-8859-1:utf-8')
-csv_sponsor.each do |row|
-  t = Sponsor.new
-  t.name = row['name']
+# # seeds sponsor
+# csv_sponsor_text = File.read(Rails.root.join('lib', 'seeds', 'seed_csv_sponsors.csv'))
+# csv_sponsor = CSV.parse(csv_sponsor_text, :headers => true, :encoding => 'iso-8859-1:utf-8')
+# csv_sponsor.each do |row|
+#   t = Sponsor.new
+#   t.name = row['name']
+#   t.save
+# end
+
+# puts "There are now #{Sponsor.count} rows in the transactions table"
+
+# seeds admin
+csv_admin_text = File.read(Rails.root.join('lib', 'seeds', 'seed_csv_admin.csv'))
+csv_admin = CSV.parse(csv_admin_text, :headers => true, :encoding => 'iso-8859-1:utf-8')
+csv_admin.each do |row|
+  t = Admin.new
+  t.username = row['username']
+  t.password = row['password']
+  t.status = row['status']
   t.save
 end
 
-puts "There are now #{Sponsor.count} rows in the transactions table"
+puts "There are now #{Admin.count} rows in the transactions table"

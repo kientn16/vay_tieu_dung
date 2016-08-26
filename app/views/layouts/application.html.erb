@@ -47,7 +47,11 @@
             <li><a href="#">Sản phẩm</a></li>
             <li><a href="#">Liên hệ</a></li>
             <li><a href="<%= helps_path %>">Trợ giúp</a></li>
-            <li><a href="<%= get_login_path %>">Đăng nhập</a></li>
+            <% if current_user %>
+              <li><a href="<%= get_logout_path %>">Đăng xuat</a></li>
+            <% else %>
+              <li><a href="<%= get_login_path %>">Đăng nhập</a></li>
+            <% end %>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -63,7 +67,7 @@
                 <span class="icon-arrow"></span>
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <li><a href="#">Profile</a></li>
+                <li><a href="<%= user_path(session[:user_id])%>">Profile</a></li>
                 <li><a href="#">Change password</a></li>
                 <li role="separator" class="divider"></li>
                 <li><%= link_to get_logout_path do %><i class="fa fa-sign-out fa-fw"></i> Logout<% end %></li>
