@@ -174,7 +174,7 @@
                           <div class="form-group">
                             <label for="inputEmail3" class="col-sm-7 control-label">Tỉnh/TP: </label>
                             <div class="col-sm-29">
-                              <%= f.select(:provined_id, [['Ha noi',0],['TP HCM',1]], {include_blank: "Tinh"}, { :class => 'form-control'}) %>
+                              <%= f.collection_select :provined_id, Province.where(parent_id: "0"), :id, :name, {prompt: "Select a Province"}, id: "province", class: 'form-control' %>
                             </div>
                           </div>
                         </div>
