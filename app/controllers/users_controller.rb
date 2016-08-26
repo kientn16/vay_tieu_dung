@@ -128,19 +128,19 @@ class UsersController < ApplicationController
     if params[:media_contract_id]
       media = Medium.create(path: params[:media_contract_id])
       params[:drawdown][:media_contract_id] = media.id
-      listMedia.push(media.id)
+      listMedia << media.id
     end
 
     if params[:media_appoint_id]
       media = Medium.create(path: params[:media_appoint_id])
       params[:drawdown][:media_appoint_id] = media.id
-      listMedia.push(media.id)
+      listMedia << media.id
     end
 
     if params[:media_salary_id]
       media = Medium.create(path: params[:media_salary_id])
       params[:drawdown][:media_salary_id] = media.id
-      listMedia.push(media.id)
+      listMedia << media.id
     end
     @drawdown = Drawdown.new(drawdown_params)
     @drawdown.user_id = session[:user_id]
@@ -163,19 +163,23 @@ class UsersController < ApplicationController
 
   def update_drawdown(drawdown, params, is_draft, validate)
     drawdown.is_validate = validate
+    listMedia = []
     if params[:media_contract_id]
       media = Medium.create(path: params[:media_contract_id])
       params[:drawdown][:media_contract_id] = media.id
+      listMedia << media.id
     end
 
     if params[:media_appoint_id]
       media = Medium.create(path: params[:media_appoint_id])
       params[:drawdown][:media_appoint_id] = media.id
+      listMedia << media.id
     end
 
     if params[:media_salary_id]
       media = Medium.create(path: params[:media_salary_id])
       params[:drawdown][:media_salary_id] = media.id
+      listMedia << media.id
     end
     params[:drawdown][:is_draft] = is_draft
     
