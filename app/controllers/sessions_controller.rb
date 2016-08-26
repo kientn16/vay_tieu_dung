@@ -1,6 +1,9 @@
 class SessionsController < ApplicationController
   # prepend_before_action :check_captcha, only: [:create] # Change this to be any actions you want to protect.
   def new
+    # a = Digest::MD5.hexdigest('123123')
+    # render :json => a
+    # return
 
   end
 

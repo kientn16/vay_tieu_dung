@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   match '/users/view_drawdown/:id', to: 'info#show_drawdowns', via: [:get, :post, :patch], as: :show_drawdown
   match '/users/show_status_drawdown/:id', to: 'info#show_status', via: [:get, :post, :patch], as: :show_status_drawdown
   match '/users/show_pay_contract/:id', to: 'info#show_pay', via: [:get, :post, :patch], as: :show_pay_contract
+  match '/users/notifications/:id(/:notification_id)', to: 'users#notifications', via: [:get, :post], as: :notifications
   resources :contacts
   resources :helps
   scope "/admin" do

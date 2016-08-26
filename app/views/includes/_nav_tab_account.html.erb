@@ -1,0 +1,18 @@
+<ul class="nav nav-tabs text-center" role="tablist">
+  <li role="presentation" class="<%= (active.nil? || active == 'account') ? 'active' : '' %> tab-account"><a href="<%= user_path() %>">
+    <span>Tài khoản</span>
+    <span class="icon"></span>
+  </a></li>
+  <li role="presentation" class="<%= (active == 'drawdown') ? 'active' : '' %> tab-drawdown"><a href="<%= drawdown_path() %>">
+    <span>Đề nghị vay</span>
+    <span class="icon"></span>
+  </a></li>
+  <li role="presentation" class="tab-information"><a href="<%= info_account_path %>">
+    <span>Thông tin tài khoản</span>
+    <span class="icon"></span>
+  </a></li>
+  <li role="presentation" class="<%= (active == 'notifications') ? 'active' : '' %> tab-notification"><a href="<%= notifications_path() %>">
+    <span>Thông báo</span>
+    <span class="icon" data-count="<%= @numberNotification %>"></span>
+  </a></li>
+</ul>

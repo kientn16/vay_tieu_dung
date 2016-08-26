@@ -54,7 +54,6 @@
             <% else %>
                 <li class="active"><a href="<%= get_login_path %>">Đăng nhập</a></li>
             <% end %>
-
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -62,6 +61,27 @@
     <ul class="nav navbar-nav">
 
     </ul>
+    <% if current_user %>
+    <div class="row">
+      <div class="container">
+          <div class="links-account pull-right">
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <span class="icon-user"></span>
+                Tài khoản: <a href="" class="text-bold"><%= current_user.email %></a>
+                <span class="icon-arrow"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Change password</a></li>
+                <li role="separator" class="divider"></li>
+                <li><%= link_to get_logout_path do %><i class="fa fa-sign-out fa-fw"></i> Logout<% end %></li>
+              </ul>
+            </div>
+          </div>
+      </div>
+    </div>
+    <% end %>
   </div>
 </header>
   <div class="body">

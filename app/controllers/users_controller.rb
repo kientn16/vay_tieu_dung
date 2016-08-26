@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_filter :authorize
 
   def show
+    @numberNotification = Notification.get_notifications(0, session[:user_id]).count
     @user = User.find(params[:id])
     @birthday = @user.birthday
     if @birthday == nil
@@ -18,6 +19,7 @@ class UsersController < ApplicationController
   end
 
   def drawdown
+    @numberNotification = Notification.get_notifications(0, session[:user_id]).count
     @user = User.find(params[:id])
     if @user.nil?
       redirect_to get_login_path()
@@ -193,6 +195,20 @@ class UsersController < ApplicationController
   def draff
 
   end
+
+  def notifications
+    notification_id = params[:notification_id]
+    @notification = Notification.find(notification_id)
+    if !@notification.nil?
+      @notification.update(:is_read => 1)
+    end
+    @notifications = Notification.get_all(params)
+    @numberNotification = Notification.get_notifications(0, session[:user_id]).count
+
+
+  end
+
+
   private
   def user_params
     params.require(:user).permit(:email,:password,:name,:birthday,:phone,:passport,:gender,:marriage,:address,:provined_id,:district_id,:ward_id)
