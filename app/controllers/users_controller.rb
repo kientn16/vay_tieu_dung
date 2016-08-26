@@ -197,10 +197,14 @@ class UsersController < ApplicationController
   end
 
   def notifications
+    # render :json => params
+    # return
     notification_id = params[:notification_id]
-    @notification = Notification.find(notification_id)
-    if !@notification.nil?
-      @notification.update(:is_read => 1)
+    if !notification_id.nil?
+      @notification = Notification.find(notification_id)
+      if !@notification.nil?
+        @notification.update(:is_read => 1)
+      end
     end
     @notifications = Notification.get_all(params)
     @numberNotification = Notification.get_notifications(0, session[:user_id]).count
