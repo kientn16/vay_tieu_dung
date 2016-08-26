@@ -172,7 +172,11 @@
                                       <div class="form-group">
                                         <label for="inputEmail3" class="col-sm-14 control-label">Thời hạn vay: </label>
                                         <div class="col-sm-22">
-                                          <%= select_tag 'drawdown[amount_time]', options_for_select([12, 24, 36].collect { |v| [v.to_s + ' tháng', v.to_s] }, @drawdown.amount_time), include_blank: false, class: "form-control" %>
+                                          <select name="drawdown[amount_time]" id="" class="form-control">
+                                            <option value="1" <%= @drawdown.amount_time.to_i == 1.to_i ? 'selected="selected"' : '' %>>36 tháng</option>
+                                            <option value="2" <%= @drawdown.amount_time.to_i == 2.to_i ? 'selected="selected"' : '' %>>24 tháng</option>
+                                            <option value="3" <%= @drawdown.amount_time.to_i == 3.to_i ? 'selected="selected"' : '' %>>12 tháng</option>
+                                          </select>
                                         </div>
                                     </div>
                                   </div>
