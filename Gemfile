@@ -36,6 +36,20 @@ gem 'bcrypt', '~> 3.1.7'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'rspec-rails', '~> 3.5'
+
+  gem 'capybara'
+  # gem 'chromedriver-helper' # helps with using Chrome in feature specs
+  gem 'factory_girl_rails', '~> 4.5'
+  gem 'pry'
+  gem 'pry-rails'
+  gem 'pry-rescue'
+  gem 'pry-stack_explorer'
+  gem 'puffing-billy'
+  gem 'selenium-webdriver' # used by JavaScript-dependent feature specs (`js: true`)
+  gem 'spring' # Spring background-runs app in dev for speed
+  gem 'spring-commands-rspec' # Enable Spring for RSpec
+  gem 'faker'
 end
 
 group :development do
@@ -43,16 +57,11 @@ group :development do
   gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-end
-group :test, :development do
-  gem 'rspec-rails', '~> 3.5'
-  gem 'factory_girl_rails'
-  gem 'capybara'
+  # gem 'spring'
 end
 group :test do
-  gem "faker", "~> 1.4.3"
-  gem 'capybara'
+  # gem "faker", "~> 1.4.3"
+  # gem 'capybara'
   gem 'guard-rspec'
   gem 'launchy'
   gem 'database_cleaner'
