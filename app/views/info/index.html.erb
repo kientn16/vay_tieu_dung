@@ -71,7 +71,7 @@
                     <ul>
                     <% @historys.each do |history| %>
                       <% if history.status_contract != 88 %>
-                        <li><span class="text-bold">Ngày <%= history.created_at %></span>: <%= Contract.get_status(history.status_contract)%></li>
+                        <li><span class="text-bold">Ngày <%= history.created_at %></span> | <span>HD: <%= history.contract.code %></span> | <%= Contract.get_status(history.status_contract)%></li>
                       <% end %>
                     <% end %>
                     </ul>
@@ -88,7 +88,7 @@
                     <ul>
                       <% @historys.each do |history| %>
                           <% if history.status_contract == 88 %>
-                              <li><span class="text-bold"><%= history.created_at %></span>: Thanh toán <%= num_currency(history.orgin_rate) %> gốc, <%= num_currency(history.interest_rate) %> lãi </li>
+                              <li><span class="text-bold"><%= history.created_at %></span> | <span>HD: <%= history.contract.code %></span> | Thanh toán <%= num_currency(history.orgin_rate) %> gốc, <%= num_currency(history.interest_rate) %> lãi </li>
                           <% end %>
                       <% end %>
                     </ul>

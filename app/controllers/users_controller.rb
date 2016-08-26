@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_filter :authorize
 
   def show
+    @menu_active = 'user'
     @numberNotification = Notification.get_notifications(0, session[:user_id]).count
     @user = User.find(params[:id])
     @birthday = @user.birthday

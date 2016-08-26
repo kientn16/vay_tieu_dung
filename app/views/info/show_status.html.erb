@@ -5,7 +5,9 @@
       <div class="content">
         <ul>
           <% @status_contract.each do |history| %>
-              <li><span class="text-bold">Ngày <%= history.created_at %></span>: <strong><%= Contract.get_status(history.status_contract)%></strong></li>
+              <% if history.status_contract != 88 %>
+                <li><span class="text-bold">Ngày <%= history.created_at %></span>: <strong><%= Contract.get_status(history.status_contract)%></strong></li>
+              <% end %>
           <% end %>
         </ul>
       </div>

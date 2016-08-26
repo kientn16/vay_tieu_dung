@@ -17,12 +17,16 @@ class Admin::PaysController < ApplicationController
     if @dataContract.debt > @origin_rate
       @pays = History.new(:contract_id =>params[:contract_id],:status_contract => 88,:orgin_rate => @origin_rate,:user_id => @dataContract.user_id)
     else
-      @pays = History.new(:contract_id => params[:contract_id],:status_contract => 88,:orgin_rate => @dataContract.debt,:user_id => @dataContract.user_id).save
+      @pays = History.new(:contract_id => params[:contract_id],:status_contract => 88,:orgin_rate => @dataContract.debt,:user_id => @dataContract.user_id)
     end
     @pays.save
     # binding.pry
-    @dataContract.paid = @dataContract.paid + @origin_rate
-    @dataContract.debt = @dataContract.value.to_i - @dataContract.paid
+    @paid = @dataContract.paid + @origin_rate
+    if @paid > @dataContract.debt
+      @paid = @dataContract.value
+    end
+    @dataContract.paid = @paid.to_i
+    @dataContract.debt = @dataContract.value.to_i - @paid.to_i
     @dataContract.save
 
     redirect_to admin_contracts_path, :flash => {:success => "Pays Successfully for #{@dataContract.code}"}
