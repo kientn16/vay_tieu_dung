@@ -18,8 +18,12 @@ Rails.application.routes.draw do
   get '/signout', to: 'sessions#destroy', as: 'logout'
 
   resources :users
+  # match '/users/:id', to: 'users#show', via: [:get, :post, :patch], as: :get_show_user
   match '/users/drawdown/:id', to: 'users#drawdown', via: [:get, :post, :patch], as: :drawdown
   match '/users/info/:id', to: 'info#index', via: [:get, :post, :patch], as: :info_account
+  match '/users/view_drawdown/:id', to: 'info#show_drawdowns', via: [:get, :post, :patch], as: :show_drawdown
+  match '/users/show_status_drawdown/:id', to: 'info#show_status', via: [:get, :post, :patch], as: :show_status_drawdown
+  match '/users/show_pay_contract/:id', to: 'info#show_pay', via: [:get, :post, :patch], as: :show_pay_contract
   resources :contacts
   resources :helps
   scope "/admin" do
@@ -32,6 +36,7 @@ Rails.application.routes.draw do
       get 'logout' => :destroy_admin, as: :get_logout_admin
     end
 
+
     # controller :admin_users do
     #   get 'users' => :index, as: :get_users
     #   get 'users/:id' => :edit, as: :get_edit_user
@@ -41,6 +46,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/' => "contents#index", as: :root_admin
+
+    controller :pays do
+      get 'pays' => :index, as: :get_pays_admin
+      post 'pays' => :create, as: :post_pays_admin
+    end
     # root :to => 'admin/contents#index'
     resources :contents,:users,:admins,:contracts
     resources :drawdowns do

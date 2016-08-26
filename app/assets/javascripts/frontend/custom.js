@@ -70,4 +70,6 @@ $(document).ready(function() {
     $(".refresh_image").click(function() {
         $('#captcha').load("/users/dashboard/refresh_captcha_div");
     });
-})
+
+    $(".show-drawdowns").colorbox({width:"850px"});
+});

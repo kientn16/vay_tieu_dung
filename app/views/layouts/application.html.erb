@@ -13,6 +13,7 @@
     <%= javascript_include_tag "https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js", "https://oss.maxcdn.com/respond/1.4.2/respond.min.js" %>
   <![endif]-->
   <%= stylesheet_link_tag    'frontend/bootstrap.min', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'frontend/colorbox', media: 'all', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag    'plugins/ion-rangeSlider/css/ion.rangeSlider', media: 'all', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag    'plugins/ion-rangeSlider/css/ion.rangeSlider.skinHTML5', media: 'all', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag    'plugins/swiper-3.3.1/css/swiper', media: 'all', 'data-turbolinks-track' => true %>
@@ -20,6 +21,7 @@
   <!--js-->
   <%= javascript_include_tag 'frontend/jquery.1.12.4.min', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'frontend/bootstrap.min', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'frontend/jquery.colorbox', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'plugins/ion-rangeSlider/ion.rangeSlider', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'plugins/swiper-3.3.1/js/swiper.jquery.min', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'frontend/custom', 'data-turbolinks-track' => true %>
@@ -47,18 +49,18 @@
             <li><a href="#">Sản phẩm</a></li>
             <li><a href="#">Liên hệ</a></li>
             <li><a href="<%= helps_path %>">Trợ giúp</a></li>
-            <li class="active"><a href="<%= get_login_path %>">Đăng nhập</a></li>
+            <% if current_user %>
+                <li class="active"><a href="<%= get_logout_path %>">Đăng xuất</a></li>
+            <% else %>
+                <li class="active"><a href="<%= get_login_path %>">Đăng nhập</a></li>
+            <% end %>
+
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
     <ul class="nav navbar-nav">
-    <% if current_user %>
-        <li><a>Hello <%= current_user.email %></a></li>
-        <li><%= link_to get_logout_path do %><i class="fa fa-sign-out fa-fw"></i> Logout<% end %></li>
-    <% else %>
-        <li><%= link_to get_login_path do %><i class="fa fa-sign-in fa-fw"></i> Login<% end %></li>
-    <% end %>
+
     </ul>
   </div>
 </header>
