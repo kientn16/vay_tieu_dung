@@ -59,7 +59,6 @@
                 - if current_user
                   %li{:class => !@menu_active.nil? && @menu_active == 'user' ? 'active' : ''}
                     %a{:href => users_path} Profile
-                - if current_user
                   %li
                     %a{:href => get_logout_path} Đăng xuất
                 - else

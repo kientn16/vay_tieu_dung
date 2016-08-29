@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   end
 
   def self.from_omniauth(auth,current_user = nil)
-    binding.pry
+    # binding.pry
     # check login
     if current_user != nil
       @user = User.find(current_user.id)
