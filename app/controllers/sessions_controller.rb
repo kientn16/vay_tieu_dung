@@ -38,14 +38,14 @@ class SessionsController < ApplicationController
   def create_face
     user = User.from_omniauth(env["omniauth.auth"],current_user)
     session[:user_id] = user.id
-    redirect_to user_path(session[:user_id])
+    redirect_to users_path
   end
 
   def create_google
     user = User.from_omniauth_google(env["omniauth.auth"],current_user)
     # binding.pry
     session[:user_id] = user.id
-    redirect_to user_path(session[:user_id])
+    redirect_to users_path
   end
 
   def destroy
