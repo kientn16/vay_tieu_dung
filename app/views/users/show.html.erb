@@ -9,24 +9,7 @@
   <div class="container">
     <div class="account">
       <!-- Nav tabs -->
-      <ul class="nav nav-tabs text-center">
-        <li role="presentation" class="active tab-account"><a href="<%= user_path() %>">
-          <span>Tài khoản</span>
-          <span class="icon"></span>
-        </a></li>
-        <li class="tab-drawdown"><a href="<%= drawdown_path() %>">
-          <span>Đề nghị vay</span>
-          <span class="icon"></span>
-        </a></li>
-        <li role="presentation" class="tab-information"><a href="<%= info_account_path %>">
-          <span>Thông tin tài khoản</span>
-          <span class="icon"></span>
-        </a></li>
-        <li role="presentation" class="tab-notification"><a href="#tab-notification">
-          <span>Thông báo</span>
-          <span class="icon"></span>
-        </a></li>
-      </ul>
+      <%= render 'includes/nav_tab_account', active: 'account' %>
       <!-- Tab panes -->
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="tab-account">
@@ -39,7 +22,7 @@
                   <div class="form-group">
                     <label for="input-email" class="col-sm-6 control-label">Email</label>
                     <div class="col-sm-30">
-                      <% if @user.by_social == 0 && @user.change_email == 1 %>
+                      <% if @user.by_social == 0 || @user.change_email == 1 %>
                           <%= f.text_field :email, :class => 'form-control', :disabled => 'disabled' %>
                       <% else %>
                           <%= f.text_field :email, :class => 'form-control' %>
@@ -191,7 +174,7 @@
                           <div class="form-group">
                             <label for="inputEmail3" class="col-sm-7 control-label">Tỉnh/TP: </label>
                             <div class="col-sm-29">
-                              <%= f.select(:provined_id, [['Ha noi',0],['TP HCM',1]], {include_blank: "Tinh"}, { :class => 'form-control'}) %>
+                              <%= f.select :provined_id, options_for_select(Province.where(parent_id: "0").map{ |c| [c.name, c.id] },@user.provined_id),{include_blank: "Chọn Tỉnh/TP"}, { :class => 'form-control',:onchange => "select_district(this.value,'#{post_select_district_path}')" } %>
                             </div>
                           </div>
                         </div>
@@ -199,15 +182,27 @@
                           <div class="form-group">
                             <label for="inputEmail3" class="col-sm-10 control-label">Quận/Huyện: </label>
                             <div class="col-sm-26">
-                              <%= f.select(:district_id, [['Cau giay',0],['Ba Dinh',1]], {include_blank: "Huyen"}, { :class => 'form-control'}) %>
+                              <select id="data-district" name="user[district_id]" onchange="select_ward(this.value,'<%= post_select_district_path%>')" class="form-control">
+                                <option value="">Chọn Quận/Huyện</option>
+                                <% Province.where('parent_id=?',@user.provined_id).each do |district| %>
+                                    <option <% if @user.district_id.to_i == district.id.to_i %> selected <% end %> value="<%= district.id %>"><%= district.name %></option>
+                                <% end %>
+                              </select>
                             </div>
                           </div>
                         </div>
+                        <%= @id_district %>
                         <div class="col-sm-13">
                           <div class="form-group">
                             <label for="inputEmail3" class="col-sm-10 control-label">Phường/Xã: </label>
+
                             <div class="col-sm-26">
-                              <%= f.select(:ward_id, [['Duy tan',0],['Me tri',1]], {include_blank: "Xa/Phuong"}, { :class => 'form-control'}) %>
+                              <select id="data-ward" name="user[ward_id]" class="form-control">
+                                <option value="">Chọn Phường/Xã</option>
+                                <% Province.where('parent_id=?',@user.district_id).each do |ward| %>
+                                    <option <% if @user.ward_id.to_i == ward.id.to_i %> selected <% end %> value="<%= ward.id %>"><%= ward.name %></option>
+                                <% end %>
+                              </select>
                             </div>
                           </div>
                         </div>

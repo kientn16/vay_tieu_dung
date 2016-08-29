@@ -9,24 +9,7 @@
   <div class="container">
     <div class="account">
       <!-- Nav tabs -->
-      <ul class="nav nav-tabs text-center" role="tablist">
-        <li role="presentation" class="tab-account"><a href="<%= user_path %>">
-          <span>Tài khoản</span>
-          <span class="icon"></span>
-        </a></li>
-        <li role="presentation" class="tab-drawdown"><a href="<%= drawdown_path %>">
-          <span>Đề nghị vay</span>
-          <span class="icon"></span>
-        </a></li>
-        <li role="presentation" class="active tab-information"><a href="#">
-          <span>Thông tin tài khoản</span>
-          <span class="icon"></span>
-        </a></li>
-        <li role="presentation" class="tab-notification"><a href="#tab-notification">
-          <span>Thông báo</span>
-          <span class="icon"></span>
-        </a></li>
-      </ul>
+      <%= render 'includes/nav_tab_account', active: 'info_account' %>
       <!-- Tab panes -->
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane" id="tab-account">
@@ -54,12 +37,21 @@
                   <tbody>
                   <% @contracts.each do |contract| %>
                   <tr>
-                    <td><%= contract.loans_time %></td>
-                    <td><%= contract.code %></td>
+                    <% if contract.status.to_i == 99 %>
+                        <td><a href="<%= drawdown_path(current_user.id) %>"><%= contract.loans_time %></a></td>
+                    <% else %>
+                        <td><a class="show-drawdowns" href="<%= show_drawdown_path(contract.drawdowns_id) %>"><%= contract.loans_time %></a></td>
+                    <% end %>
+
+                    <% if contract.status.to_i == 99 %>
+                        <td></td>
+                    <% else %>
+                        <td><a class="show-drawdowns" href="<%= show_drawdown_path(contract.drawdowns_id) %>"><%= contract.code %></a></td>
+                    <% end %>
                     <td><%= num_currency(contract.value) %></td>
                     <td><%= Drawdown.get_amount_time(contract.deadline) %></td>
-                    <td><%= Contract.get_status(contract.status) %></td>
-                    <td><%= num_currency(contract.paid) %></td>
+                    <td><a class="show-drawdowns" href="<%= show_status_drawdown_path(contract.id) %>"><%= Contract.get_status(contract.status) %></a></td>
+                    <td><a class="show-drawdowns" href="<%= show_pay_contract_path(contract.id) %>"><%= num_currency(contract.paid) %></a></td>
                     <td><%= num_currency(contract.penance) %></td>
                     <td><%= num_currency(contract.debt) %></td>
                   </tr>
@@ -68,7 +60,7 @@
                 </table>
               </div>
               <div class="row">
-                <button class="pull-right btn btn-primary btn-export">Xuất ra Excel</button>
+                <a href="<%= info_account_path %>.xls" class="pull-right btn btn-primary btn-export">Xuất ra Excel</a>
               </div>
             </div>
             <div class="row">
@@ -78,7 +70,9 @@
                   <div class="content">
                     <ul>
                     <% @historys.each do |history| %>
-                        <li><a href=""><span class="text-bold">Ngày <%= history.created_at %></span></a>: <%= Contract.get_status(history.status_contract)%></li>
+                      <% if history.status_contract != 88 %>
+                        <li><span class="text-bold">Ngày <%= history.created_at %></span> | <span>HD: <%= history.contract.code %></span> | <%= Contract.get_status(history.status_contract)%></li>
+                      <% end %>
                     <% end %>
                     </ul>
                   </div>
@@ -92,14 +86,11 @@
                   <div class="heading text-bold">Lịch sử thanh toán</div>
                   <div class="content">
                     <ul>
-                      <li><a href=""><span class="text-bold">Ngày 26/06/2016</span>: Nhận đề nghị vay</a></li>
-                      <li><a href=""><span class="text-bold">Ngày 26/06/2016</span>: Nhận đề nghị vay</a></li>
-                      <li><a href=""><span class="text-bold">Ngày 26/06/2016</span>: Nhận đề nghị vay</a></li>
-                      <li><a href=""><span class="text-bold">Ngày 26/06/2016</span>: Nhận đề nghị vay</a></li>
-                      <li><a href=""><span class="text-bold">Ngày 26/06/2016</span>: Nhận đề nghị vay</a></li>
-                      <li><a href=""><span class="text-bold">Ngày 26/06/2016</span>: Nhận đề nghị vay</a></li>
-                      <li><a href=""><span class="text-bold">Ngày 26/06/2016</span>: Nhận đề nghị vay</a></li>
-                      <li><a href=""><span class="text-bold">Ngày 26/06/2016</span>: Nhận đề nghị vay</a></li>
+                      <% @historys.each do |history| %>
+                          <% if history.status_contract == 88 %>
+                              <li><span class="text-bold"><%= history.created_at %></span> | <span>HD: <%= history.contract.code %></span> | Thanh toán <%= num_currency(history.orgin_rate) %> gốc, <%= num_currency(history.interest_rate) %> lãi </li>
+                          <% end %>
+                      <% end %>
                     </ul>
                   </div>
                 </div>
@@ -112,7 +103,6 @@
 
           </div>
         </div>
-
       </div>
     </div>
   </div>

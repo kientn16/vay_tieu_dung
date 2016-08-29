@@ -1,0 +1,76 @@
+<div class="row banner-account">
+  <div class="container text-left">
+    <div class="content">
+      <img src="<%= image_url('banner-account.png') %>">
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="container">
+    <div class="account">
+      <!-- Nav tabs -->
+      <%= render 'includes/nav_tab_account', active: 'notifications' %>
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane " id="tab-account">
+          <div class="tab-content">
+            
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane " id="tab-drawdown">
+          <div class="tab-content">
+
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane " id="tab-information">
+          <div class="tab-content">
+
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane active" id="tab-notification">
+          <div class="tab-content">
+            <div class="list">
+              <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered">
+                  <thead>
+                      <tr class="text-bold">
+                          <td>Thời gian</td>
+                          <td>Tiêu đề</td>
+                          <td>Nội dung</td>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <% @notifications.each_with_index do |item,key|%>
+                      <tr class="<%= (!@notification.nil? && item.id == @notification.id) ? 'active' : '' %>">
+                          <td class="<%= (item.is_read == 0) ? 'text-bold' : '' %>"><a href="<%= notifications_path(params[:id],item, page: params[:page]) %>"><%= item.created_at.strftime("%d-%m-%Y %H:%M:%S") %></a></td>
+                          <td class="<%= (item.is_read == 0) ? 'text-bold' : '' %>"><a href="<%= notifications_path(params[:id],item, page: params[:page]) %>"><%= trim(item.title, 50) %></a></td>
+                          <% if key == 0%>
+                          <td rowspan="<%= @notifications.count %>" class="content-notification">
+                            <% if @notification.nil? %>
+                              <%= item.content %>
+                            <% else %>
+                              <%= @notification.content%>
+                            <% end %>
+                          </td>
+                          <% end %>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colspan="3" class="text-center">
+                        <%= will_paginate @notifications, renderer: BootstrapPagination::Rails %>
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>

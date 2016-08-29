@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'faker'
 
 RSpec.describe Drawdown, type: :model do
  #  	context "db" do
@@ -154,5 +155,4 @@ RSpec.describe Drawdown, type: :model do
 	#       expect(user).to validate_length_of(:last_name)
 	#     end
 	#   end
-
 end

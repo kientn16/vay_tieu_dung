@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   before_update :hash_field
 
   def self.check_active_code(params)
-    @check = User.where("email = '#{params[:email]}' AND active_code = #{params[:active_code]}").first
+    @check = User.where('email =? AND active_code =?', params[:email],params[:active_code]).first
     # binding.pry
     if @check
       return @check
@@ -30,11 +30,10 @@ class User < ActiveRecord::Base
     else
       self.password = Digest::MD5.hexdigest(self.password)
     end
-
   end
 
   def self.from_omniauth(auth,current_user = nil)
-    # binding.pry
+    binding.pry
     # check login
     if current_user != nil
       @user = User.find(current_user.id)
@@ -71,8 +70,10 @@ class User < ActiveRecord::Base
       @user.google_id = auth.uid
       @user.save
     else
-      check = self.find_by_google_id(auth.uid)
-      if check
+      # check = self.where("google_id = #{auth.uid} OR email = '#{auth.info.email}'").first
+      check = self.where('google_id = ? OR email =?', auth.uid,auth.info.email).first
+      # binding.pry
+      if check != nil
         @user = check
       else
         @user = User.new
@@ -87,8 +88,10 @@ class User < ActiveRecord::Base
         @user.change_email = 0
         # binding.pry
         @user.save
+        # binding.pry
       end
     end
+    # binding.pry
     return @user
   end
 

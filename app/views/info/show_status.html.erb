@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-sm-36">
+    <div class="list-history status">
+      <div class="heading text-bold">Lịch sử trạng thái</div>
+      <div class="content">
+        <ul>
+          <% @status_contract.each do |history| %>
+              <% if history.status_contract != 88 %>
+                <li><span class="text-bold">Ngày <%= history.created_at %></span>: <strong><%= Contract.get_status(history.status_contract)%></strong></li>
+              <% end %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

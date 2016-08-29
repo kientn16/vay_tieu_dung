@@ -9,24 +9,7 @@
   <div class="container">
     <div class="account">
       <!-- Nav tabs -->
-      <ul class="nav nav-tabs text-center" role="tablist">
-        <li role="presentation" class="tab-account"><a href="<%= user_path() %>">
-          <span>Tài khoản</span>
-          <span class="icon"></span>
-        </a></li>
-        <li role="presentation" class="active tab-drawdown"><a href="<%= drawdown_path() %>">
-          <span>Đề nghị vay</span>
-          <span class="icon"></span>
-        </a></li>
-        <li role="presentation" class="tab-information"><a href="<%= info_account_path %>">
-          <span>Thông tin tài khoản</span>
-          <span class="icon"></span>
-        </a></li>
-        <li role="presentation" class="tab-notification"><a href="#tab-notification" aria-controls="tab-notification" role="tab" data-toggle="tab">
-          <span>Thông báo</span>
-          <span class="icon"></span>
-        </a></li>
-      </ul>
+      <%= render 'includes/nav_tab_account', active: 'drawdown' %>
       <!-- Tab panes -->
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="tab-account">

@@ -1,6 +1,9 @@
 class SessionsController < ApplicationController
   # prepend_before_action :check_captcha, only: [:create] # Change this to be any actions you want to protect.
   def new
+    # a = Digest::MD5.hexdigest('123123')
+    # render :json => a
+    # return
 
   end
 
@@ -35,13 +38,14 @@ class SessionsController < ApplicationController
   def create_face
     user = User.from_omniauth(env["omniauth.auth"],current_user)
     session[:user_id] = user.id
-    redirect_to user_path(user.id)
+    redirect_to user_path(session[:user_id])
   end
 
   def create_google
     user = User.from_omniauth_google(env["omniauth.auth"],current_user)
+    # binding.pry
     session[:user_id] = user.id
-    redirect_to user_path(user.id)
+    redirect_to user_path(session[:user_id])
   end
 
   def destroy

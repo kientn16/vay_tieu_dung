@@ -108,4 +108,36 @@ $(document).ready(function() {
     $(".refresh_image").click(function() {
         $('#captcha').load("/users/dashboard/refresh_captcha_div");
     });
-})
+
+    $(".show-drawdowns").colorbox({width:"850px"});
+});
+
+function select_district(val,url){
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: {province_id: val},
+        success: function(result) {
+            $("#data-district").empty();
+            $("#data-district").append("<option value=''>Chọn Huyện </option>");
+            $.each(result, function(i, item) {
+                $("#data-district").append("<option value='"+item.id+"'>"+item.name+"</option>")
+            })
+        }
+    });
+}
+
+function select_ward(val,url){
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: {province_id: val},
+        success: function(result) {
+            $("#data-ward").empty();
+            $("#data-ward").append("<option value=''>Chọn Phường/Xã </option>");
+            $.each(result, function(i, item) {
+                $("#data-ward").append("<option value='"+item.id+"'>"+item.name+"</option>")
+            })
+        }
+    });
+}

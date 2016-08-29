@@ -2,6 +2,8 @@ class UsersController < ApplicationController
   before_filter :authorize
 
   def show
+    @menu_active = 'user'
+    @numberNotification = Notification.get_notifications(0, session[:user_id]).count
     @user = User.find(params[:id])
     @birthday = @user.birthday
     if @birthday == nil
@@ -18,6 +20,7 @@ class UsersController < ApplicationController
   end
 
   def drawdown
+    @numberNotification = Notification.get_notifications(0, session[:user_id]).count
     @user = User.find(params[:id])
     if @user.nil?
       redirect_to get_login_path()
@@ -37,7 +40,7 @@ class UsersController < ApplicationController
           params[:drawdown][:contract_time] = params['day']+"/"+params['month']+"/"+params['year']
           flag = proccess_drawdown(params)
           if flag != false
-            flash[:success] = 'Cap nhat de nghi vay thanh cong'
+            flash[:success] = 'De nghi vay da duoc gui di. Chung toi se duyet de nghi cua ban trong thoi gian som nhat'
             redirect_to drawdown_path()
           else
             flash[:error] = 'Error'
@@ -73,18 +76,22 @@ class UsersController < ApplicationController
       else
         flag = update_drawdown(@drawdown, params, 1, false)
       end
-      contract = proccess_contract(@drawdown, session[:user_id], 99)
-      history = create_history(contract)
-      notification = create_notification(session[:user_id], "Da luu tam de nghi vay", "Ban da luu tam de nghi vay")
+      if flag == true
+        contract = proccess_contract(@drawdown, session[:user_id], 99)
+        history = create_history(contract, session[:user_id])
+        notification = create_notification(session[:user_id], "Da luu tam de nghi vay", "Ban da luu tam de nghi vay")
+      end
     else
       if @drawdown.nil?
         flag = save_drawdown(params, true)
       else
         flag = update_drawdown(@drawdown, params, 0, true)
       end
-      contract = proccess_contract(@drawdown, session[:user_id], 1)
-      history = create_history(contract)
-      notification = create_notification(session[:user_id], "Da gui de nghi vay", "Ban da gui de nghi vay, Dang cho xu ly")
+      if flag == true
+        contract = proccess_contract(@drawdown, session[:user_id], 1)
+        history = create_history(contract, session[:user_id])
+        notification = create_notification(session[:user_id], "Da gui de nghi vay", "Ban da gui de nghi vay, Dang cho xu ly")
+      end
     end
     return flag
   end
@@ -104,9 +111,9 @@ class UsersController < ApplicationController
     end
   end
 
-  def create_history(contract)
+  def create_history(contract, user_id)
     if !contract.nil?
-      history = History.create(:contract_id => contract.id, :status_contract => contract.status, :summery => contract.value)
+      history = History.create(:contract_id => contract.id, :status_contract => contract.status, :summery => contract.value, :user_id => user_id)
     else
       nil
     end
@@ -120,50 +127,66 @@ class UsersController < ApplicationController
 
   def save_drawdown(params, validate)
     params[:drawdown][:appoint_in_contract] = 0
+    listMedia = []
+    if params[:media_contract_id]
+      media = Medium.create(path: params[:media_contract_id])
+      params[:drawdown][:media_contract_id] = media.id
+      listMedia << media.id
+    end
+
+    if params[:media_appoint_id]
+      media = Medium.create(path: params[:media_appoint_id])
+      params[:drawdown][:media_appoint_id] = media.id
+      listMedia << media.id
+    end
+
+    if params[:media_salary_id]
+      media = Medium.create(path: params[:media_salary_id])
+      params[:drawdown][:media_salary_id] = media.id
+      listMedia << media.id
+    end
     @drawdown = Drawdown.new(drawdown_params)
     @drawdown.user_id = session[:user_id]
     @drawdown.is_draft = params[:draft];
     # @drawdown.contract_date = params[:contract_date]
     @drawdown.is_validate = validate
-    if @drawdown.save
-      if params[:media_contract_id]
-        media = Medium.create(path: params[:media_contract_id])
-        @drawdown.update(:media_contract_id => media.id)
-      end
-
-      if params[:media_appoint_id]
-        media = Medium.create(path: params[:media_appoint_id])
-        @drawdown.update(:media_appoint_id => media.id)
-      end
-
-      if params[:media_salary_id]
-        media = Medium.create(path: params[:media_salary_id])
-        @drawdown.update(:media_salary_id => media.id)
-      end
-      return true
-    else
+    check = @drawdown.valid?
+    if check == false
+      Medium.delete(listMedia)
       return false
+    else
+      if @drawdown.save
+        return true
+      else
+        return false
+      end
     end
+
   end
 
   def update_drawdown(drawdown, params, is_draft, validate)
     drawdown.is_validate = validate
+    listMedia = []
+    if params[:media_contract_id]
+      media = Medium.create(path: params[:media_contract_id])
+      params[:drawdown][:media_contract_id] = media.id
+      listMedia << media.id
+    end
+
+    if params[:media_appoint_id]
+      media = Medium.create(path: params[:media_appoint_id])
+      params[:drawdown][:media_appoint_id] = media.id
+      listMedia << media.id
+    end
+
+    if params[:media_salary_id]
+      media = Medium.create(path: params[:media_salary_id])
+      params[:drawdown][:media_salary_id] = media.id
+      listMedia << media.id
+    end
+    params[:drawdown][:is_draft] = is_draft
+    
     if drawdown.update(drawdown_params)
-      drawdown.update(:is_draft => is_draft)
-      if params[:media_contract_id]
-        media = Medium.create(path: params[:media_contract_id])
-        @drawdown.update(:media_contract_id => media.id)
-      end
-
-      if params[:media_appoint_id]
-        media = Medium.create(path: params[:media_appoint_id])
-        @drawdown.update(:media_appoint_id => media.id)
-      end
-
-      if params[:media_salary_id]
-        media = Medium.create(path: params[:media_salary_id])
-        @drawdown.update(:media_salary_id => media.id)
-      end
       return true
     end
     return false
@@ -176,7 +199,22 @@ class UsersController < ApplicationController
     @params['birthday'] = @birthday
     # binding.pry
     respond_to do |format|
-      if @user.update(user_params)
+      # check change email
+      if @user.by_social == 1
+        # binding.pry
+        if user_params['email'] != @user.email
+          # ko dc phep doi tiep
+          @user_params = user_params.merge(change_email: 1)
+          @user_update = @user.update(@user_params)
+        else
+          # dc phep doi tiep
+          @user_params = user_params.merge(change_email: 0)
+          @user_update = @user.update(@user_params)
+        end
+      else
+        @user_update = @user.update(user_params)
+      end
+      if @user_update
         # upload document user here
         if params[:document]
           # binding.pry
@@ -195,6 +233,29 @@ class UsersController < ApplicationController
   def draff
 
   end
+
+  def notifications
+    # render :json => params
+    # return
+    notification_id = params[:notification_id]
+    if !notification_id.nil?
+      @notification = Notification.find(notification_id)
+      if !@notification.nil?
+        @notification.update(:is_read => 1)
+      end
+    end
+    @notifications = Notification.get_all(params)
+    @numberNotification = Notification.get_notifications(0, session[:user_id]).count
+  end
+
+
+  # select district
+  def select_district
+    @datas = Province.where('parent_id =?', params[:province_id])
+    render json: @datas
+  end
+
+
   private
   def user_params
     params.require(:user).permit(:email,:password,:name,:birthday,:phone,:passport,:gender,:marriage,:address,:provined_id,:district_id,:ward_id)

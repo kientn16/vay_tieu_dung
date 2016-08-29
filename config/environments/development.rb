@@ -32,6 +32,7 @@ Rails.application.configure do
   # Asset digests allow you to set far-future HTTP expiration dates on all assets,
   # yet still be able to expire them through the digest params.
   config.assets.digest = true
+  config.pagination_per_page = 15
 
   # Adds additional error checking when serving assets at runtime.
   # Checks for improperly declared sprockets dependencies.
@@ -53,5 +54,6 @@ Rails.application.configure do
       :password => "trankien1691",
       :enable_starttls_auto => true
   }
+
 
 end

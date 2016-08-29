@@ -1,0 +1,19 @@
+<div class="panel-body col-lg-12">
+  <div class="heading">
+    <%= render 'includes/flash_msg' %>
+    <h1 class="text-bold">Pays</h1>
+  </div>
+    <%= form_tag admin_post_pays_admin_path,class: "horizontal" do %>
+      <div class="form-group">
+        <label for="input-email">Contracts</label>
+        <%= select_tag :contract_id,options_for_select(Contract.where('status =?',4).map{ |c| [c.code, c.id] }), class: 'form-control text-control', placeholder: 'Username' %>
+      </div>
+      <div class="form-group">
+        <label for="input-password">Money</label>
+        <%= text_field_tag :origin_rate,nil, class: 'form-control text-control', placeholder: 'Money' %>
+      </div>
+      <div class="form-group text-left">
+        <%= submit_tag "Submit", 'class' => 'btn btn-default btn-login' %>
+      </div>
+    <% end %>
+</div>

@@ -759,6 +759,19 @@ td.content-notification{
     color: #236199
 }
 
+table>tbody>tr.active>td a{
+    color: #fff !important;
+}
+table>tbody>tr.active>td{
+    background: gray !important
+}
+table>tbody>tr.active>td:last-child{
+    background: #fff !important;
+}
+table>tbody>tr.active>td:last-child a{
+    color: #000 !important;
+}
+
 
 @media screen and (min-width: 480px) { 
     .navbar-inverse .navbar-collapse{
@@ -798,3 +811,4 @@ td.content-notification{
         height: 386px;
     }
  }
+
