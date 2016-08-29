@@ -60,7 +60,7 @@
             <li class="<%= !@menu_active.nil? && @menu_active == 'contact' ? 'active' : '' %>"><a href="<%= new_contact_path %>">Liên hệ</a></li>
             <li class="<%= !@menu_active.nil? && @menu_active == 'help' ? 'active' : '' %>"><a href="<%= helps_path %>">Trợ giúp</a></li>
             <% if current_user %>
-              <li class="<%= !@menu_active.nil? && @menu_active == 'user' ? 'active' : '' %>"><a href="<%= user_path(current_user.id) %>">Profile</a></li>
+              <li class="<%= !@menu_active.nil? && @menu_active == 'user' ? 'active' : '' %>"><a href="<%= users_path %>">Profile</a></li>
             <% end %>
             <% if current_user %>
                 <li><a href="<%= get_logout_path %>">Đăng xuất</a></li>
