@@ -27,13 +27,13 @@
                       %td Nội dung
                   %tbody
                     - @notifications.each_with_index do |item,key|
-                      %tr{:class => "#{(!@notification.nil?  item.id == @notification.id) ? 'active' : ''}"}
-                        %td{:class => "#{(item.is_read == 0) ? 'text-bold' : ''}"}
-                          %a{:href => "#{notifications_path(params[:id],item, page: params[:page])}"}= item.created_at.strftime("%d-%m-%Y %H:%M:%S")
-                        %td{:class => "#{(item.is_read == 0) ? 'text-bold' : ''}"}
-                          %a{:href => "#{notifications_path(params[:id],item, page: params[:page])}"}= trim(item.title, 50)
+                      %tr{:class => (!@notification.nil? && item.id == @notification.id) ? 'active' : ''}
+                        %td{:class => (item.is_read == 0) ? 'text-bold' : ''}
+                          %a{:href => notifications_users_path(params[:id],item, page: params[:page])}= item.created_at.strftime("%d-%m-%Y %H:%M:%S")
+                        %td{:class => (item.is_read == 0) ? 'text-bold' : ''}
+                          %a{:href => notifications_users_path(params[:id],item, page: params[:page])}= trim(item.title, 50)
                         - if key == 0
-                          %td.content-notification{:rowspan => "#{@notifications.count}"}
+                          %td.content-notification{:rowspan => @notifications.count}
                             - if @notification.nil?
                               = item.content
                             - else

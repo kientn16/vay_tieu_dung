@@ -27,12 +27,15 @@ Rails.application.routes.draw do
       get 'info/show_pay_contract/:id' => :show_pay, as: :show_pay_contract
     end
   end
-  resources :users
+  resources :users do
+    collection do
+      resources :drawdowns
+    end
+    get 'notifications', on: :collection
+  end
   resources :contacts
   resources :helps
 
-  match '/users/drawdown/:id', to: 'users#drawdown', via: [:get, :post, :patch], as: :drawdown
-  match '/users/notifications/:id(/:notification_id)', to: 'users#notifications', via: [:get, :post], as: :notifications
 
   # ajax select district
   post '/users/select_district' => 'users#select_district', as: :post_select_district

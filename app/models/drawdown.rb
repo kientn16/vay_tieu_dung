@@ -71,4 +71,145 @@ class Drawdown < ActiveRecord::Base
     end
     return result
   end
+
+  def self.proccess_drawdown(drawdown, drawdown_params, params, user_id)
+    draft = params[:draft]
+    flag = false
+    if draft.to_i == 1.to_i
+      if drawdown.nil?
+        flag = self.save_drawdown(drawdown_params, params, false, user_id)
+      else
+        flag = self.update_drawdown(drawdown, drawdown_params, params, 1, false)
+      end
+    else
+      if drawdown.nil?
+        flag = self.save_drawdown(drawdown_params, params, true, user_id)
+      else
+        flag = self.update_drawdown(drawdown, drawdown_params, params, 0, true)
+      end
+    end
+    return flag
+  end
+
+  def self.proccess_contract(drawdown, user_id, status)
+    contract = Contract.where('drawdowns_id = ? AND user_id = ?', drawdown.id, user_id).first
+    if contract.nil?
+      contract = Contract.create(:code => 'HD-' + user_id.to_s + '-' + Time.now.strftime('%s').to_s, :value => drawdown.amount, :deadline => drawdown.amount_time, :status => status, :drawdowns_id => drawdown.id, :loans_time => drawdown.created_at, :user_id => user_id)
+      return contract
+    else
+      if contract.status != 2 && contract.status != 4 && contract.status != 5
+        if contract.update(:status => status)
+          return contract
+        end
+      end
+      return nil
+    end
+  end
+
+  def self.create_history(contract, user_id)
+    if !contract.nil?
+      history = History.create(:contract_id => contract.id, :status_contract => contract.status, :summery => contract.value, :user_id => user_id)
+    else
+      nil
+    end
+  end
+
+  def self.create_notification(user_id, title, content)
+    notification = Notification.create(:user_id => user_id, :title => title, :content => content, :is_read => 0 )
+  end
+
+
+
+  def self.save_drawdown(drawdown_params, params, validate, user_id)
+    params[:drawdown][:appoint_in_contract] = 0
+    listMedia = []
+    if params[:media_contract_id]
+      media = Medium.create(path: params[:media_contract_id])
+      params[:drawdown][:media_contract_id] = media.id
+      drawdown_params[:media_contract_id] = media.id
+      listMedia << media.id
+    end
+
+    if params[:media_appoint_id]
+      media = Medium.create(path: params[:media_appoint_id])
+      params[:drawdown][:media_appoint_id] = media.id
+      drawdown_params[:media_appoint_id] = media.id
+      listMedia << media.id
+    end
+
+    if params[:media_salary_id]
+      media = Medium.create(path: params[:media_salary_id])
+      params[:drawdown][:media_salary_id] = media.id
+      drawdown_params[:media_salary_id] = media.id
+      listMedia << media.id
+    end
+    drawdown = Drawdown.new(drawdown_params)
+    drawdown.user_id = user_id
+    drawdown.is_draft = params[:draft];
+    # drawdown.contract_date = params[:contract_date]
+    drawdown.is_validate = validate
+    check = drawdown.valid?
+    if check == false
+      Medium.delete(listMedia)
+      return false
+    else
+      if drawdown.save
+        if params[:draft].to_i == 1.to_i
+            contract = self.proccess_contract(drawdown, user_id, 99)
+            history = self.create_history(contract, user_id)
+            notification = self.create_notification(user_id, "Da luu tam de nghi vay", "Ban da luu tam de nghi vay")
+        else
+          contract = self.proccess_contract(drawdown, user_id, 1)
+          history = self.create_history(contract, user_id)
+          notification = self.create_notification(user_id, "Da gui de nghi vay", "Ban da gui de nghi vay, Dang cho xu ly")
+        end
+        return true
+      else
+        return false
+      end
+    end
+
+  end
+
+  def self.update_drawdown(drawdown, drawdown_params, params, is_draft, validate)
+    drawdown.is_validate = validate
+    listMedia = []
+    if params[:media_contract_id]
+      media = Medium.create(path: params[:media_contract_id])
+      params[:drawdown][:media_contract_id] = media.id
+      drawdown_params[:media_contract_id] = media.id
+      listMedia << media.id
+    end
+
+    if params[:media_appoint_id]
+      media = Medium.create(path: params[:media_appoint_id])
+      params[:drawdown][:media_appoint_id] = media.id
+      drawdown_params[:media_appoint_id] = media.id
+      listMedia << media.id
+    end
+
+    if params[:media_salary_id]
+      media = Medium.create(path: params[:media_salary_id])
+      params[:drawdown][:media_salary_id] = media.id
+      drawdown_params[:media_salary_id] = media.id
+      listMedia << media.id
+    end
+    drawdown_params[:is_draft] = is_draft
+    
+    if drawdown.update(drawdown_params)
+      if params[:draft].to_i == 1.to_i
+        contract = self.proccess_contract(drawdown, drawdown.user_id, 99)
+        history = self.create_history(contract, drawdown.user_id)
+        notification = self.create_notification(drawdown.user_id, "Da luu tam de nghi vay", "Ban da luu tam de nghi vay")
+      else
+        contract = self.proccess_contract(drawdown, drawdown.user_id, 1)
+        history = self.create_history(contract, drawdown.user_id)
+        notification = self.create_notification(drawdown.user_id, "Da gui de nghi vay", "Ban da gui de nghi vay, Dang cho xu ly")
+      end
+      return true
+    end
+    return false
+  end
+
+  
 end

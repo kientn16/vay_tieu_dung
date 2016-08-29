@@ -4,7 +4,7 @@
       %span Tài khoản
       %span.icon
   %li{:class => "#{(active == 'drawdown') ? 'active' : ''} tab-drawdown", :role => "presentation"}
-    %a{:href => "<#%= drawdown_path() %>"}
+    %a{:href => drawdowns_path()}
       %span Đề nghị vay
       %span.icon
   %li{:class => "#{(active == 'info_account') ? 'active' : ''} tab-information", :role => "presentation"}
@@ -12,6 +12,6 @@
       %span Thông tin tài khoản
       %span.icon
   %li{:class => "#{(active == 'notifications') ? 'active' : ''} tab-notification", :role => "presentation"}
-    %a{:href => "<#%= notifications_path() %>"}
+    %a{:href => notifications_users_path()}
       %span Thông báo
       %span.icon{"data-count" => "#{@numberNotification}"}
