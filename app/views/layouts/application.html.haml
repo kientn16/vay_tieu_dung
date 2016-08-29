@@ -50,14 +50,14 @@
                 %img{:src => "#{image_url('logo.png')}"}/
             #navbar.navbar-collapse.collapse.navbar-right
               %ul.nav.navbar-nav.menu-top
-                %li{:class => "#{!@menu_active.nil?  @menu_active == 'home' ? 'active' : ''}"}
+                %li{:class =>  !@menu_active.nil? && @menu_active == 'home' ? 'active' : ''}
                   %a{:href => root_path} Trang chủ
-                %li{:class => "#{!@menu_active.nil?  @menu_active == 'contact' ? 'active' : ''}"}
+                %li{:class => !@menu_active.nil? && @menu_active == 'contact' ? 'active' : ''}
                   %a{:href => new_contact_path} Liên hệ
-                %li{:class => "#{!@menu_active.nil?  @menu_active == 'help' ? 'active' : ''}"}
+                %li{:class => !@menu_active.nil? &&  @menu_active == 'help' ? 'active' : ''}
                   %a{:href => helps_path} Trợ giúp
                 - if current_user
-                  %li{:class => "#{!@menu_active.nil?  @menu_active == 'user' ? 'active' : ''}"}
+                  %li{:class => !@menu_active.nil? &&  @menu_active == 'user' ? 'active' : ''}
                     %a{:href => users_path} Profile
                 - if current_user
                   %li

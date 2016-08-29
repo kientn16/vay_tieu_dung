@@ -12,73 +12,43 @@
               %li= message
       .form-group
         .field
-          = f.label "Ngay vay"
+          = f.label 'Ngay vay'
           %br
-            = f.text_field :created_at, :class => 'form-control', :disabled => 'desabled'
-          .field
-            = f.label Ma HD vay
-            %br
-              = f.text_field :code, :class = 'form-control', :disabled = 'desabled'
-            .field
-              = f.label So tien
-              %br
-                %input{:type => "text", :value => ""}/
-                = num_currency(@contract.value)
-                " disabled class="form-control"&gt;
-              .field
-                = f.label Thoi han vay
-                %br
-                  %input{:type => "text", :value => ""}/
-                  = Drawdown.get_amount_time(@contract.deadline)
-                  " disabled class="form-control"&gt;
-                .field
-                  = f.label So tien da thanh toan
-                  %br
-                    %input{:type => "text", :value => ""}/
-                    = num_currency(@contract.paid)
-                    " disabled class="form-control"&gt;
-                  .field
-                    = f.label So tien Phat
-                    %br
-                      %input{:type => "text", :value => ""}/
-                      = num_currency(@contract.penance)
-                      " disabled class="form-control"&gt;
-                    .field
-                      = f.label So tien Phat
-                      %br
-                        %input{:type => "text", :value => ""}/
-                        = num_currency(@contract.debt)
-                        " disabled class="form-control"&gt;
-                      .field
-                        = f.label Status
-                        %br
-                          %select.form-control{:name => "contract[status]"}
-                            %option
-                            - if @contract.status == 0
-                              selected
-                            value="0"&gt;Ch&#x1EA5;p nh&#x1EAD;n &#x111;&#x1EC1; ngh&#x1ECB; vay.
-                          %option
-                          - if @contract.status == 1
-                            selected
-                          value="1"&gt;Ch&#x1EDD; x&#x1EED; l&#xFD;.
-                        %option
-                        - if @contract.status == 2
-                          selected
-                        value="2"&gt;Kh&#xF4;ng ch&#x1EA5;p nh&#x1EAD;n &#x111;&#x1EC1; ngh&#x1ECB; vay.
-                      %option
-                      - if @contract.status == 3
-                        selected
-                      value="3"&gt;&#x110;&#xE3; k&#xFD; H&#x110; vay. Ch&#x1EDD; gi&#x1EA3;i ng&#xE2;n.
-                    %option
-                    - if @contract.status == 4
-                      selected
-                    value="4"&gt;&#x110;&#xE3; gi&#x1EA3;i ng&#xE2;n.
-                  %option
-                  - if @contract.status == 5
-                    selected
-                  value="5"&gt;&#x110;&#xE3; t&#x1EA5;t to&#xE1;n..
-          %input{:type => "hidden", :value => ""}/
-          = @contract.user_id
-          " name="contract[user_id]"&gt;
-          .actions
-            = f.submit 'Submit',:class = 'btn btn-default'
+          = f.text_field :created_at, :class => 'form-control', :disabled => 'disabled'
+        .field
+          = f.label 'Ma HD vay'
+          %br
+          = f.text_field :code, :class => 'form-control', :disabled => 'disabled'
+        .field
+          = f.label 'So tien'
+          %br
+          = f.text_field :value, :class => 'form-control', :disabled => 'disabled', :value => "#{num_currency(@contract.value)}"
+        .field
+          = f.label 'Thoi han vay'
+          %br
+          %input{:type => "text", :value => "#{Drawdown.get_amount_time(@contract.deadline)}", :disabled => 'disabled', :class => 'form-control'}
+        .field
+          = f.label 'So tien da thanh toan'
+          %br
+          %input{:type => "text", :value => "#{num_currency(@contract.paid)}",:disabled => 'disabled', :class => 'form-control'}
+        .field
+          = f.label 'So tien Phat'
+          %br
+          %input{:type => "text", :value => "#{num_currency(@contract.penance)}",:disabled => 'disabled',:class => 'form-control'}
+        .field
+          = f.label 'So Du No'
+          %br
+          %input{:type => "text", :value => "#{num_currency(@contract.debt)}",:disabled => 'disabled',:class => 'form-control'}
+        .field
+          = f.label 'Status'
+          %br
+          %select.form-control{:name => "contract[status]",:class => 'form-control'}
+            %option{:value => 0, :selected => @contract.status == 0} Chấp nhận đề nghị vay
+            %option{:value => 1, :selected => @contract.status == 1} Cho xử lý
+            %option{:value => 2, :selected => @contract.status == 2} Không chấp nhận đề nghị vay
+            %option{:value => 3, :selected => @contract.status == 3} Đã ký HĐ chờ giải ngân
+            %option{:value => 4, :selected => @contract.status == 4} Đã giải ngân
+            %option{:value => 5, :selected => @contract.status == 5} Đã tất toan
+        .actions
+          = f.submit 'Submit',:class => 'btn btn-default'
+
