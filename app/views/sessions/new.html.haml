@@ -1,0 +1,42 @@
+/ app/views/sessions/new.html.erb
+.row
+  .container
+    = form_tag '/login',class: "frm-login" do
+      .heading.text-center
+        = render 'includes/flash_msg'
+        %span.text-bold.text-center
+          Đăng nhập
+      .invite-login.text-center
+        Xin mời bạn đăng nhập tài khoản bằng
+        %br/
+        Facebook/Gmail
+      .button-socials
+        %a.btn-facebook{:href => "/auth/facebook"} Facebook
+        %a.btn-google{:href => "/auth/google_oauth2"} Gmail
+      %p.text-center.text-bold Hoặc
+      .form-group
+        %label{:for => "input-email"} Email
+        = text_field_tag :email,nil, class: 'form-control text-control', placeholder: 'Email'
+      .form-group
+        %label{:for => "input-password"} Mật khẩu
+        = password_field_tag :password,nil, class: 'form-control text-control', placeholder: 'Password'
+      / <div class="form-group form-captcha">
+      / <label for="input-captcha">Mã xác nhận</label>
+      / <div class="row">
+      / <div class="col-sm-12">
+      / <#%= flash[:recaptcha_error] %>
+      / <#%= recaptcha_tags %>
+      / </div>
+      / </div>
+      / </div>
+      .form-group.text-center
+        = submit_tag "Submit", 'class' => 'btn btn-default btn-login'
+    %p.text-center.link-forget-signup
+      Quên
+      = succeed "," do
+        %a{:href => ""} Mật khẩu
+      %a{:href => get_register_path} Đăng ký
+    %p.hint-login.text-center
+      Sử dụng bảo mật ngân hàng cấp để giữ cho dữ liệu của bạn an toàn.
+      %br>/
+      Theo của chúng tôi chính sách bảo mật, chúng tôi sẽ không chia sẻ dữ liệu với các bên thứ ba.

@@ -1,0 +1,66 @@
+.row
+  .container
+    .col-sm-36.col-md-12
+      .form-drawdown
+        .heading Nhu cầu vay của bạn?
+        %form{:action => "#{session[:user_id] != nil ? drawdown_path(session[:user_id]) : ''}", :method => "GET"}
+          .ranger-block.ranger-money
+            %label.label-left Số tiền vay
+            %input#range-money.irs-hidden-input{"data-label-id" => "#label-money", "data-relate" => "#range-time", :name => "amount", :type => "hidden", :value => "2000000"}/
+            %label#label-money.label-right 2 Triệu
+          .ranger-block.ranger-time
+            %label.label-left Thời gian
+            %input#range-time.irs-hidden-input{"data-label-id" => "#label-time", "data-relate" => "#range-time", :name => "amount_time", :type => "hidden", :value => "3"}/
+            %label#label-time.label-right 12 Tháng
+          .summery
+            %label Thanh toán hàng tháng:
+            %span.total.text-bold 1.250.00 VNĐ
+            %span.hint (Thông tin mang tính chất tham khảo, bạn sẽ nhận thông tin chính xác sau khi lập đề nghị vay)
+          .button-submit
+            - if session[:user_id] != nil
+              %button.btn-drawdown{:type => "submit"}
+                Đề nghị vay
+            - else
+              %a.btn-drawdown{:href => get_login_path} Đề nghị vay
+    .col-sm-36.col-md-24
+      .swiper-container
+        .swiper-wrapper
+          .swiper-slide Slide 1
+          .swiper-slide Slide 2
+          .swiper-slide Slide 3
+          .swiper-slide Slide 4
+          .swiper-slide Slide 5
+          .swiper-slide Slide 6
+          .swiper-slide Slide 7
+          .swiper-slide Slide 8
+          .swiper-slide Slide 9
+          .swiper-slide Slide 10
+        / Add Pagination
+        .swiper-pagination
+.row.steps-hint
+  .container
+    .col-sm-5
+    .col-sm-8.item.text-center
+      %span.icon.icon-account
+      .heading.text-bold
+        ĐĂNG KÝ TÀI KHOẢN
+        = succeed "TR\u{1ef0}C" do
+          %br/
+      %span.hint Chúng tôi đang giúp đỡ những người tốt được vay vốn tốt hơn.
+    .col-sm-1
+    .col-sm-8.item.text-center
+      %span.icon.icon-drawdown
+      .heading.text-bold
+        LẬP ĐỀ NGHỊ VAY
+        %br/
+        TRỰC TUYẾN
+      %span.hint Kết nối ngân hàng của bạn để xá minh  nhanh nhận phê duyệt khoản vay nhanh chóng của bạn trực tuyến tiền trong vài phút.
+    .col-sm-1
+    .col-sm-8.item.text-center
+      %span.icon.icon-pay
+      .heading.text-bold
+        KÝ HỢP ĐỒNG
+        = succeed "V\u{c0}" do
+          %br/
+      %span.hint Tiền mặt trong tài khoản ngân hàng của bạn ngay, tất cả chỉ mất vài phút.
+    .col-sm-5

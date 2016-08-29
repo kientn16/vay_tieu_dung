@@ -1,0 +1,19 @@
+/ app/views/users/new.html.erb
+.row
+  .container
+    = form_for :user, url: post_active_code_path,:html => { :class => "form-horizontal frm-register" } do |f|
+      %form.form-horizontal.frm-register
+        .heading.text-center
+          %span.text-bold.text-center
+            Kích hoạt tài khoản
+        .invite-register.text-center Xin mời bạn nhập mã để kích hoạt tài khoản
+        .form-group
+          %label{:for => "input-email col-sm-2 control-label"} Email
+          .col-sm-10
+            = f.text_field :email, :class => 'form-control text-control','id' => 'input-email','required' => 'required','placeholder' => 'Email'
+        .form-group
+          %label{:for => "input-code col-sm-2 control-label"} Mã kích hoạt
+          .col-sm-10
+            = f.text_field :active_code, :class => 'form-control text-control','id' => 'input-code','required' => 'required','placeholder' => 'Mã kích hoạt'
+        .form-group.text-center
+          = f.submit "Kích hoạt", :class => 'btn btn-default btn-register'

@@ -1,0 +1,40 @@
+= render 'includes/flash_msg'
+.col-lg-6
+  = form_for @user, url: {action: "create"}, html: {multipart: true,class: "nifty_form"} do |f|
+    = render 'error_messages', object: @user
+    .form-group
+      = label_tag(:email, "Email")
+      - if @user.by_social == 0 && @user.change_email == 1
+        = f.text_field :email, :class => 'form-control', :disabled => 'disabled'
+      - else
+        = f.text_field :email, :class => 'form-control'
+    .form-group
+      = label_tag(:password, "Mat Khau")
+      = f.password_field :password, :class => 'form-control'
+    .form-group
+      = label_tag(:name, "Ho Ten")
+      = f.text_field :name, :class => 'form-control', :pattern => '.{3,}', :title => '3 characters minimum'
+    .form-group
+      = label_tag(:name, "Birthday")
+      - arr = @user.birthday.split("/")
+      %select{:name => "date[day]"}
+        %option Day
+        - (1..31).each do |i|
+          %option
+          - if arr[0].to_i == i
+            = selected
+          value="#{i}"&gt;#{i}
+    %select{:name => "date[month]"}
+      %option Month
+      - (1..12).each do |i|
+        %option
+        - if arr[1].to_i == i
+          = selected
+        value="#{i}"&gt;#{i}
+  %select{:name => "date[year]"}
+    %option Year
+    - (Time.now.year - 100..Time.now.year).each do |i|
+      %option
+      - if arr[2].to_i == i
+        = selected
+      value="#{i}"&gt;#{i}

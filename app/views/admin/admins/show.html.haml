@@ -1,0 +1,13 @@
+%p#notice= notice
+%p
+  %strong Username:
+  = @admin.username
+%p
+  %strong Password:
+  = @admin.password
+%p
+  %strong Status:
+  = @admin.status
+= link_to 'Edit', edit_admin_admin_path(@admin)
+|
+= link_to 'Back', admin_admin_path

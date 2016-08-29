@@ -1,0 +1,11 @@
+.row
+  .col-sm-36
+    .list-history.payment
+      .heading.text-bold Lịch sử thanh toán
+      .content
+        %ul
+          - @status_pay.each do |history|
+            - if history.status_contract == 88
+              %li
+                %span.text-bold>= history.created_at
+                \: Thanh toán #{num_currency(history.orgin_rate)} gốc, #{num_currency(history.interest_rate)} lãi

@@ -1,0 +1,13 @@
+.row
+  .col-sm-36
+    .list-history.status
+      .heading.text-bold Lịch sử trạng thái
+      .content
+        %ul
+          - @status_contract.each do |history|
+            - if history.status_contract != 88
+              %li
+                %span.text-bold>
+                  Ngày #{history.created_at}
+                \:
+                %strong= Contract.get_status(history.status_contract)

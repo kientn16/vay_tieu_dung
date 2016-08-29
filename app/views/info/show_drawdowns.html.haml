@@ -1,0 +1,48 @@
+%div{:style => "height: 20px"}
+.tab-content
+  = form_for @drawdown, url: {action: "show_drawdowns"}, html: {class: "form-horizontal frm-drawdown", multipart: true} do |item|
+    = render 'includes/flash_msg'
+    .row
+      .col-sm-36
+        - if @drawdown.errors.any?
+          .alert.alert-danger
+            The form contains #{pluralize(@drawdown.errors.count, "error")}.
+          %ul
+            - @drawdown.errors.full_messages.each do |msg|
+              %li= msg
+    %input#input-hidden-draft{:name => "draft", :type => "hidden", :value => "1"}
+      .row
+        .col-sm-36
+          .form-group
+            %label.col-sm-10.control-label{:for => "input-email"} N&#x1A1;i l&#xE0;m vi&#x1EC7;c:
+            .col-sm-15
+              = collection_select(:drawdown, :sponsor_id, @sponsors, :id, :name, {prompt: "Chon noi lam viec"}, { class: "form-control", disabled: 'desabled'})
+      .row
+        .col-sm-36
+          .form-group
+            %label.col-sm-10.control-label{:for => "input-fullname"} Th&#x1EDD;i h&#x1EA1;n HDLD:
+            .col-sm-26
+              .row
+                .col-sm-12
+                  %select.form-control{:name => "drawdown[contract_date]"}
+                    %option{:value => "1"}
+                    = @drawdown.contract_date.to_i == 1.to_i ? selected : ''
+                    \&gt;T&#x1EEB; 1 &#x111;&#x1EBF;n 3 n&#x103;m
+                  %option{:value => "2"}
+                  = @drawdown.contract_date.to_i == 2.to_i ? selected : ''
+                  \&gt;T&#x1EEB; 6 th&#xE1;ng &#x111;&#x1EBF;n 1 n&#x103;m
+                %option{:value => "3"}
+                = @drawdown.contract_date.to_i == 3.to_i ? selected : ''
+                \&gt;D&#x1B0;&#x1EDB;i 6 th&#xE1;ng
+              %option{:value => "4"}
+              = @drawdown.contract_date.to_i == 4.to_i ? selected : ''
+              \&gt;Tr&#xEA;n 3 n&#x103;m/Kh&#xF4;ng x&#xE1;c &#x111;&#x1ECB;nh th&#x1EDD;i h&#x1EA1;n
+            %option{:value => "5"}
+            = @drawdown.contract_date.to_i == 5.to_i ? selected : ''
+            \&gt;L&#xE0;m vi&#x1EC7;c t&#x1EA1;i DN ng&#x1B0;&#x1EDD;i c&#xF9;ng tham gia tr&#x1EA3; n&#x1EE3; s&#x1EDF; h&#x1EEF;u.
+      .col-sm-9
+        %input#media_contract_id.hide{:name => "media_contract_id", :type => "file"}
+          %input>/
+          type="button" data-item-id="#media_contract_id" class="btn-upload-file btn btn-primary btn-hdld" name="" value="Upload HDLD"&gt;
+        .col-sm-15
+          %span.hint-hdld Ch&#x1EC9; c&#x1EA7;n c&#xE1;c trang c&#xF3;: T&#xEA;n, ch&#x1EEF; k&#xFD;, th&#x1EDD;i h&#x1EA1;n HDLD, ch&#x1EE9;c v&#x1EE5;, m&#x1EE9;c l&#x1B0;&#x1A1;ng (N&#x1EBF;u c&#xF3;)

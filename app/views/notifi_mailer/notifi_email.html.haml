@@ -1,0 +1,23 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    %h1
+      Hello #{@user.name}
+    %p
+      Thank you so much for use Vaytieudung.
+    - if @type == 0
+      %p HO SO CUA BAN DA DUOC CHAP NHAN
+    - elsif @type == 1
+      %p CHUNG TOI DA TIEP NHAN HO SO CUA BAN VA HO SO CUA BAN SE DUOC XU LY TRONG THOI GIAN SOM NHAT
+    - elsif @type == 2
+      %p RAT TIEC HO SO CUA BAN KHONG DU DIEU KIEN DE THAM GIA CHUONG TRINH NAY
+    - elsif @type == 3
+      %p HOP DONG DA DUOC KY KET, VUI LONG CHO DE DUOC GIAI NGAN
+    - elsif @type == 4
+      %p HOP DONG DA DUOC GIAI NGAN
+    - elsif @type == 5
+      %p HOP DONG DA DUOC TAT TOAN
+    %p
+      Hotline: 1900 1255

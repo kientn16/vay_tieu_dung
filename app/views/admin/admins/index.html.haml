@@ -1,0 +1,27 @@
+.row
+  .col-lg-12
+    %h1.page-header Listing Admins
+  .clear
+  = render 'includes/flash_msg'
+  / /.col-lg-12
+.row
+  .col-lg-12
+    .panel.panel-default
+      .panel-heading
+        = button_to 'New', new_admin_admin_path(),class: 'btn btn-success',style: '',method: :get
+      / /.panel-heading
+      .panel-body
+        .dataTable_wrapper
+          %table#dataTables-example.table.table-striped.table-bordered.table-hover{:width => "100%"}
+            %thead
+              %tr
+                %th Username
+                %th Status
+                %th{:colspan => "2"}
+            %tbody
+              - @admins.each do |admin|
+                %tr
+                  %td= admin.username
+                  %td= admin.status
+                  %td= link_to 'Edit', edit_admin_admin_path(admin)
+                  %td= link_to 'Destroy', admin_admin_path(admin), method: :delete, data: { confirm: 'Are you sure?' }

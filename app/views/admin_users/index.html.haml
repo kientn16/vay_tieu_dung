@@ -1,0 +1,41 @@
+.row
+  .col-lg-12
+    %h1.page-header Listing Users
+  .clear
+  = render 'includes/flash_msg'
+  / /.col-lg-12
+.row
+  .col-lg-12
+    .panel.panel-default
+      / /.panel-heading
+      .panel-body
+        .dataTable_wrapper
+          %table#dataTables-example.table.table-striped.table-bordered.table-hover{:width => "100%"}
+            %thead
+              %tr
+                %th FullName
+                %th Email
+                %th Nam Sinh
+                %th Dia chi
+                %th Passport
+                %th So Dien thoai
+                %th Gioi Tinh
+                %th Hon Nhan
+                %th CMT/Passport
+                %th Status
+                %th
+            %tbody
+              - @users.each do |user|
+                %tr
+                  %td= user.name
+                  %td= user.email
+                  %td= user.birthday
+                  %td= user.address
+                  %td= user.passport
+                  %td= user.phone
+                  %td= user.gender
+                  %td= user.marriage
+                  %td= user.status
+                  %td
+                    %a{:download => "", :href => "#{Medium.find(user.media_id).path.url(:original, false)}"} Download
+                  %td= link_to 'Edit', get_edit_user_path(user)

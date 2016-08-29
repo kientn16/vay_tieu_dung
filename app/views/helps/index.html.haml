@@ -1,0 +1,62 @@
+.row.banner-faq
+  .container.text-left
+    .content
+      %img{:src => "#{image_url('banner-faq')}"}/
+.row
+  .container
+    .faq
+      / Nav tabs
+      %ul.nav.nav-tabs.text-center{:role => "tablist"}
+        %li.tab-faq{:role => "presentation"}
+          %a{"aria-controls" => "tab-faq", "data-toggle" => "tab", :href => "#tab-faq", :role => "tab"}
+            %span Câu hỏi thường gặp
+            %span.icon
+        %li.active.tab-tut{:role => "presentation"}
+          %a{"aria-controls" => "tab-tut", "data-toggle" => "tab", :href => "#tab-tut", :role => "tab"}
+            %span Mẹo tài chính - tiêu dùng
+            %span.icon
+      / Tab panes
+      .tab-content
+        #tab-faq.tab-pane{:role => "tabpanel"}
+          .tab-content
+            #accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
+              - stt = 0
+              - @faqs.each do |f|
+                - stt = stt + 1
+                .panel.panel-default
+                  .panel-heading{:id => "heading#{stt}", :role => "tab"}
+                    %h4.panel-title
+                      %a.item-collapse{"aria-controls" => "collapseOne", "aria-expanded" => "false", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse#{stt}", :role => "button"}
+                        %span.icon.text-bold
+                          0#{stt}
+                        = f.title
+                        \##{stt}
+                  .panel-collapse.collapse{"aria-labelledby" => "headingOne", :id => "collapse#{stt}", :role => "tabpanel"}
+                    .panel-body
+                      = f.content
+        #tab-tut.tab-pane.active{:role => "tabpanel"}
+          .tab-content
+            .panel.panel-default
+              .panel-heading.text-bold.text-center Bài viết tiêu biểu
+              .panel-body
+                .list-group
+                  - @articles.each do |a|
+                    .list-group-item
+                      %h4.list-group-item-heading
+                        %span.heading.text-bold
+                          %a{:href => ""}= a.title
+                        %span.time= a.created_at
+                      .list-group-item-text
+                        .row
+                          .col-sm-9
+                            %a{:href => ""}
+                              %img.img-responsive{:src => "#{image_url('image-tut.png')}"}/
+                          .col-sm-27
+                            .desc
+                              = a.description
+                          %a.view-more.btn.btn-primary{:href => ""}
+                            Xem thêm
+                            %i.glyphicon.glyphicon-triangle-right
+            .text-center
+              .pagination
+                = will_paginate @articles, renderer: BootstrapPagination::Rails

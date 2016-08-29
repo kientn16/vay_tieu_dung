@@ -1,0 +1,37 @@
+.row
+  .col-lg-12
+    %h1.page-header Listing Drawdowns
+  .clear
+  = render 'includes/flash_msg'
+  / /.col-lg-12
+.row
+  .panel.panel-default
+    / /.panel-heading
+    .panel-body
+      .dataTable_wrapper
+        %table#dataTables-example.table.table-striped.table-bordered.table-hover{:width => "100%"}
+          %thead
+            %tr
+              %th Noi Lam viec
+              %th Thoi han HDLD
+              %th Chuc Vu
+              %th Muc Luong
+              %th So Tien Vay
+              %th Thoi han Vay
+              %th Muc dich vay
+              %th User
+              %th{:colspan => "2"}
+          %tbody
+            - @drawdowns.each do |drawdown|
+              %tr
+                %td= drawdown.sponsor_id
+                %td= Drawdown.get_contract_date(drawdown.contract_date)
+                %td= Drawdown.get_position(drawdown.position)
+                %td= num_currency(drawdown.salary)
+                %td= num_currency(drawdown.amount)
+                %td= Drawdown.get_amount_time(drawdown.amount_time)
+                %td= drawdown.purpose
+                %td= drawdown.user.name
+                %td
+                  - if drawdown.is_draft == 0
+                    = link_to 'Detail', admin_drawdown_path(drawdown)

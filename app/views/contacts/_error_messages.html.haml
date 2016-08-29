@@ -1,0 +1,6 @@
+- if @contact.errors.any?
+  .alert.alert-danger
+    The form contains #{pluralize(@contact.errors.count, "error")}.
+  %ul
+    - @contact.errors.full_messages.each do |msg|
+      %li= msg

@@ -1,0 +1,50 @@
+.row
+  .col-lg-12
+    %h1.page-header Listing Drawdowns
+  .clear
+  = render 'includes/flash_msg'
+  / /.col-lg-12
+.row
+  .col-lg-12
+    .panel.panel-default
+      / /.panel-heading
+      .panel-body
+        .dataTable_wrapper
+          %table#dataTables-example.table.table-striped.table-bordered.table-hover{:width => "100%"}
+            %thead
+              %tr
+                %th Noi Lam viec
+                %th Thoi han HDLD
+                %th Hieu luc HDLD
+                %th Chuc Vu
+                %th QDBN in HDLD
+                %th Muc Luong
+                %th So Tien Vay
+                %th Thoi han Vay
+                %th Muc dich vay
+                %th Ngay thanh toan hang thang
+                %th Chu tai khoan
+                %th So tai khoan
+                %th Ngan hang
+                %th Chi nhanh
+                %th User
+                %th
+            %tbody
+              - @drawdowns.each do |drawdown|
+                %tr
+                  %td= drawdown.sponsor_id
+                  %td= drawdown.contract_date
+                  %td= drawdown.contract_time
+                  %td= drawdown.position
+                  %td= drawdown.appoint_in_contact
+                  %td= drawdown.salary
+                  %td= drawdown.amount
+                  %td= drawdown.amount_time
+                  %td= drawdown.purpose
+                  %td= drawdown.pay_time
+                  %td= drawdown.account_holders
+                  %td= drawdown.account_number
+                  %td= drawdown.bank_id
+                  %td= drawdown.branch_id
+                  %td= drawdown.user_id
+                  %td= link_to 'Edit', ''

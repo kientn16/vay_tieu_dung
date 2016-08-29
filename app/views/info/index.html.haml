@@ -1,0 +1,84 @@
+.row.banner-account
+  .container.text-left
+    .content
+      = image_tag 'banner-account.png'
+.row
+  .container
+    .account
+      / Nav tabs
+      = render 'includes/nav_tab_account', active: 'info_account'
+      / Tab panes
+      .tab-content
+        #tab-account.tab-pane{:role => "tabpanel"}
+        #tab-drawdown.tab-pane{:role => "tabpanel"}
+        #tab-information.tab-pane.active{:role => "tabpanel"}
+          .tab-content
+            .heading.list.text-bold Chi tiết thông tin khoản vay
+            .list
+              .table-responsive
+                %table.table.table-striped.table-hover.table-bordered
+                  %thead
+                    %tr
+                      %td Ngày vay
+                      %td Số HĐ vay
+                      %td Số tiền
+                      %td Thời hạn
+                      %td Trạng thái
+                      %td Số tiền đã TT
+                      %td Số tiền phạt
+                      %td Dư nợ
+                  %tbody
+                    - @contracts.each do |contract|
+                      %tr
+                        - if contract.status.to_i == 99
+                          %td
+                            %a{:href => "#{drawdown_path(current_user.id)}"}= contract.loans_time
+                        - else
+                          %td
+                            %a.show-drawdowns{:href => "#{show_drawdown_path(contract.drawdowns_id)}"}= contract.loans_time
+                        - if contract.status.to_i == 99
+                          %td
+                        - else
+                          %td
+                            %a.show-drawdowns{:href => "#{show_drawdown_path(contract.drawdowns_id)}"}= contract.code
+                        %td= num_currency(contract.value)
+                        %td= Drawdown.get_amount_time(contract.deadline)
+                        %td
+                          %a.show-drawdowns{:href => "#{show_status_drawdown_path(contract.id)}"}= Contract.get_status(contract.status)
+                        %td
+                          %a.show-drawdowns{:href => "#{show_pay_contract_path(contract.id)}"}= num_currency(contract.paid)
+                        %td= num_currency(contract.penance)
+                        %td= num_currency(contract.debt)
+              .row
+                %a.pull-right.btn.btn-primary.btn-export{:href => "#{info_index_path}.xls"} Xuất ra Excel
+            .row
+              .col-sm-36
+                .list-history.status
+                  .heading.text-bold Lịch sử trạng thái
+                  .content
+                    %ul
+                      - @historys.each do |history|
+                        - if history.status_contract != 88
+                          %li
+                            %span.text-bold
+                              Ngày #{history.created_at}
+                            |
+                            %span
+                              HD: #{history.contract.code}
+                            | #{Contract.get_status(history.status_contract)}
+            .row
+              .col-sm-36
+                .list-history.payment
+                  .heading.text-bold Lịch sử thanh toán
+                  .content
+                    %ul
+                      - @historys.each do |history|
+                        - if history.status_contract == 88
+                          %li
+                            %span.text-bold= history.created_at
+                            |
+                            %span
+                              HD: #{history.contract.code}
+                            | Thanh toán #{num_currency(history.orgin_rate)} gốc, #{num_currency(history.interest_rate)} lãi
+        #tab-notification.tab-pane{:role => "tabpanel"}
+          .tab-content

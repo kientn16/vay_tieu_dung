@@ -1,0 +1,35 @@
+.row
+  .col-lg-12
+    %h1.page-header Listing Contracts
+  .clear
+  = render 'includes/flash_msg'
+  / /.col-lg-12
+.row
+  .panel.panel-default
+    / /.panel-heading
+    .panel-body
+      .dataTable_wrapper
+        %table#dataTables-example.table.table-striped.table-bordered.table-hover{:width => "100%"}
+          %thead
+            %tr
+              %th Ngay vay
+              %th So HD vay
+              %th So Tien Vay
+              %th Thoi han Vay
+              %th Trang Thai
+              %th So tien da TT
+              %th So tien phat
+              %th Du no
+              %th{:colspan => "2"}
+          %tbody
+            - @contracts.each do |contract|
+              %tr
+                %td= contract.created_at
+                %td= contract.code
+                %td= num_currency(contract.value)
+                %td= contract.deadline
+                %td= Contract.get_status(contract.status)
+                %td= num_currency(contract.paid)
+                %td= num_currency(contract.penance)
+                %td= num_currency(contract.debt)
+                %td= link_to 'Edit', edit_admin_contract_path(contract)
