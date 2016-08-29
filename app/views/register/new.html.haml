@@ -1,0 +1,24 @@
+/ app/views/users/new.html.erb
+.row
+  .container
+    = form_for @user, url: post_register_path,:html => { :class => "form-horizontal frm-register" } do |f|
+      .heading.text-center
+        %span.text-bold.text-center Đăng ký tài khoản
+      .invite-register.text-center Xin mời bạn nhập Email đăng ký tài khoản
+      = render 'includes/flash_msg', object: @user
+      - if @user.errors.any?
+        .alert.alert-danger
+          The form contains #{pluralize(@user.errors.count, "error")}.
+        %ul
+          - @user.errors.full_messages.each do |msg|
+            %li= msg
+      .form-group
+        = label_tag(:email, "Email")
+        .col-sm-10
+          = f.text_field :email, :class => 'form-control text-control','id' => 'input-email','required' => 'required', 'placeholder' => 'Email'
+      .form-group.text-center
+        = f.submit "Đăng ký", :class => 'btn btn-default btn-register'
+    %p.hint-register.text-center
+      Sau khi bạn đăng ký, chúng tôi sẽ gửi email đến địa chỉ của bạn.
+      %br/
+      Bạn vui lòng thực hiện theo hướng dẫn trong email để kích hoạt tài khoản.

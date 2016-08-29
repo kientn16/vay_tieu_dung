@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
   before_filter :authorize
 
-  def show
+  def index
     @menu_active = 'user'
     @numberNotification = Notification.get_notifications(0, session[:user_id]).count
-    @user = User.find(params[:id])
+    @user = User.find(session[:user_id])
     @birthday = @user.birthday
     if @birthday == nil
       @day = Time.now.day
@@ -16,7 +16,6 @@ class UsersController < ApplicationController
       @month = @time[1]
       @year = @time[2]
     end
-    # @start_date = Date.civil(params[:range][:"start_date(1i)"].to_i,params[:range][:"start_date(2i)"].to_i,params[:range][:"start_date(3i)"].to_i)
   end
 
   def drawdown
@@ -27,7 +26,7 @@ class UsersController < ApplicationController
     else
       if @user.media_id.nil? || @user.media_id == 0
         flash[:error] = 'Mời bạn Upload CMT/Hộ chiếu ở Tab Tài khoản trước khi sử dụng chức năng Đề nghị vay'
-        redirect_to user_path()
+        redirect_to users_path
       else
         @amount = params[:amount]
         @amountTime = params[:amount_time]
@@ -63,11 +62,9 @@ class UsersController < ApplicationController
     @birthday = params[:date]['day']+"/"+params[:date]['month']+"/"+params[:date]['year']
     @params = params[:user]
     @params['birthday'] = @birthday
-    # binding.pry
     respond_to do |format|
       # check change email
       if @user.by_social == 1
-        # binding.pry
         if user_params['email'] != @user.email
           # ko dc phep doi tiep
           @user_params = user_params.merge(change_email: 1)
@@ -83,11 +80,10 @@ class UsersController < ApplicationController
       if @user_update
         # upload document user here
         if params[:document]
-          # binding.pry
           @media = Medium.create(path: params[:document])
           @user.update(:media_id => @media.id)
         end
-        format.html {redirect_to @user, notice: 'User was successfully updated'}
+        format.html {redirect_to users_path, notice: 'User was successfully updated'}
         format.json { render :show, status: :ok, location: @user}
       else
         format.html { render :show }

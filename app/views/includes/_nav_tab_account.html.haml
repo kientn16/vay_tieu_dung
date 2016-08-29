@@ -1,0 +1,17 @@
+%ul.nav.nav-tabs.text-center{:role => "tablist"}
+  %li{:class => "#{(active.nil? || active == 'account') ? 'active' : ''} tab-account", :role => "presentation"}
+    %a{:href => users_path}
+      %span Tài khoản
+      %span.icon
+  %li{:class => "#{(active == 'drawdown') ? 'active' : ''} tab-drawdown", :role => "presentation"}
+    %a{:href => drawdowns_path()}
+      %span Đề nghị vay
+      %span.icon
+  %li{:class => "#{(active == 'info_account') ? 'active' : ''} tab-information", :role => "presentation"}
+    %a{:href => info_index_path}
+      %span Thông tin tài khoản
+      %span.icon
+  %li{:class => "#{(active == 'notifications') ? 'active' : ''} tab-notification", :role => "presentation"}
+    %a{:href => notifications_users_path()}
+      %span Thông báo
+      %span.icon{"data-count" => "#{@numberNotification}"}

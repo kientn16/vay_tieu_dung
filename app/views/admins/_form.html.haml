@@ -1,0 +1,27 @@
+.panel.panel-default
+  .panel-heading
+  .panel-body
+    = form_for(@admin) do |f|
+      - if @admin.errors.any?
+        #error_explanation
+          %h2
+            = pluralize(@admin.errors.count, "error")
+            prohibited this content from being saved:
+          %ul
+            - @admin.errors.full_messages.each do |message|
+              %li= message
+      .form-group
+        .field
+          = f.label :username
+          %br/
+          = f.text_field :username, :class => 'form-control'
+        .field
+          = f.label :password
+          %br/
+          = f.password_field :password,:class => 'form-control'
+        .field
+          = f.label :status
+          %br/
+          = f.select(:status, [['Active',1],['Inactive',0]], {include_blank: 'Status'}, { :class => 'form-control'})
+      .actions
+        = f.submit 'Submit',:class => 'btn btn-default'

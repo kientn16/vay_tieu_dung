@@ -1,0 +1,84 @@
+.container
+  .row
+    .col-xs-offset-0.col-sm-offset-0.col-md-offset-3.col-lg-offset-3.toppad
+      .panel.panel-info
+        .panel-heading
+          %h3.panel-title
+            Drawdowns - #{@drawdown.user.name}
+        .panel-body
+          .row
+            .col-md-36.col-lg-36
+              %table.table.table-user-information
+                %tbody
+                  %tr
+                    %td Nơi làm việc:
+                    %td= @drawdown.sponsor.name
+                  %tr
+                    %td Thời hạn :
+                    %td= Drawdown.get_contract_date(@drawdown.contract_date)
+                  %tr
+                    %td Hiệu lực
+                    %td= @drawdown.contract_time
+                  %tr
+                  %tr
+                    %td Hợp đồng lao động
+                    %td
+                      - if @drawdown.media_contract_id != nil
+                        %button.btn.btn-info.btn-sm{"data-target" => "#modal-contact", "data-toggle" => "modal", :type => "button"} View
+                        |
+                        %a.btn.btn-danger.btn-sm{:download => "", :href => "#{Medium.find(@drawdown.media_contract_id).path.url(:original, false)}"} Download
+                  %tr
+                    %td Chức vụ
+                    %td= Drawdown.get_position(@drawdown.position)
+                  %tr
+                    %td Quyết định bổ nhiệm
+                    %td
+                      - if @drawdown.media_appoint_id != nil
+                        %button.btn.btn-info.btn-sm{"data-target" => "#modal-appoint", "data-toggle" => "modal", :type => "button"} View
+                        |
+                        %a.btn.btn-danger.btn-sm{:download => "", :href => "#{Medium.find(@drawdown.media_appoint_id).path.url(:original, false)}"} Download
+                  %tr
+                    %td Quyết định bổ nhiệm có trong HĐLĐ không?
+                    %td= Drawdown.get_appoint_in_contact(@drawdown.appoint_in_contact)
+                  %tr
+                    %td Mức lương
+                    %td= num_currency(@drawdown.salary)
+                  %tr
+                    %td Sao kê bảng lương
+                    %td
+                      - if @drawdown.media_salary_id != nil
+                        %button.btn.btn-info.btn-sm{"data-target" => "#modal-appoint", "data-toggle" => "modal", :type => "button"} View
+                        |
+                        %a.btn.btn-danger.btn-sm{:download => "", :href => "#{Medium.find(@drawdown.media_salary_id).path.url(:original, false)}"} Download
+                  %tr
+                    %td Số tiền
+                    %td= num_currency(@drawdown.amount)
+                  %tr
+                    %td Thời hạn
+                    %td= Drawdown.get_amount_time(@drawdown.amount_time)
+                  %tr
+                    %td Mục đích vay
+                    %td= @drawdown.purpose
+                  %tr
+                    %td Ngày thanh toán hàng
+                    %td= @drawdown.pay_time
+                  %tr
+                    %td Chủ tài
+                    %td= @drawdown.account_holders
+                  %tr
+                    %td Số tài khoản
+                    %td= @drawdown.account_number
+                  %tr
+                    %td Ngân hàng
+                    %td= @drawdown.bank.name
+                  %tr
+                    %td Chi nhánh
+                    %td= @drawdown.branch.name
+        - if Contract.find_by_drawdowns_id(@drawdown).status == 1
+          .panel-footer
+            %a.btn.btn-lg.btn-success{"data-original-title" => "Broadcast Message", "data-toggle" => "tooltip", :onclick => "accept_drawdowns(#{@drawdown.id},'#{admin_drawdown_accept_drawdowns_path(@drawdown)}')", :title => "Duyệt vay vốn", :type => "button"} Duyệt Hồ Sơ
+            %a.btn.btn-lg.btn-danger{"data-original-title" => "Remove this user", "data-toggle" => "tooltip", :onclick => "un_accept_drawdowns(#{@drawdown.id},'#{admin_drawdown_un_accept_drawdowns_path(@drawdown)}')", :title => "Không duyệt", :type => "button"} Không Duyệt Hồ Sơ
+        - else
+          .alert.alert-info
+            %strong= Contract.get_status(Contract.find_by_drawdowns_id(@drawdown).status)
+= render 'admin/drawdowns/modal'

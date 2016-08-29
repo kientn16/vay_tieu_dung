@@ -1,0 +1,51 @@
+/ Modal
+#modal-contact.modal.fade{:role => "dialog"}
+  .modal-dialog
+    / Modal content
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title Hợp đồng lao động
+      .modal-body
+        - if Medium.find(@drawdown.media_contract_id).path_content_type != ("image/jpeg" || "image/png")
+          %p Không có bản xem trước
+          %p
+            %a{:download => "", :href => "#{Medium.find(@drawdown.media_contract_id).path.url(:original, false)}"} Download
+        - else
+          %p= image_tag Medium.find(@drawdown.media_contract_id).path
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+/ Modal
+#modal-appoint.modal.fade{:role => "dialog"}
+  .modal-dialog
+    / Modal content
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title Quyết định bổ nhiệm
+      .modal-body
+        - if Medium.find(@drawdown.media_appoint_id).path_content_type != ("image/jpeg" || "image/png")
+          %p Không có bản xem trước
+          %p
+            %a{:download => "", :href => "#{Medium.find(@drawdown.media_appoint_id).path.url(:original, false)}"} Download
+        - else
+          %p= image_tag Medium.find(@drawdown.media_appoint_id).path
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+/ Modal
+#modal-contact.modal.fade{:role => "dialog"}
+  .modal-dialog
+    / Modal content
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title Sao kê bảng lương
+      .modal-body
+        - if Medium.find(@drawdown.media_salary_id).path_content_type != ("image/jpeg" || "image/png")
+          %p Không có bản xem trước
+          %p
+            %a{:download => "", :href => "#{Medium.find(@drawdown.media_salary_id).path.url(:original, false)}"} Download
+        - else
+          %p= image_tag Medium.find(@drawdown.media_salary_id).path
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close

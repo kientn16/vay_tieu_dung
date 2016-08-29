@@ -1,20 +1,19 @@
 class User < ActiveRecord::Base
-  validates_uniqueness_of :email
-  # validates_presence_of :email,:passport,:address,:district_id,:provined_id,:ward_id,:phone, :on => :update
-  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
-  # validates_length_of :phone, :minimum => 10, :allow_blank => false, :on => :update
   validates :phone,:presence => true,
             :numericality => true,
             :length => { :minimum => 10, :maximum => 15 },
             :on => :update
-  validates_length_of :name, :minimum => 3, :allow_blank => false, :on => :update
-  validates_length_of :address, :minimum => 10, :allow_blank => false, :on => :update
-  validates_length_of :password, :minimum => 6, :allow_blank => true, :on => :update
+  validates :email, :presence => true,
+            :format => {:with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i},
+            :uniqueness => true
+  validates :name, :on => :update, :length => {:minimum => 3}
+  validates :address, :on => :update, :length => {:minimum => 10}
+  validates :password, :on => :update, :length => {:minimum => 6}, :allow_blank => true
 
   before_update :hash_field
 
   def self.check_active_code(params)
-    @check = User.where('email =? AND active_code =?', params[:email],params[:active_code]).first
+    @check = User.find_by('email =? AND active_code =?', params[:email],params[:active_code])
     # binding.pry
     if @check
       return @check
@@ -71,7 +70,7 @@ class User < ActiveRecord::Base
       @user.save
     else
       # check = self.where("google_id = #{auth.uid} OR email = '#{auth.info.email}'").first
-      check = self.where('google_id = ? OR email =?', auth.uid,auth.info.email).first
+      check = self.find_by('google_id = ? OR email =?', auth.uid,auth.info.email)
       # binding.pry
       if check != nil
         @user = check
@@ -96,7 +95,7 @@ class User < ActiveRecord::Base
   end
 
   def self.authenticate(email,password)
-    @check = self.where(["email = ? AND password = ? AND status != ?", email, md5(password), 2]).first
+    @check = self.find_by(["email = ? AND password = ? AND status != ?", email, md5(password), 2])
     # binding.pry
     if @check
       return [@check,{:success => "true"}]

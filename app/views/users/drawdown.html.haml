@@ -1,0 +1,205 @@
+.row.banner-account
+  .container.text-left
+    .content
+      %img{:src => ""}/
+      = image_url('banner-account.png')
+      "&gt;
+.row
+  .container
+    .account
+      / Nav tabs
+      = render 'includes/nav_tab_account', active: 'drawdown'
+      / Tab panes
+      .tab-content
+        #tab-account.tab-pane.active{:role => "tabpanel"}
+          .tab-content
+            = form_for @drawdown, url: {action: drawdown}, html: {class: form-horizontal frm-drawdown, multipart: true} do |item|
+              = render 'includes/flash_msg'
+              .row
+                .col-sm-36
+                  - if @drawdown.errors.any?
+                    .alert.alert-danger
+                      The form contains #{pluralize(@drawdown.errors.count, error)}.
+                    %ul
+                      - @drawdown.errors.full_messages.each do |msg|
+                        %li= msg
+              %input#input-hidden-draft{:name => "draft", :type => "hidden", :value => "1"}
+                .row
+                  .col-sm-36
+                    .form-group
+                      %label.col-sm-10.control-label{:for => "input-email"} N&#x1A1;i l&#xE0;m vi&#x1EC7;c:
+                      .col-sm-15
+                        = collection_select(:drawdown, :sponsor_id, @sponsors, :id, :name, {prompt: Chon noi lam viec}, { class: form-control})
+                .row
+                  .col-sm-36
+                    .form-group
+                      %label.col-sm-10.control-label{:for => "input-fullname"} Th&#x1EDD;i h&#x1EA1;n HDLD:
+                      .col-sm-26
+                        .row
+                          .col-sm-12
+                            %select.form-control{:name => "drawdown[contract_date]"}
+                              %option{:value => "1"}
+                              = @drawdown.contract_date.to_i == 1.to_i ? selected : ''
+                              \&gt;T&#x1EEB; 1 &#x111;&#x1EBF;n 3 n&#x103;m
+                            %option{:value => "2"}
+                            = @drawdown.contract_date.to_i == 2.to_i ? selected : ''
+                            \&gt;T&#x1EEB; 6 th&#xE1;ng &#x111;&#x1EBF;n 1 n&#x103;m
+                          %option{:value => "3"}
+                          = @drawdown.contract_date.to_i == 3.to_i ? selected : ''
+                          \&gt;D&#x1B0;&#x1EDB;i 6 th&#xE1;ng
+                        %option{:value => "4"}
+                        = @drawdown.contract_date.to_i == 4.to_i ? selected : ''
+                        \&gt;Tr&#xEA;n 3 n&#x103;m/Kh&#xF4;ng x&#xE1;c &#x111;&#x1ECB;nh th&#x1EDD;i h&#x1EA1;n
+                      %option{:value => "5"}
+                      = @drawdown.contract_date.to_i == 5.to_i ? selected : ''
+                      \&gt;L&#xE0;m vi&#x1EC7;c t&#x1EA1;i DN ng&#x1B0;&#x1EDD;i c&#xF9;ng tham gia tr&#x1EA3; n&#x1EE3; s&#x1EDF; h&#x1EEF;u.
+                .col-sm-9
+                  %input#media_contract_id.hide{:name => "media_contract_id", :type => "file"}
+                    %input.btn-upload-file.btn.btn-primary.btn-hdld{"data-item-id" => "#media_contract_id", :name => "", :type => "button", :value => "Upload HDLD"}
+                    .col-sm-15
+                      %span.hint-hdld Ch&#x1EC9; c&#x1EA7;n c&#xE1;c trang c&#xF3;: T&#xEA;n, ch&#x1EEF; k&#xFD;, th&#x1EDD;i h&#x1EA1;n HDLD, ch&#x1EE9;c v&#x1EE5;, m&#x1EE9;c l&#x1B0;&#x1A1;ng (N&#x1EBF;u c&#xF3;)
+          .row
+            .col-sm-36
+              .form-group
+                %label.col-sm-10.control-label{:for => "input-birthday"} HDLD c&#xF3; hi&#x1EC7;u l&#x1EF1;c t&#x1EEB; ng&#xE0;y:
+                .col-sm-26
+                  .row
+                    .col-sm-4
+                      = select_tag 'day', options_for_select((1..31).collect { |v| v.to_s }, @drawdown.get_day(%d).to_i), include_blank: false, class: form-control
+                    .col-sm-9
+                      .form-group
+                        %label.col-sm-11.control-label{:for => "inputEmail3"} Th&#xE1;ng:
+                        .col-sm-20
+                          = select_tag 'month', options_for_select((1..12).collect { |v| v.to_s }, @drawdown.get_day(%m).to_i), include_blank: false, class: form-control
+                    .col-sm-9
+                      .form-group
+                        %label.col-sm-11.control-label{:for => "inputEmail3"} N&#x103;m:
+                        .col-sm-20
+                          = select_tag 'year', options_for_select((1900..Date.today.year).collect { |v| v.to_s }, @drawdown.get_day(%Y).to_i), include_blank: false, class: form-control
+            .col-sm-14
+          .row
+            .col-sm-36
+              .form-group
+                %label.col-sm-10.control-label{:for => "input-birthday"} Ch&#x1EE9;c v&#x1EE5;:
+                .col-sm-26
+                  .row
+                    .col-sm-12
+                      %select.form-control{:name => "drawdown[position]"}
+                        %option{:value => "1"} Chuy&#xEA;n vi&#xEA;n
+                        %option{:value => "2"} C&#xE1;n b&#x1ED9; qu&#x1EA3;n l&#xFD;
+                        %option{:value => "3"} C&#xE1;n b&#x1ED9; &#x111;&#x1B0;&#x1EE3;c &#x111;&#xE0;o t&#x1EA1;o ngh&#x1EC1;
+                        %option{:value => "4"} Lao &#x111;&#x1ED9;ng th&#x1EDD;i v&#x1EE5;
+                    .col-sm-9
+                      %input#media_appoint_id.hide{:name => "media_appoint_id", :type => "file"}
+                        %input.btn-upload-file.btn.btn-primary.btn-hdld{"data-item-id" => "#media_appoint_id", :name => "", :type => "button", :value => "Upload QDBN"}
+                        .col-sm-9
+                          .checkbox{:style => "padding-top: 0px;"}
+                            %label
+                              %input{:name => "drawdown[appoint_in_contact]", :type => "checkbox"}/
+                              = @drawdown.appoint_in_contact == 1 ? 'checked' : ''
+                              \&gt; TT ch&#x1EE9;c v&#x1EE5; &#x111;&#xE3; c&#xF3; trong H&#x110;L&#x110;
+                .col-sm-14
+              .row
+                .col-sm-36
+                  .form-group
+                    %label.col-sm-10.control-label{:for => "input-birthday"} M&#x1EE9;c l&#x1B0;&#x1A1;ng:
+                    .col-sm-26
+                      .row
+                        .col-sm-12
+                          = item.text_field :salary, :class = 'form-control'
+                        .col-sm-9
+                          %input#media_salary_id.hide{:name => "media_salary_id", :type => "file"}
+                            %input.btn-upload-file.btn.btn-primary.btn-hdld{"data-item-id" => "#media_salary_id", :name => "", :type => "button", :value => "Upload QDBN"}
+                            .col-sm-15
+                              %span.hint-hdld Sao k&#xEA; ng&#xE2;n h&#xE0;ng ho&#x1EB7;c x&#xE1;c nh&#x1EAD;n b&#x1EA3;ng l&#x1B0;&#x1A1;ng c&#x1EE7;a c&#xF4;ng ty
+                    .col-sm-14
+                  .row
+                    .col-sm-36
+                      .form-group
+                        %label.col-sm-10.control-label{:for => "input-birthday"} S&#x1ED1; ti&#x1EC1;n c&#x1EA7;n vay:
+                        .col-sm-26
+                          .row
+                            .col-sm-10
+                              - if !@amount.nil?
+                                = item.text_field :amount, :class = 'form-control', :value = @amount
+                              - else
+                                = item.text_field :amount, :class = 'form-control'
+                            .col-sm-15
+                              .form-group
+                                %label.col-sm-14.control-label{:for => "inputEmail3"} Th&#x1EDD;i h&#x1EA1;n vay:
+                                .col-sm-22
+                                  - if !@amountTime.nil?
+                                    %select.form-control{:id => "", :name => "drawdown[amount_time]"}
+                                      %option{:value => "1"}
+                                      = @amountTime.to_i == 1.to_i ? 'selected=selected' : ''
+                                      \&gt;36 th&#xE1;ng
+                                    %option{:value => "2"}
+                                    = @amountTime.to_i == 2.to_i ? 'selected=selected' : ''
+                                    \&gt;24 th&#xE1;ng
+                                  %option{:value => "3"}
+                                  = @amountTime.to_i == 3.to_i ? 'selected=selected' : ''
+                                  \&gt;12 th&#xE1;ng
+                            - else
+                              %select.form-control{:id => "", :name => "drawdown[amount_time]"}
+                                %option{:value => "1"}
+                                = @drawdown.amount_time.to_i == 1.to_i ? 'selected=selected' : ''
+                                \&gt;36 th&#xE1;ng
+                              %option{:value => "2"}
+                              = @drawdown.amount_time.to_i == 2.to_i ? 'selected=selected' : ''
+                              \&gt;24 th&#xE1;ng
+                            %option{:value => "3"}
+                            = @drawdown.amount_time.to_i == 3.to_i ? 'selected=selected' : ''
+                            \&gt;12 th&#xE1;ng
+        .col-sm-14
+      .row
+        .col-sm-36
+          .form-group
+            %label.col-sm-10.control-label{:for => "input-birthday"} M&#x1EE5;c &#x111;&#xED;ch vay:
+            .col-sm-18
+              = item.text_field :purpose, :class = 'form-control'
+        .col-sm-14
+      .row
+        .col-sm-36
+          .form-group
+            %label.col-sm-10.control-label{:for => "input-birthday"} Ng&#xE0;y thanh to&#xE1;n h&#xE0;ng th&#xE1;ng:
+            .col-sm-4
+              = select_tag 'drawdown[pay_time]', options_for_select((1..31).collect { |v| v.to_s }, @drawdown.pay_time), include_blank: false, class: form-control
+        .col-sm-14
+      .row
+        .col-sm-36
+          .form-group
+            %label.col-sm-10.control-label{:for => "input-birthday"} T&#xE0;i kho&#x1EA3;n nh&#x1EAD;n ti&#x1EC1;n:
+            .col-sm-26
+              .row{:style => "padding-top: 10px;"}
+                .col-sm-12
+                  .form-group
+                    %label{:for => "input-account-holder"} Ch&#x1EE7; t&#xE0;i kho&#x1EA3;n
+                    = item.text_field :account_holders, :class = 'form-control', :id = 'input-account-holder', :placeholder =  'Chủ tài khoản'
+                .col-sm-12.col-sm-offset-1
+                  .form-group
+                    %label{:for => "input-account-number"} S&#x1ED1; t&#xE0;i kho&#x1EA3;n
+                    = item.text_field :account_number, :class = 'form-control', :id = 'input-account-number', :placeholder =  'Số tài khoản'
+              .row{:style => "padding-top: 10px;"}
+                .col-sm-12
+                  .form-group
+                    %label{:for => "input-bank"} T&#x1EA1;i ng&#xE2;n h&#xE0;ng
+                    = collection_select(:drawdown, :bank_id, @banks, :id, :name, {prompt: Chon ngan hang}, { class: form-control, id: input-bank})
+                .col-sm-12.col-sm-offset-1
+                  .form-group
+                    %label{:for => "input-branch"} Chi nh&#xE1;nh
+                    = collection_select(:drawdown, :branch_id, @banks, :id, :name, {prompt: Chon chi nhanh}, { class: form-control, id: input-branch})
+        .col-sm-14
+      .row
+        .col-sm-36
+          .form-group
+            %label.col-sm-10.control-label{:for => "input-birthday"}
+            .col-sm-18.text-center
+              %button.btn.btn-warning.btn-draft L&#x1B0;u t&#x1EA1;m
+              %button.btn.btn-primary.btn-send G&#x1EED;i
+        .col-sm-14
+#tab-drawdown.tab-pane{:role => "tabpanel"}
+  .tab-content
+#tab-information.tab-pane{:role => "tabpanel"}
+  .tab-content
+#tab-notification.tab-pane{:role => "tabpanel"}
+  .tab-content

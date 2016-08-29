@@ -55,7 +55,7 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-
+  gem "erb2haml"
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   # gem 'spring'
 end
@@ -77,3 +77,5 @@ gem "omniauth-google-oauth2", "~> 0.2.1"
 gem 'bootstrap-generators', '~> 3.3.4'
 
 gem "recaptcha", require: "recaptcha/rails"
+gem 'haml'
+gem "haml-rails", "~> 0.9"

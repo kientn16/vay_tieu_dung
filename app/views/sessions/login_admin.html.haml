@@ -1,0 +1,15 @@
+/ app/views/sessions/new.html.erb
+.row
+  .container
+    = form_tag '/admin/login',class: "frm-login" do
+      .heading.text-center
+        = render 'includes/flash_msg'
+        %span.text-bold.text-center Đăng nhập Admin
+      .form-group
+        %label{:for => "input-email"} Username
+        = text_field_tag :username,nil, class: 'form-control text-control', placeholder: 'Username'
+      .form-group
+        %label{:for => "input-password"} Mật khẩu
+        = password_field_tag :password,nil, class: 'form-control text-control', placeholder: 'Password'
+      .form-group.text-center
+        = submit_tag "Submit", 'class' => 'btn btn-default btn-login'

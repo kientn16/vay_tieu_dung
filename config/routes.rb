@@ -6,11 +6,13 @@ Rails.application.routes.draw do
     get 'active_code' => :active_code, as: :get_active_code
     post 'active_code' => :create_active_code, as: :post_active_code
   end
+
   controller :sessions do
     get 'login' => :new, as: :get_login
     post 'login' => :create, as: :post_login
     get 'logout' => :destroy, as: :get_logout
   end
+
   #social authenticate
   get 'auth/facebook/callback', to: 'sessions#create_face'
   get 'auth/google_oauth2/callback', to: 'sessions#create_google'
@@ -18,55 +20,41 @@ Rails.application.routes.draw do
   get '/signout', to: 'sessions#destroy', as: 'logout'
 
   scope 'users' do
-    resources :info
+    resources :info, except: :show
+    controller :info do
+      get 'info/view_drawdown/:id' => :show_drawdowns, as: :show_drawdown
+      get 'info/show_status_drawdown/:id' => :show_status, as: :show_status_drawdown
+      get 'info/show_pay_contract/:id' => :show_pay, as: :show_pay_contract
+    end
   end
   resources :users do
     collection do
       resources :drawdowns
-      # get 'drawdown'
-      # post 'drawdown'
-      # patch 'drawdown'
     end
+    get 'notifications', on: :collection
   end
   resources :contacts
   resources :helps
 
-  match '/users/view_drawdown/:id', to: 'info#show_drawdowns', via: [:get, :post, :patch], as: :show_drawdown
-  match '/users/show_status_drawdown/:id', to: 'info#show_status', via: [:get, :post, :patch], as: :show_status_drawdown
-  match '/users/show_pay_contract/:id', to: 'info#show_pay', via: [:get, :post, :patch], as: :show_pay_contract
-  match '/users/notifications/:id(/:notification_id)', to: 'users#notifications', via: [:get, :post], as: :notifications
-  resources :contacts
-  resources :helps
 
   # ajax select district
   post '/users/select_district' => 'users#select_district', as: :post_select_district
 
   scope "/admin" do
-    # get '/' => "contents#index", as: :root_admin
-    # resources :contents
-    # resources :admins
     controller :sessions do
       get 'login' => :login_admin, as: :get_login_admin
       post 'login' => :create_admin, as: :post_login_admin
       get 'logout' => :destroy_admin, as: :get_logout_admin
     end
-
-
-    # controller :admin_users do
-    #   get 'users' => :index, as: :get_users
-    #   get 'users/:id' => :edit, as: :get_edit_user
-    #   patch 'users/:id' => :update, as: :post_update_user
-    # end
   end
 
   namespace :admin do
     get '/' => "contents#index", as: :root_admin
-
     controller :pays do
       get 'pays' => :index, as: :get_pays_admin
       post 'pays' => :create, as: :post_pays_admin
     end
-    # root :to => 'admin/contents#index'
+
     resources :contents,:users,:admins,:contracts
     resources :drawdowns do
       post '/accept_drawdowns' => "drawdowns#accept_drawdowns"

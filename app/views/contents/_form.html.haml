@@ -1,0 +1,35 @@
+.panel.panel-default
+  .panel-heading
+  .panel-body
+    = form_for(@content) do |f|
+      - if @content.errors.any?
+        #error_explanation
+          %h2
+            = pluralize(@content.errors.count, "error")
+            prohibited this content from being saved:
+          %ul
+            - @content.errors.full_messages.each do |message|
+              %li= message
+      .form-group
+        .field
+          = f.label :title
+          %br/
+          = f.text_field :title, :class => 'form-control'
+        .field
+          = f.label :description
+          %br/
+          = f.text_field :description,:class => 'form-control'
+        .field
+          = f.label :content
+          %br/
+          = f.text_area :content, rows: 8,:class => 'form-control'
+        .field
+          = f.label :status
+          %br/
+          = f.select(:status, [['Active',1],['Inactive',0]], {include_blank: 'Status'}, { :class => 'form-control'})
+        .field
+          = f.label :type
+          %br/
+          = f.select(:type, [['Bai Viet',1],['FAQ',2],['Meo Vat',3]], {include_blank: 'Status'}, { :class => 'form-control'})
+      .actions
+        = f.submit 'Submit',:class => 'btn btn-default'
