@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   before_update :hash_field
 
   def self.check_active_code(params)
-    @check = User.where("email = '#{params[:email]}' AND active_code = #{params[:active_code]}").first
+    @check = User.where('email =? AND active_code =?', params[:email],params[:active_code]).first
     # binding.pry
     if @check
       return @check
@@ -70,7 +70,9 @@ class User < ActiveRecord::Base
       @user.google_id = auth.uid
       @user.save
     else
-      check = self.where("google_id = #{auth.uid} OR email = '#{auth.info.email}'").first
+      # check = self.where("google_id = #{auth.uid} OR email = '#{auth.info.email}'").first
+      check = self.where('google_id = ? OR email =?', auth.uid,auth.info.email).first
+      # binding.pry
       if check != nil
         @user = check
       else

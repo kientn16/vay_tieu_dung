@@ -209,6 +209,8 @@ class UsersController < ApplicationController
           @user_params = user_params.merge(change_email: 0)
           @user_update = @user.update(@user_params)
         end
+      else
+        @user_update = @user.update(user_params)
       end
       if @user_update
         # upload document user here
