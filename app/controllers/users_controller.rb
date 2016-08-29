@@ -26,6 +26,8 @@ class UsersController < ApplicationController
         flash[:error] = 'Mời bạn Upload CMT/Hộ chiếu ở Tab Tài khoản trước khi sử dụng chức năng Đề nghị vay'
         redirect_to user_path()
       else
+        @amount = params[:amount]
+        @amountTime = params[:amount_time]
         @sponsors = Sponsor.all
         @banks = Bank.where('parent_id =?', 0)
         @drawdown = Drawdown.where('user_id = ? AND is_draft = ?', params[:id], 1).first

@@ -3,16 +3,16 @@
 		<div class="col-sm-36 col-md-12">
 			<div class="form-drawdown">
 				<div class="heading">Nhu cầu vay của bạn?</div>
-				<form>
+				<form method="GET" action="<%= session[:user_id] != nil ? drawdown_path(session[:user_id]) : '' %>">
 					<div class="ranger-block ranger-money">
 						<label class="label-left">Số tiền vay</label>
-						<input type="hidden" data-label-id="#label-money" data-relate="#range-time" id="range-money" class="irs-hidden-input" readonly="">
+						<input type="hidden" data-label-id="#label-money" name="amount" value="2000000" data-relate="#range-time" id="range-money" class="irs-hidden-input" >
 						<label class="label-right" id="label-money">2 Triệu</label>
 					</div>
 					<div class="ranger-block ranger-time">
 						<label class="label-left">Thời gian</label>
-						<input type="hidden" id="range-time" data-label-id="#label-time" data-relate="range-_money" class="irs-hidden-input" readonly="">
-						<label class="label-right" id="label-time">11 Tháng</label>
+						<input type="hidden" id="range-time" name="amount_time" value="3" data-label-id="#label-time" data-relate="#range-time" class="irs-hidden-input" >
+						<label class="label-right" id="label-time">12 Tháng</label>
 					</div>
 					<div class="summery">
 						<label>Thanh toán hàng tháng: </label>
@@ -21,7 +21,7 @@
 					</div>
 					<div class="button-submit">
 						<% if session[:user_id] != nil %>
-							<input type="submit" name="submit" class="btn-drawdown" value="Đề nghị vay"/>
+                			<button type="submit" class="btn-drawdown">Đề nghị vay</a>
 						<% else %>
 							<a href="<%= get_login_path() %>" class="btn-drawdown">Đề nghị vay</a>
 						<% end %>
