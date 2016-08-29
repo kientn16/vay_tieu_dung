@@ -17,10 +17,20 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect('/')
   get '/signout', to: 'sessions#destroy', as: 'logout'
 
-  resources :users
-  # match '/users/:id', to: 'users#show', via: [:get, :post, :patch], as: :get_show_user
-  match '/users/drawdown/:id', to: 'users#drawdown', via: [:get, :post, :patch], as: :drawdown
-  match '/users/info/:id', to: 'info#index', via: [:get, :post, :patch], as: :info_account
+  scope 'users' do
+    resources :info
+  end
+  resources :users do
+    collection do
+      resources :drawdowns
+      # get 'drawdown'
+      # post 'drawdown'
+      # patch 'drawdown'
+    end
+  end
+  resources :contacts
+  resources :helps
+
   match '/users/view_drawdown/:id', to: 'info#show_drawdowns', via: [:get, :post, :patch], as: :show_drawdown
   match '/users/show_status_drawdown/:id', to: 'info#show_status', via: [:get, :post, :patch], as: :show_status_drawdown
   match '/users/show_pay_contract/:id', to: 'info#show_pay', via: [:get, :post, :patch], as: :show_pay_contract
