@@ -18,45 +18,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def drawdown
-    @numberNotification = Notification.get_notifications(0, session[:user_id]).count
-    @user = User.find(session[:user_id])
-    if @user.nil?
-      redirect_to get_login_path()
-    else
-      if @user.media_id.nil? || @user.media_id == 0
-        flash[:error] = 'Mời bạn Upload CMT/Hộ chiếu ở Tab Tài khoản trước khi sử dụng chức năng Đề nghị vay'
-        redirect_to users_path
-      else
-        @amount = params[:amount]
-        @amountTime = params[:amount_time]
-        @sponsors = Sponsor.all
-        @banks = Bank.where('parent_id =?', 0)
-        @drawdown = Drawdown.where('user_id = ? AND is_draft = ?', session[:user_id], 1).first
-        # binding.pry
-        if request.request_method() == 'PATCH'
-          params[:drawdown][:appoint_in_contact] = params[:drawdown][:appoint_in_contact] != nil ? params[:drawdown][:appoint_in_contact] : 0
-          params[:drawdown][:contract_time] = params['day']+"/"+params['month']+"/"+params['year']
-          flag = proccess_drawdown(params)
-          if flag != false
-            flash[:success] = 'De nghi vay da duoc gui di. Chung toi se duyet de nghi cua ban trong thoi gian som nhat'
-            redirect_to drawdown_users_path()
-          else
-            flash[:error] = 'Error'
-          end
-        end
-
-        if request.request_method() == 'POST'
-          
-        else
-          if @drawdown.nil?
-            @drawdown = Drawdown.new
-          end
-        end
-      end
-    end
-  end
-
   def update
     @user = User.find(params[:id])
     @birthday = params[:date]['day']+"/"+params[:date]['month']+"/"+params[:date]['year']
