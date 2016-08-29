@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     else
       if @user.media_id.nil? || @user.media_id == 0
         flash[:error] = 'Mời bạn Upload CMT/Hộ chiếu ở Tab Tài khoản trước khi sử dụng chức năng Đề nghị vay'
-        redirect_to user_path()
+        redirect_to users_path
       else
         @amount = params[:amount]
         @amountTime = params[:amount_time]
