@@ -20,16 +20,18 @@ Rails.application.routes.draw do
   get '/signout', to: 'sessions#destroy', as: 'logout'
 
   scope 'users' do
-    resources :info
+    resources :info, except: :show
+    controller :info do
+      get 'info/view_drawdown/:id' => :show_drawdowns, as: :show_drawdown
+      get 'info/show_status_drawdown/:id' => :show_status, as: :show_status_drawdown
+      get 'info/show_pay_contract/:id' => :show_pay, as: :show_pay_contract
+    end
   end
   resources :users
   resources :contacts
   resources :helps
 
   match '/users/drawdown/:id', to: 'users#drawdown', via: [:get, :post, :patch], as: :drawdown
-  match '/users/view_drawdown/:id', to: 'info#show_drawdowns', via: [:get, :post, :patch], as: :show_drawdown
-  match '/users/show_status_drawdown/:id', to: 'info#show_status', via: [:get, :post, :patch], as: :show_status_drawdown
-  match '/users/show_pay_contract/:id', to: 'info#show_pay', via: [:get, :post, :patch], as: :show_pay_contract
   match '/users/notifications/:id(/:notification_id)', to: 'users#notifications', via: [:get, :post], as: :notifications
 
   # ajax select district
