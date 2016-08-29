@@ -127,6 +127,32 @@ RSpec.describe Drawdown, type: :model do
 	    	is_draft = 1
 	      	expect(build(:drawdown, is_draft: is_draft)).to have_attributes(is_draft: is_draft)
 	    end
+	end
 
-	  end
+	# context "validation" do
+	# 	email = Faker::Internet.email
+	# 	password = Faker::Internet.password
+	# 	first_name = Faker::Name.first_name
+	# 	last_name = Faker::Name.last_name
+	# 	# puts email
+	#     let(:user) { build(:drawdown, sponsor_id: sponsor_id,contract_date: contract_date,media_contract_id: media_contract_id,contract_time: contract_time,position: position,media_appoint_id: media_appoint_id,appoint_in_contact: appoint_in_contact,salary: salary,media_salary_id: media_salary_id,amount: amount,amount_time: amount_time,purpose: purpose,pay_time: pay_time,account_holders: account_holders,account_number: account_number,bank_id: bank_id,branch_id: branch_id,user_id: user_id,is_draft: is_draft) }
+
+
+
+	#     it "requires unique email" do
+	#       expect(user).to validate_uniqueness_of(:email)
+	#     end
+
+	#     it "requires email" do
+	#       expect(user).to validate_presence_of(:email)
+	#     end
+
+	#     it "requires first_name" do
+	#       expect(user).to validate_length_of(:first_name)
+	#     end
+
+	#     it "requires last_name" do
+	#       expect(user).to validate_length_of(:last_name)
+	#     end
+	#   end
 end

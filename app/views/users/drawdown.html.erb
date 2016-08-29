@@ -166,17 +166,29 @@
                             <div class="col-sm-26">
                               <div class="row">
                                   <div class="col-sm-10">
-                                    <%= item.text_field :amount, :class => 'form-control' %>
+                                    <% if !@amount.nil? %>
+                                      <%= item.text_field :amount, :class => 'form-control', :value => @amount %>
+                                    <% else %>
+                                      <%= item.text_field :amount, :class => 'form-control' %>
+                                    <% end %>
                                   </div>
                                   <div class="col-sm-15">
                                       <div class="form-group">
                                         <label for="inputEmail3" class="col-sm-14 control-label">Thời hạn vay: </label>
                                         <div class="col-sm-22">
-                                          <select name="drawdown[amount_time]" id="" class="form-control">
-                                            <option value="1" <%= @drawdown.amount_time.to_i == 1.to_i ? 'selected="selected"' : '' %>>36 tháng</option>
-                                            <option value="2" <%= @drawdown.amount_time.to_i == 2.to_i ? 'selected="selected"' : '' %>>24 tháng</option>
-                                            <option value="3" <%= @drawdown.amount_time.to_i == 3.to_i ? 'selected="selected"' : '' %>>12 tháng</option>
-                                          </select>
+                                          <% if !@amountTime.nil? %>
+                                            <select name="drawdown[amount_time]" id="" class="form-control">
+                                              <option value="1" <%= @amountTime.to_i == 1.to_i ? 'selected="selected"' : '' %>>36 tháng</option>
+                                              <option value="2" <%= @amountTime.to_i == 2.to_i ? 'selected="selected"' : '' %>>24 tháng</option>
+                                              <option value="3" <%= @amountTime.to_i == 3.to_i ? 'selected="selected"' : '' %>>12 tháng</option>
+                                            </select>
+                                          <% else %>
+                                            <select name="drawdown[amount_time]" id="" class="form-control">
+                                              <option value="1" <%= @drawdown.amount_time.to_i == 1.to_i ? 'selected="selected"' : '' %>>36 tháng</option>
+                                              <option value="2" <%= @drawdown.amount_time.to_i == 2.to_i ? 'selected="selected"' : '' %>>24 tháng</option>
+                                              <option value="3" <%= @drawdown.amount_time.to_i == 3.to_i ? 'selected="selected"' : '' %>>12 tháng</option>
+                                            </select>
+                                          <% end %>
                                         </div>
                                     </div>
                                   </div>
