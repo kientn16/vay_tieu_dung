@@ -13,20 +13,20 @@
         #tab-drawdown.tab-pane{:role => "tabpanel"}
         #tab-information.tab-pane.active{:role => "tabpanel"}
           .tab-content
-            .heading.list.text-bold Chi tiết thông tin khoản vay
+            .heading.list.text-bold #{t('detail_loans')}
             .list
               .table-responsive
                 %table.table.table-striped.table-hover.table-bordered
                   %thead
                     %tr
-                      %td Ngày vay
-                      %td Số HĐ vay
-                      %td Số tiền
-                      %td Thời hạn
-                      %td Trạng thái
-                      %td Số tiền đã TT
-                      %td Số tiền phạt
-                      %td Dư nợ
+                      %td #{t('loans_day')}
+                      %td #{t('code_contract')}
+                      %td #{t('amount')}
+                      %td #{t('deadline')}
+                      %td #{t('status')}
+                      %td #{t('paid')}
+                      %td #{t('penance')}
+                      %td #{t('debt')}
                   %tbody
                     - @contracts.each do |contract|
                       %tr
@@ -50,11 +50,11 @@
                         %td= num_currency(contract.penance)
                         %td= num_currency(contract.debt)
               .row
-                %a.pull-right.btn.btn-primary.btn-export{:href => "#{info_index_path}.xls"} Xuất ra Excel
+                %a.pull-right.btn.btn-primary.btn-export{:href => "#{info_index_path}.xls"} #{t('export_excel')}
             .row
               .col-sm-36
                 .list-history.status
-                  .heading.text-bold Lịch sử trạng thái
+                  .heading.text-bold #{t('history_status')}
                   .content
                     %ul
                       - @historys.each do |history|
@@ -69,7 +69,7 @@
             .row
               .col-sm-36
                 .list-history.payment
-                  .heading.text-bold Lịch sử thanh toán
+                  .heading.text-bold #{t('history_pay')}
                   .content
                     %ul
                       - @historys.each do |history|

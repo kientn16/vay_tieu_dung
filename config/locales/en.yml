@@ -21,3 +21,49 @@
 
 en:
   hello: "Hello world"
+#  users
+  email: "Email"
+  password: "Password"
+  fullname: "Fullname"
+  phone: "Mobile"
+  day: "Birthday"
+  month: "Month"
+  year: "Year"
+  document: "Document"
+  gender: "Gender"
+  marriage: "Marriage"
+  address: "Address"
+  province: "Province"
+  district: "District"
+  ward: "Ward"
+  quick_login: "Quick Login"
+  descr_quick_login: "Please click icon Facebook/Gmail to quick login"
+  value_button_submit: "Update"
+
+#  info users
+  loans_day: "Loans day"
+  code_contract: "Code Contract"
+  amount: "Amount"
+  deadline: "Deadline"
+  status: "Status"
+  paid: "Paid"
+  penance: "Penance"
+  debt: "Debt"
+  history_status: "History Status"
+  history_pay: "History Pay"
+  export_excel: "Export Excel"
+  detail_loans: "Detail info loans"
+
+# tab navigation
+  account: "Account"
+  drawdowns: "Drawdowns"
+  info_account: "Info Account"
+  notification: "Notification"
+
+# navigation
+  home: "Home"
+  contact: "Contact"
+  help: "Help"
+  profile: "Profile"
+  logout: "Logout"
+  login: "Login"

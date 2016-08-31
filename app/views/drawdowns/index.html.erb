@@ -35,7 +35,7 @@
                 <div class="row">
                     <div class="col-sm-36">
                         <div class="form-group">
-                            <label for="input-email" class="col-sm-10 control-label">Nơi làm việc: </label>
+                            <label for="input-email" class="col-sm-10 control-label"> <%= t('fullname') %> </label>
                             <div class="col-sm-15">
                               <%= collection_select(:drawdown, :sponsor_id, @sponsors, :id, :name, {prompt: "Chon noi lam viec"}, { class: "form-control"}) %>
                             </div>
