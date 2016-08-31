@@ -49,7 +49,7 @@
                           %select.form-control{:name => "date[day]"}
                             %option{:value => ""} Day
                             - (1..31).each do |i|
-                              %option {:value => i, :selected => @day.to_i == i}
+                              %option{:value => i, :selected => i == @day} #{i}
                         .col-sm-14
                           .form-group
                             %label.col-sm-9.control-label{:for => "inputEmail3"} Th&#xE1;ng:
@@ -57,7 +57,7 @@
                               %select.form-control{:name => "date[month]"}
                                 %option{:value => ""} Month
                                 - (1..12).each do |i|
-                                  %option {:value => i, :selected => @month.to_i == i}
+                                  %option{:value => i, :selected => i == @month} #{i}
                         .col-sm-14
                           .form-group
                             %label.col-sm-8.control-label{:for => "inputEmail3"} N&#x103;m:
@@ -65,7 +65,7 @@
                               %select.form-control{:name => "date[year]"}
                                 %option{:value => ""} Year
                                 - (Time.now.year - 100..Time.now.year).each do |i|
-                                  %option {:value => i, :selected => @year.to_i == i}
+                                  %option{:value => i, :selected => @year.to_i == i} #{i}
                       .col-sm-14
               .row
                 .col-sm-22

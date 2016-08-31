@@ -45,9 +45,9 @@ class UsersController < ApplicationController
           @user.update(:media_id => @media.id)
         end
         format.html {redirect_to users_path, notice: 'User was successfully updated'}
-        format.json { render :show, status: :ok, location: @user}
+        format.json { render :index, status: :ok, location: @user}
       else
-        format.html { render :show }
+        format.html { render :index }
         format.json {render json: @user.errors, status: :unprocessable_entity}
       end
     end
