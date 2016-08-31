@@ -35,18 +35,18 @@
                             %a{:href => "#{drawdown_path(current_user.id)}"}= contract.loans_time
                         - else
                           %td
-                            %a.show-drawdowns{:href => "#{show_drawdown_path(contract.drawdowns_id)}"}= contract.loans_time
+                            %a.show-drawdowns{:href => "#{show_drawdown_info_path(contract.drawdowns_id)}"}= contract.loans_time
                         - if contract.status.to_i == 99
                           %td
                         - else
                           %td
-                            %a.show-drawdowns{:href => "#{show_drawdown_path(contract.drawdowns_id)}"}= contract.code
+                            %a.show-drawdowns{:href => "#{show_drawdown_info_path(contract.drawdowns_id)}"}= contract.code
                         %td= num_currency(contract.value)
                         %td= Drawdown.get_amount_time(contract.deadline)
                         %td
-                          %a.show-drawdowns{:href => "#{show_status_drawdown_path(contract.id)}"}= Contract.get_status(contract.status)
+                          %a.show-drawdowns{:href => "#{show_status_drawdown_info_path(contract.id)}"}= Contract.get_status(contract.status)
                         %td
-                          %a.show-drawdowns{:href => "#{show_pay_contract_path(contract.id)}"}= num_currency(contract.paid)
+                          %a.show-drawdowns{:href => "#{show_pay_contract_info_path(contract.id)}"}= num_currency(contract.paid)
                         %td= num_currency(contract.penance)
                         %td= num_currency(contract.debt)
               .row

@@ -20,11 +20,12 @@ Rails.application.routes.draw do
   get '/signout', to: 'sessions#destroy', as: 'logout'
 
   scope 'users' do
-    resources :info, except: :show
-    controller :info do
-      get 'info/view_drawdown/:id' => :show_drawdowns, as: :show_drawdown
-      get 'info/show_status_drawdown/:id' => :show_status, as: :show_status_drawdown
-      get 'info/show_pay_contract/:id' => :show_pay, as: :show_pay_contract
+    resources :info, only: :index do
+      member do
+        get 'view_drawdown' => :show_drawdowns, as: :show_drawdown
+        get 'show_status_drawdown' => :show_status, as: :show_status_drawdown
+        get 'show_pay_contract' => :show_pay, as: :show_pay_contract
+      end
     end
   end
   resources :users do
