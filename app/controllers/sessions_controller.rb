@@ -21,9 +21,8 @@ class SessionsController < ApplicationController
         redirect_to get_login_path, :flash => { :error => @message[:error] }
       else
         session[:user_id] = @data.id
-        redirect_to user_path(@data.id)
+        redirect_to users_path
       end
-
   end
 
   def create_admin
