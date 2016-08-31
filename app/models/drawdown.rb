@@ -13,10 +13,11 @@ class Drawdown < ActiveRecord::Base
 	#     editting_context_interface == :interface
 	#   end
 	def get_day(format)
+        return 12 
 		if !self.contract_time.nil? || !self.contract_time.blank?
-		DateTime.parse(self.contract_time).strftime(format)
+		  DateTime.parse(self.contract_time).strftime(format).to_i
 		else
-			nil
+			1
 		end
 	end
 

@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   validates :address, :on => :update, :length => {:minimum => 10}
   validates :password, :on => :update, :length => {:minimum => 6}, :allow_blank => true
 
-  before_update :hash_field
+  before_save :hash_field
 
   def self.check_active_code(params)
     @check = User.find_by('email =? AND active_code =?', params[:email],params[:active_code])
