@@ -4,17 +4,17 @@ module ApplicationHelper
   end
 
   def trim(string = '', length)
-		defaultString = '...'
-	    if string == nil || string.empty?
-	      	defaultString
-	    else
-	    	if length == nil
-	    		string
-	    	elsif length != nil && string.length < length
-	    		string
-	    	else 
-	    		string.truncate(length, separator: ' ')
-	    	end
-	    end
-	end
+        defaultString = '...'
+        if string == nil || string.empty?
+            defaultString
+        else
+            if length == nil
+                string
+            elsif length != nil && string.length < length
+                string
+            else 
+                string.truncate(length, separator: ' ')
+            end
+        end
+    end
 end
