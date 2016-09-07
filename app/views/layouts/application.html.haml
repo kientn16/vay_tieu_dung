@@ -51,19 +51,19 @@
             #navbar.navbar-collapse.collapse.navbar-right
               %ul.nav.navbar-nav.menu-top
                 %li{:class => !@menu_active.nil? && @menu_active == 'home' ? 'active' : ''}
-                  %a{:href => root_path} Trang chủ
+                  %a{:href => root_path} #{t('home')}
                 %li{:class => !@menu_active.nil? && @menu_active == 'contact' ? 'active' : ''}
-                  %a{:href => new_contact_path} Liên hệ
+                  %a{:href => new_contact_path} #{t('contact')}
                 %li{:class => !@menu_active.nil? && @menu_active == 'help' ? 'active' : ''}
-                  %a{:href => helps_path} Trợ giúp
+                  %a{:href => helps_path} #{t('help')}
                 - if current_user
                   %li{:class => !@menu_active.nil? && @menu_active == 'user' ? 'active' : ''}
-                    %a{:href => users_path} Profile
+                    %a{:href => users_path} #{t('profile')}
                   %li
-                    %a{:href => get_logout_path} Đăng xuất
+                    %a{:href => get_logout_path} #{t('logout')}
                 - else
                   %li
-                    %a{:href => get_login_path} Đăng nhập
+                    %a{:href => get_login_path} #{t('login')}
             / /.nav-collapse
         %ul.nav.navbar-nav
         - if current_user
@@ -73,7 +73,7 @@
                 .dropdown
                   %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
                     %span.icon-user
-                    Tài khoản:
+                    #{t('account')}
                     %a.text-bold{:href => ""}= current_user.email
                     %span.icon-arrow
                   %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1"}

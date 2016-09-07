@@ -79,3 +79,4 @@ gem 'bootstrap-generators', '~> 3.3.4'
 gem "recaptcha", require: "recaptcha/rails"
 gem 'haml'
 gem "haml-rails", "~> 0.9"
+gem 'rails-i18n', '~> 4.0.0'
