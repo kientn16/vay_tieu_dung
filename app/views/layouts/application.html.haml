@@ -60,13 +60,13 @@
                   %li{:class => !@menu_active.nil? && @menu_active == 'user' ? 'active' : ''}
                     %a{:href => users_path} #{t('profile')}
                   %li
-                    %a{:href => get_logout_path} #{t('logout')}
+                    %a{:href => destroy_user_session_path} #{t('logout')}
                 - else
                   %li
-                    %a{:href => get_login_path} #{t('login')}
+                    %a{:href => new_user_session_path} #{t('login')}
             / /.nav-collapse
         %ul.nav.navbar-nav
-        - if current_user
+        - if !current_user.nil?
           .row
             .container
               .links-account.pull-right
@@ -78,12 +78,12 @@
                     %span.icon-arrow
                   %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1"}
                     %li
-                      %a{:href => "#{user_path(session[:user_id])}"} Profile
+                      %a{:href => "#{users_path}"} Profile
                     %li
                       %a{:href => "#"} Change password
                     %li.divider{:role => "separator"}
                     %li
-                      = link_to get_logout_path do
+                      = link_to destroy_user_session_path do
                         %i.fa.fa-sign-out.fa-fw
                         Logout
     .body

@@ -1,0 +1,45 @@
+<!-- app/views/sessions/new.html.erb -->
+<div class="row banner-login">
+    <div class="container text-center">
+        <img src="<%= image_url('banner-login.jpg') %>">
+    </div>
+</div>
+<div class="row">
+  <div class="container">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name),html: {class: "frm-login"}) do |f| %>
+      <div class="heading text-center">
+        <%= render 'includes/flash_msg' %>
+        <span class="text-bold text-center">
+            Đăng nhập
+        </span>
+      </div>
+      <div class="invite-login text-center">Xin mời bạn đăng nhập tài khoản bằng <br> Facebook/Gmail </div>
+      <div class="button-socials">
+        <a href="/auth/facebook" class="btn-facebook">Facebook</a>
+        <a href="/auth/google_oauth2" class="btn-google">Gmail</a>
+      </div>
+      <p class="text-center text-bold">Hoặc</p>
+      <div class="form-group">
+        <div class="alert alert-danger">
+          <% flash.each do |name, msg| %>
+            <%= content_tag(:div, msg, class: "alert alert-#{name}") %>
+          <% end %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="input-email">Email</label>
+        <%= f.text_field :email, class: 'form-control text-control', placeholder: 'Email' %>
+      </div>
+      <div class="form-group">
+        <label for="input-password">Mật khẩu</label>
+        <%= f.password_field :password, class: 'form-control text-control', placeholder: 'Password' %>
+      </div>
+      <div class="form-group text-center">
+        <%= f.submit "Submit", 'class' => 'btn btn-default btn-login' %>
+      </div>
+    <% end %>
+    <p class="text-center link-forget-signup">Quên <a href="">Mật khẩu</a>, Không là thành viên? <a href="<%= new_user_registration_path %>">Đăng ký</a></p>
+    <p class="hint-login text-center"> Sử dụng bảo mật ngân hàng cấp để giữ cho dữ liệu của bạn an toàn.<br>Theo của chúng tôi chính sách bảo mật, chúng tôi sẽ không chia sẻ dữ liệu với các bên thứ ba. </p>
+  </div>
+</div>
+</div>

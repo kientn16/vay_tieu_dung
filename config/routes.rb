@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations'}
   root to: "home#index"
   controller :register do
     get 'register' => :new, as: :get_register
     post 'register' => :create, as: :post_register
+    # get 'active_code' => :active_code, as: :get_active_code
+    # post 'active_code' => :create_active_code, as: :post_active_code
+  end
+
+  controller 'users/actives' do
     get 'active_code' => :active_code, as: :get_active_code
     post 'active_code' => :create_active_code, as: :post_active_code
   end

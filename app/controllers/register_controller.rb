@@ -32,7 +32,8 @@ class RegisterController < ApplicationController
     if @result
       #check success
       @result.update(:status => 1)
-      session[:user_id] = @result.id
+      current_user = $result
+      # session[:user_id] = @result.id
       redirect_to user_path(@result.id), notice: "Register successfully"
     else
       #check false

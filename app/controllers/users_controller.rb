@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   before_filter :authorize
 
   def index
-    @numberNotification = Notification.get_notifications(0, session[:user_id]).count
-    @user = User.find(session[:user_id])
+    @numberNotification = Notification.get_notifications(0, current_user.id).count
+    @user = User.find(current_user.id)
     @birthday = @user.birthday
     if @birthday == nil
       @day = Time.now.day
@@ -67,7 +67,7 @@ class UsersController < ApplicationController
       end
     end
     @notifications = Notification.get_all(params)
-    @numberNotification = Notification.get_notifications(0, session[:user_id]).count
+    @numberNotification = Notification.get_notifications(0, current_user.id).count
   end
 
 

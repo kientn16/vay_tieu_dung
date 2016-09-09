@@ -1,8 +1,8 @@
 class DrawdownsController < ApplicationController
-
+  before_action :authenticate_user!
 	def index
-    @numberNotification = Notification.get_notifications(0, session[:user_id]).count
-    @user = User.find(session[:user_id])
+    @numberNotification = Notification.get_notifications(0, current_user.id).count
+    @user = User.find(current_user.id)
     if @user.media_id.nil? || @user.media_id == 0
       flash[:error] = 'Mời bạn Upload CMT/Hộ chiếu ở Tab Tài khoản trước khi sử dụng chức năng Đề nghị vay'
       redirect_to users_path
@@ -11,7 +11,7 @@ class DrawdownsController < ApplicationController
       @amountTime = params[:amount_time]
       @sponsors = Sponsor.all
       @banks = Bank.where('parent_id =?', 0)
-      @drawdown = Drawdown.where('user_id = ? AND is_draft = ?', session[:user_id], 1).first
+      @drawdown = Drawdown.where('user_id = ? AND is_draft = ?', current_user.id, 1).first
       if @drawdown.nil?
         @drawdown = Drawdown.new
       end
@@ -21,7 +21,7 @@ class DrawdownsController < ApplicationController
   def create
     params[:drawdown][:appoint_in_contact] = params[:drawdown][:appoint_in_contact] != nil ? params[:drawdown][:appoint_in_contact] : 0
     params[:drawdown][:contract_time] = params['day']+"/"+params['month']+"/"+params['year']
-    flag = Drawdown.proccess_drawdown(nil, drawdown_params, params, session[:user_id])
+    flag = Drawdown.proccess_drawdown(nil, drawdown_params, params, current_user.id)
     if flag != false
       flash[:success] = 'De nghi vay da duoc gui di. Chung toi se duyet de nghi cua ban trong thoi gian som nhat'
       redirect_to drawdowns_path()
@@ -35,7 +35,7 @@ class DrawdownsController < ApplicationController
     params[:drawdown][:contract_time] = params['day']+"/"+params['month']+"/"+params['year']
     @drawdown = Drawdown.find(params[:id])
     if !@drawdown.nil?
-      flag = Drawdown.proccess_drawdown(@drawdown, drawdown_params, params, session[:user_id])
+      flag = Drawdown.proccess_drawdown(@drawdown, drawdown_params, params, current_user.id)
       if flag != false
         flash[:success] = 'De nghi vay da duoc gui di. Chung toi se duyet de nghi cua ban trong thoi gian som nhat'
         redirect_to drawdowns_path()

@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
   validates :phone,:presence => true,
             :numericality => true,
             :length => { :minimum => 10, :maximum => 15 },
@@ -10,7 +14,7 @@ class User < ActiveRecord::Base
   validates :address, :on => :update, :length => {:minimum => 10}
   validates :password, :on => :update, :length => {:minimum => 6}, :allow_blank => true
 
-  before_save :hash_field
+  # before_save :hash_field
 
   def self.check_active_code(params)
     @check = User.find_by('email =? AND active_code =?', params[:email],params[:active_code])
@@ -149,5 +153,14 @@ class User < ActiveRecord::Base
 
   def self.md5(pass)
     Digest::MD5.hexdigest("#{pass}")
+  end
+
+
+  def active_for_authentication?
+    super && self.status == 1 # i.e. super && self.is_active
+  end
+
+  def inactive_message
+    "Sorry, this account has been deactivated."
   end
 end
