@@ -72,7 +72,7 @@ gem 'strong_password', '~> 0.0.5'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'pry-rails', :group => :development
 gem 'will_paginate-bootstrap'
-
+gem 'omniauth'
 gem 'omniauth-facebook', '~> 1.4.1'
 gem "omniauth-google-oauth2", "~> 0.2.1"
 gem 'bootstrap-generators', '~> 3.3.4'

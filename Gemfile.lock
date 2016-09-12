@@ -383,6 +383,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   mysql2 (>= 0.3.13, < 0.5)
+  omniauth
   omniauth-facebook (~> 1.4.1)
   omniauth-google-oauth2 (~> 0.2.1)
   paperclip (~> 5.0.0)
