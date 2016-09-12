@@ -15,9 +15,8 @@
       </div>
       <div class="invite-login text-center">Xin mời bạn đăng nhập tài khoản bằng <br> Facebook/Gmail </div>
       <div class="button-socials">
-        <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
-        <a href="/auth/facebook" class="btn-facebook">Facebook</a>
-        <a href="/auth/google_oauth2" class="btn-google">Gmail</a>
+        <a href="<%= user_facebook_omniauth_authorize_path %>" class="btn-facebook">Facebook</a>
+        <a href="<%= user_google_oauth2_omniauth_authorize_path %>" class="btn-google">Gmail</a>
       </div>
       <p class="text-center text-bold">Hoặc</p>
       <div class="form-group">

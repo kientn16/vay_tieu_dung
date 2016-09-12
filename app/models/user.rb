@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :omniauthable, :omniauth_providers => [:facebook]
+         :recoverable, :rememberable, :trackable, :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
   validates :phone,:presence => true,
             :numericality => true,
             :length => { :minimum => 10, :maximum => 15 },
@@ -87,6 +87,8 @@ class User < ActiveRecord::Base
       # binding.pry
       if check != nil
         @user = check
+        @user.google_id = auth.uid
+        @user.save
       else
         @user = User.new
         @user.email = auth.info.email
@@ -95,7 +97,7 @@ class User < ActiveRecord::Base
         @user.name = auth.info.name
         @user.oauth_token = auth.credentials.token
         @user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-        @user.status = 0
+        @user.status = 1
         @user.by_social = 1
         @user.change_email = 0
         # binding.pry
