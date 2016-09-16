@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
   root to: "home#index"
+  # devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations'}
+  devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks'}
   controller :register do
     get 'register' => :new, as: :get_register
     post 'register' => :create, as: :post_register
+    # get 'active_code' => :active_code, as: :get_active_code
+    # post 'active_code' => :create_active_code, as: :post_active_code
+  end
+
+  controller 'users/actives' do
     get 'active_code' => :active_code, as: :get_active_code
     post 'active_code' => :create_active_code, as: :post_active_code
   end
@@ -14,7 +21,7 @@ Rails.application.routes.draw do
   end
 
   #social authenticate
-  get 'auth/facebook/callback', to: 'sessions#create_face'
+  # get 'auth/facebook/callback', to: 'sessions#create_face'
   get 'auth/google_oauth2/callback', to: 'sessions#create_google'
   get 'auth/failure', to: redirect('/')
   get '/signout', to: 'sessions#destroy', as: 'logout'

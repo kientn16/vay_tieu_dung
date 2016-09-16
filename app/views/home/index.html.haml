@@ -3,7 +3,7 @@
     .col-sm-36.col-md-12
       .form-drawdown
         .heading Nhu cầu vay của bạn?
-        %form{:action => "#{session[:user_id] != nil ? drawdown_path(session[:user_id]) : ''}", :method => "GET"}
+        %form{:action => "#{current_user != nil ? drawdown_path(current_user.id) : ''}", :method => "GET"}
           .ranger-block.ranger-money
             %label.label-left Số tiền vay
             %input#range-money.irs-hidden-input{"data-label-id" => "#label-money", "data-relate" => "#range-time", :name => "amount", :type => "hidden", :value => "2000000"}/
@@ -17,11 +17,11 @@
             %span.total.text-bold 1.250.00 VNĐ
             %span.hint (Thông tin mang tính chất tham khảo, bạn sẽ nhận thông tin chính xác sau khi lập đề nghị vay)
           .button-submit
-            - if session[:user_id] != nil
+            - if current_user != nil
               %button.btn-drawdown{:type => "submit"}
                 Đề nghị vay
             - else
-              %a.btn-drawdown{:href => get_login_path} Đề nghị vay
+              %a.btn-drawdown{:href => new_user_session_path} Đề nghị vay
     .col-sm-36.col-md-24
       .swiper-container
         .swiper-wrapper

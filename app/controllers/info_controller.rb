@@ -3,7 +3,7 @@ class InfoController < ApplicationController
   def index
     @contracts = Contract.paginate(:page => params[:page], :per_page => 10)
     @historys = History.where('user_id = ?',params[:id])
-    @numberNotification = Notification.get_notifications(0, session[:user_id]).count
+    @numberNotification = Notification.get_notifications(0, current_user.id).count
     respond_to do |format|
       format.html
       format.csv { render text: @contracts.to_csv}

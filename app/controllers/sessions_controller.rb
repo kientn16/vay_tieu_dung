@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
     # binding.pry
       @data, @message = User.authenticate(params[:email], params[:password])
       if @message[:error].present?
-        redirect_to get_login_path, :flash => { :error => @message[:error] }
+        redirect_to new_user_session_path, :flash => { :error => @message[:error] }
       else
         session[:user_id] = @data.id
         redirect_to users_path
@@ -36,14 +36,16 @@ class SessionsController < ApplicationController
   end
   def create_face
     user = User.from_omniauth(env["omniauth.auth"],current_user)
-    session[:user_id] = user.id
+    current_user = user
+    render :json => current_user
+    return
     redirect_to users_path
   end
 
   def create_google
     user = User.from_omniauth_google(env["omniauth.auth"],current_user)
     # binding.pry
-    session[:user_id] = user.id
+    current_user = user
     redirect_to users_path
   end
 
@@ -66,7 +68,7 @@ class SessionsController < ApplicationController
   def check_captcha
     unless verify_recaptcha
 
-      redirect_to get_login_path,:flash => { :recaptcha_error => "Captcha invalid" }
+      redirect_to new_user_session_path,:flash => { :recaptcha_error => "Captcha invalid" }
     end
   end
 end
