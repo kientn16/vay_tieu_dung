@@ -20,7 +20,7 @@
                     %label.col-sm-6.control-label{:for => "input-email"} #{t('email')}
                     .col-sm-30
                       - if @user.by_social == 0 || @user.change_email == 1
-                        = f.text_field :email, :class => 'form-control', :disabled => 'disabled'
+                      = f.text_field :email, :class => 'form-control', :disabled => 'disabled'
                       - else
                         = f.text_field :email, :class => 'form-control'
                 .col-sm-14
